@@ -37,3 +37,30 @@ class StorageManeger {
         return user1
     }
 }
+
+
+class UserStore {
+    private let defaults = UserDefaults.standard
+    static let shared = UserStore()
+    let currentUser = "user"
+    private init() {}
+    
+    func save(user: User) {
+        guard let user = try? JSONEncoder().encode(user) else { return }
+            defaults.set(user, forKey: currentUser)
+        print("Save current user")
+    
+    }
+    
+    func getUser() -> User? {
+        
+        guard let userData = defaults.value(forKey: currentUser) as? Data else { return nil }
+        let user = try? JSONDecoder().decode(User.self, from: userData)
+        print("Get current user")
+        return user
+    }
+    
+    func deleteUser() {
+        defaults.removeObject(forKey: currentUser)
+    }
+}

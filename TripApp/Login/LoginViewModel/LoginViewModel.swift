@@ -12,8 +12,9 @@ protocol LoginViewModelProcol: AnyObject {
     
     var autoLogin: Bool { get }
     
-    func login(with phoneNumber: String, password: String) -> Bool
+    //func login(with phoneNumber: String, password: String) -> Bool
     func fetchUser(phoneNumber: String, password: String, complition: @escaping (User) -> ())
+    func save()
 }
 
 // MARK: - LoginViewModel class
@@ -45,5 +46,10 @@ class LoginViewModel: LoginViewModelProcol {
             print("Password nor correct")
         }
        
+    }
+    
+    func save() {
+        guard let user = user else { return }
+        UserStore.shared.save(user: user)
     }
 }

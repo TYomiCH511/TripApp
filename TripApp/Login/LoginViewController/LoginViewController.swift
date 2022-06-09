@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var autoLoginSwitch: UISwitch!
     @IBOutlet weak var autoLoginLabel: UILabel!
+    @IBOutlet weak var fogotPasswordButton: UIButton!
     
     @IBOutlet weak var loginButton: UIButton!
     
@@ -25,15 +26,30 @@ class LoginViewController: UIViewController {
     }
     
     private let radius = 8
+    private let orderVcId = "OrderViewController"
+    
     
     // MARK: - Life cyle ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         viewModel = LoginViewModel()
         setupUI()
         
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if UserStore.shared.getUser() != nil {
+            print("Hi")
+            
+            guard let tabBar = storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else { return }
+            tabBar.modalPresentationStyle = .fullScreen
+            //UIApplication.shared.keyWindow?.rootViewController = tabBar
+            present(tabBar, animated: false)
+        }
+    }
+    
     // MARK: - IBActions
     @IBAction func autoLoginPressed(_ sender: UISwitch) {
        
@@ -42,15 +58,30 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         guard let phoneNumber = logintTextField.text,
               let password = passwordTextField.text else { return }
-        viewModel.fetchUser(phoneNumber: phoneNumber, password: password) { [weak self] user in
-            self?.onMain {
-                self?.resetLoginButton()
-                self?.clearTextField()
-                print(user)
-                print("Go tot Main VC")
+        viewModel.fetchUser(phoneNumber: phoneNumber, password: password) { [unowned self] user in
+            self.onMain {
+                self.resetLoginButton()
+                self.clearTextField()
+                guard let orderViewComtroller = self.storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else { return }
+                orderViewComtroller.modalPresentationStyle = .fullScreen
+                self.present(orderViewComtroller, animated: true) {
+                    if self.autoLoginSwitch.isOn {
+                        self.viewModel.save()
+                    }
+                    
+                }
             }
         }
     }
+    
+    @IBAction func callSupportPressed(_ sender: UIButton) {
+        showPhoneAlert()
+    }
+    
+    @IBAction func fogotPasswordButtonPressed(_ sender: UIButton) {
+        print("Fogot Password touch")
+    }
+    
     
     // MARK: - Custom function
     private func setupUI() {
@@ -68,7 +99,7 @@ class LoginViewController: UIViewController {
   
     
     private func setupTextField() {
-        logintTextField.placeholder = "Enter phone number"
+        logintTextField.placeholder = "+375.. enter phone number"
         passwordTextField.placeholder = "Enter password"
         
         logintTextField.addTarget(self, action: #selector(dataOfUserNotEmpty), for: .editingChanged)
@@ -85,6 +116,24 @@ class LoginViewController: UIViewController {
     private func resetLoginButton() {
         loginButton.backgroundColor = .lightGray
         loginButton.isEnabled = false
+    }
+    
+    private func showPhoneAlert() {
+        let alert = UIAlertController(title: "Support",
+                                      message: "You can call us and oedr car",
+                                      preferredStyle: .actionSheet)
+        
+        let phoneNumber = UIAlertAction(title: "+375 29 511 57 11",
+                                        style: .default)
+        { _ in
+            print("call phone number")
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(phoneNumber)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true)
     }
     
     @objc private func dataOfUserNotEmpty() {

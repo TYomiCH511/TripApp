@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+
+protocol OrderViewModelProtocol {
+    
+}
+
+
+class OrderViewmodel: OrderViewModelProtocol {
+    
+    
+    
+}
