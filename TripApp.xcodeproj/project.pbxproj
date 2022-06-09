@@ -21,6 +21,11 @@
 		AC607E272851E4FD00B9C878 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E262851E4FD00B9C878 /* Trip.swift */; };
 		AC607E2F2851E85100B9C878 /* HistoryTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E2E2851E85100B9C878 /* HistoryTripViewModel.swift */; };
 		AC607E312851E8A400B9C878 /* HistoryTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E302851E8A400B9C878 /* HistoryTripViewController.swift */; };
+		AC607E332851F9A800B9C878 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E322851F9A800B9C878 /* OrderViewController.swift */; };
+		AC607E352851F9B900B9C878 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E342851F9B900B9C878 /* OrderViewModel.swift */; };
+		AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E392851FA9E00B9C878 /* SettingViewModel.swift */; };
+		AC607E3C2851FAE900B9C878 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3B2851FAE900B9C878 /* SettingViewController.swift */; };
+		AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3F2852081B00B9C878 /* TabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +45,11 @@
 		AC607E262851E4FD00B9C878 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		AC607E2E2851E85100B9C878 /* HistoryTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTripViewModel.swift; sourceTree = "<group>"; };
 		AC607E302851E8A400B9C878 /* HistoryTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTripViewController.swift; sourceTree = "<group>"; };
+		AC607E322851F9A800B9C878 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		AC607E342851F9B900B9C878 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
+		AC607E392851FA9E00B9C878 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		AC607E3B2851FAE900B9C878 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		AC607E3F2852081B00B9C878 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +82,11 @@
 		AC44BD1D2850B49B004A8C2A /* TripApp */ = {
 			isa = PBXGroup;
 			children = (
+				AC607E3D285207DE00B9C878 /* BarController */,
+				AC44BD322850B4D9004A8C2A /* App */,
 				AC607E212851D96D00B9C878 /* StorageManager */,
 				AC44BD3A2850CDC3004A8C2A /* Extensions */,
-				AC44BD322850B4D9004A8C2A /* App */,
+				AC607E362851FA5C00B9C878 /* Setting */,
 				AC607E2B2851E80800B9C878 /* HistoryTrip */,
 				AC607E282851E7D700B9C878 /* Order */,
 				AC44BD342850B532004A8C2A /* Login */,
@@ -167,6 +179,7 @@
 		AC607E292851E7E800B9C878 /* OrderViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AC607E322851F9A800B9C878 /* OrderViewController.swift */,
 			);
 			path = OrderViewController;
 			sourceTree = "<group>";
@@ -174,6 +187,7 @@
 		AC607E2A2851E7F600B9C878 /* OrderViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				AC607E342851F9B900B9C878 /* OrderViewModel.swift */,
 			);
 			path = OrderViewModel;
 			sourceTree = "<group>";
@@ -201,6 +215,47 @@
 				AC607E2E2851E85100B9C878 /* HistoryTripViewModel.swift */,
 			);
 			path = HistoryTripViewModel;
+			sourceTree = "<group>";
+		};
+		AC607E362851FA5C00B9C878 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				AC607E382851FA7C00B9C878 /* SettingViewController */,
+				AC607E372851FA6E00B9C878 /* SettingViewModel */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		AC607E372851FA6E00B9C878 /* SettingViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC607E392851FA9E00B9C878 /* SettingViewModel.swift */,
+			);
+			path = SettingViewModel;
+			sourceTree = "<group>";
+		};
+		AC607E382851FA7C00B9C878 /* SettingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AC607E3B2851FAE900B9C878 /* SettingViewController.swift */,
+			);
+			path = SettingViewController;
+			sourceTree = "<group>";
+		};
+		AC607E3D285207DE00B9C878 /* BarController */ = {
+			isa = PBXGroup;
+			children = (
+				AC607E3E285207E700B9C878 /* TaBarViewController */,
+			);
+			path = BarController;
+			sourceTree = "<group>";
+		};
+		AC607E3E285207E700B9C878 /* TaBarViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AC607E3F2852081B00B9C878 /* TabBarViewController.swift */,
+			);
+			path = TaBarViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,17 +329,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */,
 				AC607E252851DD6900B9C878 /* UIViewController+extension.swift in Sources */,
+				AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */,
 				AC44BD382850B568004A8C2A /* LoginViewModel.swift in Sources */,
 				AC607E312851E8A400B9C878 /* HistoryTripViewController.swift in Sources */,
 				AC44BD232850B49B004A8C2A /* LoginViewController.swift in Sources */,
+				AC607E3C2851FAE900B9C878 /* SettingViewController.swift in Sources */,
 				AC607E272851E4FD00B9C878 /* Trip.swift in Sources */,
 				AC607E202851D8F000B9C878 /* User.swift in Sources */,
 				AC607E232851D98900B9C878 /* StorageManager.swift in Sources */,
 				AC44BD1F2850B49B004A8C2A /* AppDelegate.swift in Sources */,
 				AC44BD212850B49B004A8C2A /* SceneDelegate.swift in Sources */,
 				AC607E2F2851E85100B9C878 /* HistoryTripViewModel.swift in Sources */,
+				AC607E352851F9B900B9C878 /* OrderViewModel.swift in Sources */,
 				AC44BD3C2850CDE7004A8C2A /* UIButton+extension.swift in Sources */,
+				AC607E332851F9A800B9C878 /* OrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

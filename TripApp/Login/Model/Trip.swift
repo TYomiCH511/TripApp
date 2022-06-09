@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Trip {
+struct Trip: Codable {
     let date: String
     
 }
