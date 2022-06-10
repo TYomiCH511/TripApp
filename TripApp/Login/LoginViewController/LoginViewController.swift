@@ -40,12 +40,11 @@ class LoginViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         if UserStore.shared.getUser() != nil {
-            print("Hi")
-            
+            print("go to order VC")
             guard let tabBar = storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else { return }
             tabBar.modalPresentationStyle = .fullScreen
-            //UIApplication.shared.keyWindow?.rootViewController = tabBar
             present(tabBar, animated: false)
         }
     }
@@ -119,20 +118,7 @@ class LoginViewController: UIViewController {
     }
     
     private func showPhoneAlert() {
-        let alert = UIAlertController(title: "Support",
-                                      message: "You can call us and oedr car",
-                                      preferredStyle: .actionSheet)
-        
-        let phoneNumber = UIAlertAction(title: "+375 29 511 57 11",
-                                        style: .default)
-        { _ in
-            print("call phone number")
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        alert.addAction(phoneNumber)
-        alert.addAction(cancel)
-        
+        let alert = Alert.shared.showAlertPhoneNumber()
         present(alert, animated: true)
     }
     

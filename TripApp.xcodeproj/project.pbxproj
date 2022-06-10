@@ -15,6 +15,10 @@
 		AC44BD2B2850B49E004A8C2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC44BD292850B49E004A8C2A /* LaunchScreen.storyboard */; };
 		AC44BD382850B568004A8C2A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44BD372850B568004A8C2A /* LoginViewModel.swift */; };
 		AC44BD3C2850CDE7004A8C2A /* UIButton+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44BD3B2850CDE7004A8C2A /* UIButton+extension.swift */; };
+		AC4825A528530DE4008B593F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825A428530DE4008B593F /* Alert.swift */; };
+		AC4825AA28532CF5008B593F /* HistoryViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825A928532CF5008B593F /* HistoryViewModelCell.swift */; };
+		AC4825AD28532D15008B593F /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825AB28532D15008B593F /* HistoryTableViewCell.swift */; };
+		AC4825AE28532D15008B593F /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */; };
 		AC607E202851D8F000B9C878 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E1F2851D8F000B9C878 /* User.swift */; };
 		AC607E232851D98900B9C878 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E222851D98900B9C878 /* StorageManager.swift */; };
 		AC607E252851DD6900B9C878 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E242851DD6900B9C878 /* UIViewController+extension.swift */; };
@@ -39,6 +43,10 @@
 		AC44BD2C2850B49E004A8C2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC44BD372850B568004A8C2A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		AC44BD3B2850CDE7004A8C2A /* UIButton+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+extension.swift"; sourceTree = "<group>"; };
+		AC4825A428530DE4008B593F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		AC4825A928532CF5008B593F /* HistoryViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelCell.swift; sourceTree = "<group>"; };
+		AC4825AB28532D15008B593F /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		AC607E1F2851D8F000B9C878 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC607E222851D98900B9C878 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		AC607E242851DD6900B9C878 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
@@ -82,14 +90,15 @@
 		AC44BD1D2850B49B004A8C2A /* TripApp */ = {
 			isa = PBXGroup;
 			children = (
-				AC607E3D285207DE00B9C878 /* BarController */,
 				AC44BD322850B4D9004A8C2A /* App */,
-				AC607E212851D96D00B9C878 /* StorageManager */,
+				AC4825A328530DBB008B593F /* Helpers */,
+				AC607E3D285207DE00B9C878 /* BarController */,
 				AC44BD3A2850CDC3004A8C2A /* Extensions */,
-				AC607E362851FA5C00B9C878 /* Setting */,
-				AC607E2B2851E80800B9C878 /* HistoryTrip */,
-				AC607E282851E7D700B9C878 /* Order */,
 				AC44BD342850B532004A8C2A /* Login */,
+				AC607E282851E7D700B9C878 /* Order */,
+				AC607E2B2851E80800B9C878 /* HistoryTrip */,
+				AC607E362851FA5C00B9C878 /* Setting */,
+				AC607E212851D96D00B9C878 /* StorageManager */,
 				AC44BD242850B49B004A8C2A /* Main.storyboard */,
 				AC44BD332850B4E6004A8C2A /* Resource */,
 				AC44BD2C2850B49E004A8C2A /* Info.plist */,
@@ -159,6 +168,40 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		AC4825A328530DBB008B593F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				AC4825A428530DE4008B593F /* Alert.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		AC4825A628532B2B008B593F /* HistoryCell */ = {
+			isa = PBXGroup;
+			children = (
+				AC4825A828532B4F008B593F /* HistoryTableViewCell */,
+				AC4825A728532B3A008B593F /* HistoryViewModelCell */,
+			);
+			path = HistoryCell;
+			sourceTree = "<group>";
+		};
+		AC4825A728532B3A008B593F /* HistoryViewModelCell */ = {
+			isa = PBXGroup;
+			children = (
+				AC4825A928532CF5008B593F /* HistoryViewModelCell.swift */,
+			);
+			path = HistoryViewModelCell;
+			sourceTree = "<group>";
+		};
+		AC4825A828532B4F008B593F /* HistoryTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				AC4825AB28532D15008B593F /* HistoryTableViewCell.swift */,
+				AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */,
+			);
+			path = HistoryTableViewCell;
+			sourceTree = "<group>";
+		};
 		AC607E212851D96D00B9C878 /* StorageManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +238,7 @@
 		AC607E2B2851E80800B9C878 /* HistoryTrip */ = {
 			isa = PBXGroup;
 			children = (
+				AC4825A628532B2B008B593F /* HistoryCell */,
 				AC607E2D2851E83500B9C878 /* HistoryTripViewModel */,
 				AC607E2C2851E82700B9C878 /* HistoryTripViewController */,
 			);
@@ -318,6 +362,7 @@
 			files = (
 				AC44BD2B2850B49E004A8C2A /* LaunchScreen.storyboard in Resources */,
 				AC44BD282850B49E004A8C2A /* Assets.xcassets in Resources */,
+				AC4825AE28532D15008B593F /* HistoryTableViewCell.xib in Resources */,
 				AC44BD262850B49B004A8C2A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,7 +377,9 @@
 				AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */,
 				AC607E252851DD6900B9C878 /* UIViewController+extension.swift in Sources */,
 				AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */,
+				AC4825A528530DE4008B593F /* Alert.swift in Sources */,
 				AC44BD382850B568004A8C2A /* LoginViewModel.swift in Sources */,
+				AC4825AA28532CF5008B593F /* HistoryViewModelCell.swift in Sources */,
 				AC607E312851E8A400B9C878 /* HistoryTripViewController.swift in Sources */,
 				AC44BD232850B49B004A8C2A /* LoginViewController.swift in Sources */,
 				AC607E3C2851FAE900B9C878 /* SettingViewController.swift in Sources */,
@@ -342,6 +389,7 @@
 				AC44BD1F2850B49B004A8C2A /* AppDelegate.swift in Sources */,
 				AC44BD212850B49B004A8C2A /* SceneDelegate.swift in Sources */,
 				AC607E2F2851E85100B9C878 /* HistoryTripViewModel.swift in Sources */,
+				AC4825AD28532D15008B593F /* HistoryTableViewCell.swift in Sources */,
 				AC607E352851F9B900B9C878 /* OrderViewModel.swift in Sources */,
 				AC44BD3C2850CDE7004A8C2A /* UIButton+extension.swift in Sources */,
 				AC607E332851F9A800B9C878 /* OrderViewController.swift in Sources */,
