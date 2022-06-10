@@ -60,6 +60,8 @@ class UserStore {
         return user
     }
     
+    
+    
     func deleteUser() {
         defaults.removeObject(forKey: currentUser)
     }
