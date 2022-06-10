@@ -212,26 +212,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History VC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEG-3Z-aRk">
-                                <rect key="frame" x="137" y="430" width="140" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IEY-Ex-D82">
+                                <rect key="frame" x="20" y="44" width="374" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="EqA-bk-I3v">
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EqA-bk-I3v" id="Kls-SY-9gc">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="p2A-t0-UES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="cEG-3Z-aRk" firstAttribute="centerY" secondItem="Dth-si-kJ5" secondAttribute="centerY" id="94C-Mj-whK"/>
-                            <constraint firstItem="cEG-3Z-aRk" firstAttribute="centerX" secondItem="Dth-si-kJ5" secondAttribute="centerX" id="gab-oC-QJ7"/>
+                            <constraint firstItem="IEY-Ex-D82" firstAttribute="bottom" secondItem="p2A-t0-UES" secondAttribute="bottom" id="3jg-fZ-f8N"/>
+                            <constraint firstItem="IEY-Ex-D82" firstAttribute="leading" secondItem="p2A-t0-UES" secondAttribute="leading" constant="20" id="EP8-z1-Sr5"/>
+                            <constraint firstItem="IEY-Ex-D82" firstAttribute="top" secondItem="p2A-t0-UES" secondAttribute="top" id="ZYP-kr-lFl"/>
+                            <constraint firstItem="p2A-t0-UES" firstAttribute="trailing" secondItem="IEY-Ex-D82" secondAttribute="trailing" constant="20" id="wBk-zE-poq"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="History trip" selectedImage="list.bullet.rectangle.portrait" catalog="system" id="F66-FA-KzP"/>
                     <navigationItem key="navigationItem" id="7Wq-v0-eXR"/>
+                    <connections>
+                        <outlet property="historyTableView" destination="IEY-Ex-D82" id="1bK-F7-3tz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQf-LV-Io8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4896" y="131"/>
+            <point key="canvasLocation" x="4895.652173913044" y="130.58035714285714"/>
         </scene>
         <!--About us-->
         <scene sceneID="xlT-V9-JUx">
@@ -415,6 +428,9 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
         <image name="questionmark.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
