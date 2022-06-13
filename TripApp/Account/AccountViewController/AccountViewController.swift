@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingViewController: UIViewController {
+class AccountViewController: UIViewController {
 
     // MARK: - IBOutlets
     @IBOutlet weak var nameTextField: UITextField!
@@ -22,7 +22,7 @@ class SettingViewController: UIViewController {
     
     
     // MARK: - Properies
-    var viewModel: SettingViewModelProtocol! {
+    var viewModel: AccountViewModelProtocol! {
         didSet {
             nameTextField.text = viewModel.user?.name
             surnameTextField.text = viewModel.user?.surname
@@ -40,6 +40,8 @@ class SettingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         newPasswordTextField.frame.origin.y = currentPasswordTextField.frame.origin.y
         confirmPasswordTextField.frame.origin.y = currentPasswordTextField.frame.origin.y
+        print(#function)
+        clearPaswordTextFields()
     }
     
 
@@ -99,6 +101,7 @@ class SettingViewController: UIViewController {
         if viewModel.changePassword(current: currentPassword,
                                     new: newPassword,
                                     confirm: confirmPassword) {
+            view.endEditing(true)
             clearPaswordTextFields()
         } else {
             newPasswordTextField.text = ""
@@ -107,11 +110,14 @@ class SettingViewController: UIViewController {
     }
     
     private func saveUserChanges() {
+        
         nameTextField.resignFirstResponder()
         surnameTextField.resignFirstResponder()
         emailTextField.resignFirstResponder()
+        
         guard let name = nameTextField.text,
               let surname = surnameTextField.text else { return }
+        
         let email = emailTextField.text
         viewModel.saveChanges(name: name, surname: surname, email: email)
     }
@@ -120,7 +126,7 @@ class SettingViewController: UIViewController {
 
 
 // MARK: - UITextFieldDelegate
-extension SettingViewController: UITextFieldDelegate {
+extension AccountViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
@@ -147,7 +153,6 @@ extension SettingViewController: UITextFieldDelegate {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
         if newPasswordTextField.alpha == 1 {
-            clearPaswordTextFields()
             UIView.animate(withDuration: 0.3) {
                 self.newPasswordTextField.alpha = 0
                 self.confirmPasswordTextField.alpha = 0

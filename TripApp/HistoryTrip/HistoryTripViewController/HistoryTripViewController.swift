@@ -19,6 +19,19 @@ class HistoryTripViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HistoryTripViewModel()
+        historyTableView.delegate = self
+        historyTableView.dataSource = self
+        let nib = UINib(nibName: String(describing: HistoryTableViewCell.self), bundle: .main)
+        historyTableView.register(nib, forCellReuseIdentifier: "cell")
+        historyTableView.backgroundColor = .darkGray
+        historyTableView.showsVerticalScrollIndicator = false
+        
+        viewModel.trips.bind { _ in
+            self.historyTableView.reloadData()
+            
+        }
+        
+        
         
     }
     
@@ -28,17 +41,19 @@ class HistoryTripViewController: UIViewController {
 
 extension HistoryTripViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        viewModel.tripsCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? UITableViewCell else { return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HistoryTableViewCell else { return UITableViewCell()}
         
-        
+        cell.viewModel = viewModel.cellViewModel(at: indexPath)
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("select row \(indexPath.row)")
+    }
     
     
 }

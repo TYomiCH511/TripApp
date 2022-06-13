@@ -52,4 +52,6 @@ class LoginViewModel: LoginViewModelProcol {
         guard let user = user else { return }
         UserStore.shared.save(user: user)
     }
+    
+    
 }

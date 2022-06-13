@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol SettingViewModelProtocol {
+protocol AccountViewModelProtocol {
     
-    var user: User? { get set }
+    var user: User? { get }
     func logout()
     func saveChanges(name: String, surname: String, email: String?)
     func changePassword(current: String, new: String, confirm: String) -> Bool
@@ -17,23 +17,28 @@ protocol SettingViewModelProtocol {
 }
 
 
-class SettingViewModel: SettingViewModelProtocol {
+class SettingViewModel: AccountViewModelProtocol {
     
     var user: User? = UserStore.shared.getUser()
+    
     
     func logout() {
         UserStore.shared.deleteUser()
     }
     
     func saveChanges(name: String, surname: String, email: String?) {
-        if user?.name == name, user?.surname == surname, user?.email == email {
-            user?.name = name
-            user?.surname = surname
-            user?.email = email
-            guard let user = user else { return }
+        guard var user = user else { return }
+        
+        if user.name != name || user.surname != surname || user.email != email  {
+            user.name = name
+            user.surname = surname
+            user.email = email
             UserStore.shared.save(user: user)
+            self.user = user
             
             // post to back-end changes
+        } else {
+            print("equal dont save")
         }
         
     }
@@ -41,6 +46,11 @@ class SettingViewModel: SettingViewModelProtocol {
     func changePassword(current: String, new: String, confirm: String) -> Bool {
         if current != "" {
             if user?.password == current && new == confirm {
+                guard var user = user else { return false }
+                user.password = new
+                UserStore.shared.save(user: user)
+                self.user = user
+                
                 print("change password")
                 return true
             } else {

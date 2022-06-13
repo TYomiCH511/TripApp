@@ -13,7 +13,7 @@ struct User: Codable {
     let phoneNumber: String
     var email: String?
     var password: String
-    let trips: [Trip]
+    var trips: [Trip]
 }
 
 
