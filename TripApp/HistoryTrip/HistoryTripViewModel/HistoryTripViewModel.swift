@@ -7,32 +7,41 @@
 
 import Foundation
 
+enum ActionTrip {
+    case edit
+    case cancel
+}
+
 protocol HistoryTripViewModelProtocol {
     var showInfoDelegate: ShowFullInfoOfTripProtocol? { get }
+    var editTripDelegate: EditTripProtocol? { get set }
     var trips: Bindable<[Trip]> { get }
     func tripsCount() -> Int
     func cellViewModel(at indexPath: IndexPath) -> HistoryViewModelCellProtocol
-
+    
 }
 
-protocol CancelTripButtonPressedProtocol: AnyObject {
-    func cancelTripPressed(trip: Trip, tag: Int)
+protocol ActionTripPressedProtocol: AnyObject {
+    func cancelTripPressed(trip: Trip, tag: Int, action: ActionTrip)
 }
 
-protocol
+protocol EditTripProtocol: AnyObject {
+    func editTrip(trip: Trip, tag: Int)
+}
+
 
 protocol ShowFullInfoOfTripProtocol: AnyObject {
     func showFullInfo()
 }
 
 
-class HistoryTripViewModel: HistoryTripViewModelProtocol, CancelTripButtonPressedProtocol {
-    
+class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProtocol {
+    weak var editTripDelegate: EditTripProtocol?
     
     var trips: Bindable<[Trip]> = Bindable<[Trip]>(UserStore.shared.getUser()?.trips ?? StorageManeger.shared.trips)
-       
+    
     weak var showInfoDelegate: ShowFullInfoOfTripProtocol?
-        
+    
     func tripsCount() -> Int {
         return trips.value.count
     }
@@ -44,14 +53,21 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, CancelTripButtonPresse
     }
     
     
-    func cancelTripPressed(trip: Trip, tag: Int) {
-        trips.value[tag] = trip
-        guard var user = UserStore.shared.getUser() else { return }
-        user.trips[tag] = trip
-        UserStore.shared.save(user: user)
-        
-        // send trip to back-end
+    func cancelTripPressed(trip: Trip, tag: Int, action: ActionTrip) {
+        switch action {
+        case .edit:
+            editTripDelegate?.editTrip(trip: trip, tag: tag)
+        case .cancel:
+            trips.value[tag] = trip
+            guard var user = UserStore.shared.getUser() else { return }
+            user.trips[tag] = trip
+            UserStore.shared.save(user: user)
+            // send trip to back-end
+            
+        }
     }
+    
+    
     
     
 }

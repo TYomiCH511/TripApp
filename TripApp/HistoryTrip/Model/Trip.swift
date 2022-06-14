@@ -18,13 +18,13 @@ enum TripState: Codable {
 }
 
 struct Trip: Codable {
-    let date: Date
-    var startCity: String
-    let startStaition: String
-    let finishCity: String
-    let finishStaition: String
+    let date: Date?
+    var startCity: String?
+    var startStaition: String?
+    var finishCity: String?
+    var finishStaition: String?
     var tripStait: TripState
-    let countPasseger: Int
+    var countPasseger: Int?
     let driver: Driver?
 }
 

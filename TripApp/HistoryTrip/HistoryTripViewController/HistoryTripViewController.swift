@@ -19,6 +19,7 @@ class HistoryTripViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HistoryTripViewModel()
+        viewModel.editTripDelegate = self 
         historyTableView.delegate = self
         historyTableView.dataSource = self
         let nib = UINib(nibName: String(describing: HistoryTableViewCell.self), bundle: .main)
@@ -40,6 +41,9 @@ class HistoryTripViewController: UIViewController {
 
 
 extension HistoryTripViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.tripsCount()
+    }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,3 +62,17 @@ extension HistoryTripViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 
+extension HistoryTripViewController: EditTripProtocol {
+    func editTrip(trip: Trip, tag: Int) {
+        guard let editVC = storyboard?.instantiateViewController(withIdentifier: "nav") as? UINavigationController else { return }
+        guard let startVC = editVC.viewControllers.first as? SelectDirectViewController else { return }
+        startVC.viewModel = SelectDirectViewModel(trip: trip)
+        editVC.modalPresentationStyle = .currentContext
+        startVC.modalPresentationStyle = .currentContext
+        present(editVC, animated: true)
+        //show(editVC, sender: nil)
+    }
+    
+    
+    
+}

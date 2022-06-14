@@ -49,15 +49,15 @@ class HistoryTableViewCell: UITableViewCell {
     var viewModel: HistoryViewModelCellProtocol! {
         didSet {
             let dateFormat = CustomDate.shared
-            dayOfWeekLabel.text = dateFormat.showDay(from: viewModel.trip.date)
-            dateTripLabel.text = dateFormat.showDate(from: viewModel.trip.date)
-            timeTripLabel.text = dateFormat.showTime(from: viewModel.trip.date)
+            dayOfWeekLabel.text = dateFormat.showDay(from: viewModel.trip.date!)
+            dateTripLabel.text = dateFormat.showDate(from: viewModel.trip.date!)
+            timeTripLabel.text = dateFormat.showTime(from: viewModel.trip.date!)
             startCityLabel.text = viewModel.trip.startCity
             startStaitionLabel.text = viewModel.trip.startStaition
             finalyCityLabel.text = viewModel.trip.finishCity
             finalyStaitionLabel.text = viewModel.trip.finishStaition
-            countPassenger.text = String(viewModel.trip.countPasseger)
-            costTripLabel.text = "Итого: " + String(viewModel.trip.countPasseger * costTrip) + " руб"
+            countPassenger.text = String(viewModel.trip.countPasseger!)
+            costTripLabel.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
             
             //setup driver
             if let driver = viewModel.trip.driver {
@@ -117,8 +117,8 @@ class HistoryTableViewCell: UITableViewCell {
     }
     
     @IBAction func editTripButtonPressed(_ sender: UIButton) {
-        isShowFull.toggle()
-        print("Edit trip")
+        viewModel.editTrip()
+        
     }
     
     @IBAction func cancelTripButtonPressed(_ sender: UIButton) {

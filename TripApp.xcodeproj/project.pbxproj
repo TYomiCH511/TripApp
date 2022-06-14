@@ -21,6 +21,16 @@
 		AC4825AA28532CF5008B593F /* HistoryViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825A928532CF5008B593F /* HistoryViewModelCell.swift */; };
 		AC4825AD28532D15008B593F /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825AB28532D15008B593F /* HistoryTableViewCell.swift */; };
 		AC4825AE28532D15008B593F /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */; };
+		AC5041F9285869FA00B52B59 /* SelectDirectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5041F8285869FA00B52B59 /* SelectDirectViewController.swift */; };
+		AC5041FB28586A1100B52B59 /* SelectDirectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5041FA28586A1100B52B59 /* SelectDirectViewModel.swift */; };
+		AC50420028587C4C00B52B59 /* DataTripViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5041FF28587C4C00B52B59 /* DataTripViewModelCell.swift */; };
+		AC50420328587C7500B52B59 /* DataTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC50420128587C7500B52B59 /* DataTripTableViewCell.swift */; };
+		AC50420428587C7500B52B59 /* DataTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC50420228587C7500B52B59 /* DataTripTableViewCell.xib */; };
+		AC5042072858935400B52B59 /* Sity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5042062858935400B52B59 /* Sity.swift */; };
+		AC50420C2858963200B52B59 /* SelectCityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC50420B2858963200B52B59 /* SelectCityViewModel.swift */; };
+		AC50420E2858964E00B52B59 /* SelectCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC50420D2858964E00B52B59 /* SelectCityViewController.swift */; };
+		AC5042142858A94A00B52B59 /* SelecStaitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5042132858A94A00B52B59 /* SelecStaitionViewModel.swift */; };
+		AC5042162858A96100B52B59 /* SelectStaitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5042152858A96100B52B59 /* SelectStaitionViewController.swift */; };
 		AC5C7D0F2853681300D0885C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C7D0E2853681300D0885C /* DateFormatter.swift */; };
 		AC607E202851D8F000B9C878 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E1F2851D8F000B9C878 /* User.swift */; };
 		AC607E232851D98900B9C878 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E222851D98900B9C878 /* StorageManager.swift */; };
@@ -52,6 +62,16 @@
 		AC4825A928532CF5008B593F /* HistoryViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelCell.swift; sourceTree = "<group>"; };
 		AC4825AB28532D15008B593F /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		AC5041F8285869FA00B52B59 /* SelectDirectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDirectViewController.swift; sourceTree = "<group>"; };
+		AC5041FA28586A1100B52B59 /* SelectDirectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDirectViewModel.swift; sourceTree = "<group>"; };
+		AC5041FF28587C4C00B52B59 /* DataTripViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTripViewModelCell.swift; sourceTree = "<group>"; };
+		AC50420128587C7500B52B59 /* DataTripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTripTableViewCell.swift; sourceTree = "<group>"; };
+		AC50420228587C7500B52B59 /* DataTripTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataTripTableViewCell.xib; sourceTree = "<group>"; };
+		AC5042062858935400B52B59 /* Sity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sity.swift; sourceTree = "<group>"; };
+		AC50420B2858963200B52B59 /* SelectCityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCityViewModel.swift; sourceTree = "<group>"; };
+		AC50420D2858964E00B52B59 /* SelectCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCityViewController.swift; sourceTree = "<group>"; };
+		AC5042132858A94A00B52B59 /* SelecStaitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelecStaitionViewModel.swift; sourceTree = "<group>"; };
+		AC5042152858A96100B52B59 /* SelectStaitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStaitionViewController.swift; sourceTree = "<group>"; };
 		AC5C7D0E2853681300D0885C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		AC607E1F2851D8F000B9C878 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC607E222851D98900B9C878 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -99,10 +119,13 @@
 				AC5C7D0C285367FA00D0885C /* DateFormatter */,
 				AC44BD322850B4D9004A8C2A /* App */,
 				AC4825A328530DBB008B593F /* Helpers */,
+				AC504208285895FC00B52B59 /* SelectCity */,
+				AC50420F2858A83000B52B59 /* SelectStaition */,
 				AC607E3D285207DE00B9C878 /* BarController */,
 				AC44BD3A2850CDC3004A8C2A /* Extensions */,
 				AC44BD342850B532004A8C2A /* Login */,
 				AC607E282851E7D700B9C878 /* Order */,
+				AC5041F5285869AA00B52B59 /* SelectDirect */,
 				AC607E2B2851E80800B9C878 /* HistoryTrip */,
 				AC607E362851FA5C00B9C878 /* Account */,
 				AC607E212851D96D00B9C878 /* StorageManager */,
@@ -208,6 +231,117 @@
 				AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */,
 			);
 			path = HistoryTableViewCell;
+			sourceTree = "<group>";
+		};
+		AC5041F5285869AA00B52B59 /* SelectDirect */ = {
+			isa = PBXGroup;
+			children = (
+				AC5042052858933600B52B59 /* Model */,
+				AC5041FC28587BFE00B52B59 /* DataTripCell */,
+				AC5041F7285869D800B52B59 /* SelectDirectViewController */,
+				AC5041F6285869C400B52B59 /* SelectDirectViewModel */,
+			);
+			path = SelectDirect;
+			sourceTree = "<group>";
+		};
+		AC5041F6285869C400B52B59 /* SelectDirectViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC5041FA28586A1100B52B59 /* SelectDirectViewModel.swift */,
+			);
+			path = SelectDirectViewModel;
+			sourceTree = "<group>";
+		};
+		AC5041F7285869D800B52B59 /* SelectDirectViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AC5041F8285869FA00B52B59 /* SelectDirectViewController.swift */,
+			);
+			path = SelectDirectViewController;
+			sourceTree = "<group>";
+		};
+		AC5041FC28587BFE00B52B59 /* DataTripCell */ = {
+			isa = PBXGroup;
+			children = (
+				AC5041FE28587C1D00B52B59 /* DataTripViewControllerCell */,
+				AC5041FD28587C1100B52B59 /* DataTripViewModelCell */,
+			);
+			path = DataTripCell;
+			sourceTree = "<group>";
+		};
+		AC5041FD28587C1100B52B59 /* DataTripViewModelCell */ = {
+			isa = PBXGroup;
+			children = (
+				AC5041FF28587C4C00B52B59 /* DataTripViewModelCell.swift */,
+			);
+			path = DataTripViewModelCell;
+			sourceTree = "<group>";
+		};
+		AC5041FE28587C1D00B52B59 /* DataTripViewControllerCell */ = {
+			isa = PBXGroup;
+			children = (
+				AC50420128587C7500B52B59 /* DataTripTableViewCell.swift */,
+				AC50420228587C7500B52B59 /* DataTripTableViewCell.xib */,
+			);
+			path = DataTripViewControllerCell;
+			sourceTree = "<group>";
+		};
+		AC5042052858933600B52B59 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AC5042062858935400B52B59 /* Sity.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AC504208285895FC00B52B59 /* SelectCity */ = {
+			isa = PBXGroup;
+			children = (
+				AC50420A2858961900B52B59 /* SelectCityViewController */,
+				AC5042092858960C00B52B59 /* SelectCityViewModel */,
+			);
+			path = SelectCity;
+			sourceTree = "<group>";
+		};
+		AC5042092858960C00B52B59 /* SelectCityViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC50420B2858963200B52B59 /* SelectCityViewModel.swift */,
+			);
+			path = SelectCityViewModel;
+			sourceTree = "<group>";
+		};
+		AC50420A2858961900B52B59 /* SelectCityViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AC50420D2858964E00B52B59 /* SelectCityViewController.swift */,
+			);
+			path = SelectCityViewController;
+			sourceTree = "<group>";
+		};
+		AC50420F2858A83000B52B59 /* SelectStaition */ = {
+			isa = PBXGroup;
+			children = (
+				AC5042112858A92500B52B59 /* SelectStaitionViewController */,
+				AC5042102858A91400B52B59 /* SelectStaitionViewModel */,
+			);
+			path = SelectStaition;
+			sourceTree = "<group>";
+		};
+		AC5042102858A91400B52B59 /* SelectStaitionViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC5042132858A94A00B52B59 /* SelecStaitionViewModel.swift */,
+			);
+			path = SelectStaitionViewModel;
+			sourceTree = "<group>";
+		};
+		AC5042112858A92500B52B59 /* SelectStaitionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AC5042152858A96100B52B59 /* SelectStaitionViewController.swift */,
+			);
+			path = SelectStaitionViewController;
 			sourceTree = "<group>";
 		};
 		AC5C7D0B28535E1600D0885C /* Model */ = {
@@ -389,6 +523,7 @@
 				AC44BD282850B49E004A8C2A /* Assets.xcassets in Resources */,
 				AC4825AE28532D15008B593F /* HistoryTableViewCell.xib in Resources */,
 				AC44BD262850B49B004A8C2A /* Main.storyboard in Resources */,
+				AC50420428587C7500B52B59 /* DataTripTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,19 +536,28 @@
 			files = (
 				AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */,
 				AC607E252851DD6900B9C878 /* UIViewController+extension.swift in Sources */,
+				AC50420028587C4C00B52B59 /* DataTripViewModelCell.swift in Sources */,
+				AC50420C2858963200B52B59 /* SelectCityViewModel.swift in Sources */,
 				AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */,
+				AC5042072858935400B52B59 /* Sity.swift in Sources */,
 				AC39456628571DB200B4B8D7 /* Binding.swift in Sources */,
 				AC4825A528530DE4008B593F /* Alert.swift in Sources */,
+				AC5041FB28586A1100B52B59 /* SelectDirectViewModel.swift in Sources */,
 				AC5C7D0F2853681300D0885C /* DateFormatter.swift in Sources */,
 				AC44BD382850B568004A8C2A /* LoginViewModel.swift in Sources */,
+				AC50420E2858964E00B52B59 /* SelectCityViewController.swift in Sources */,
 				AC4825AA28532CF5008B593F /* HistoryViewModelCell.swift in Sources */,
 				AC607E312851E8A400B9C878 /* HistoryTripViewController.swift in Sources */,
 				AC44BD232850B49B004A8C2A /* LoginViewController.swift in Sources */,
 				AC607E3C2851FAE900B9C878 /* AccountViewController.swift in Sources */,
+				AC5041F9285869FA00B52B59 /* SelectDirectViewController.swift in Sources */,
 				AC607E272851E4FD00B9C878 /* Trip.swift in Sources */,
 				AC607E202851D8F000B9C878 /* User.swift in Sources */,
+				AC5042162858A96100B52B59 /* SelectStaitionViewController.swift in Sources */,
+				AC50420328587C7500B52B59 /* DataTripTableViewCell.swift in Sources */,
 				AC607E232851D98900B9C878 /* StorageManager.swift in Sources */,
 				AC44BD1F2850B49B004A8C2A /* AppDelegate.swift in Sources */,
+				AC5042142858A94A00B52B59 /* SelecStaitionViewModel.swift in Sources */,
 				AC394564285707B400B4B8D7 /* Constant.swift in Sources */,
 				AC44BD212850B49B004A8C2A /* SceneDelegate.swift in Sources */,
 				AC607E2F2851E85100B9C878 /* HistoryTripViewModel.swift in Sources */,

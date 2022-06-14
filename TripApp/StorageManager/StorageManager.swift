@@ -90,3 +90,28 @@ class UserStore {
         defaults.removeObject(forKey: currentUser)
     }
 }
+
+
+class CitySrore {
+    
+    static let shared = CitySrore()
+    private init() {}
+    
+    private let cities: [City] = [
+    City(name: "Минск",
+         staition: ["ст. метро Первомайская", "ЖД Вокзал", "Площадь Я. Коласа", "Барисовский тракт", ]),
+    City(name: "Новополоцк",
+         staition: ["Слободская", "Гайдра", "1-я палатка", "Золотая нива", ]),
+    
+    City(name: "Полоцк",
+         staition: ["Развилка", "Кадетское училище", "23 гвардейцев", "Селянская", "Кульнева"]),
+    
+    City(name: "Населенные пункты",
+         staition: ["Бельчица", "Тросно", "Семенец", "Заозерье", "Межно"]),
+    
+    ]
+    
+    func getCities() -> [City] {
+        return cities
+    }
+}

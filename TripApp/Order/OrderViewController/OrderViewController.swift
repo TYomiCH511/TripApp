@@ -9,7 +9,11 @@ import UIKit
 
 class OrderViewController: UIViewController {
 
-    var viewModel: OrderViewModelProtocol! 
+    @IBOutlet weak var minskDirectionButton: UIButton!
+    @IBOutlet var vitebskDirectionButton: UIView!
+    
+    
+    var viewModel: OrderViewModelProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +21,16 @@ class OrderViewController: UIViewController {
         
     }
     
-
+    @IBAction func minskDirectionButtonPressed(_ sender: UIButton) {
+        guard let selectDirectionVC = storyboard?.instantiateViewController(withIdentifier: "nav") as? UINavigationController else { return }
+        guard let startVC = selectDirectionVC.viewControllers.first as? SelectDirectViewController else { return }
+        startVC.viewModel = SelectDirectViewModel(trip: nil)
+        selectDirectionVC.modalPresentationStyle = .currentContext
+        present(selectDirectionVC, animated: true)
+    }
+    
+    
+    @IBAction func vitebskDirectionButtonPressed(_ sender: UIButton) {
+    }
     
 }
