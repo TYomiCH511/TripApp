@@ -8,6 +8,7 @@
 import Foundation
 
 protocol HistoryTripViewModelProtocol {
+    var showInfoDelegate: ShowFullInfoOfTripProtocol? { get }
     var trips: Bindable<[Trip]> { get }
     func tripsCount() -> Int
     func cellViewModel(at indexPath: IndexPath) -> HistoryViewModelCellProtocol
@@ -18,13 +19,19 @@ protocol CancelTripButtonPressedProtocol: AnyObject {
     func cancelTripPressed(trip: Trip, tag: Int)
 }
 
+protocol
+
+protocol ShowFullInfoOfTripProtocol: AnyObject {
+    func showFullInfo()
+}
+
 
 class HistoryTripViewModel: HistoryTripViewModelProtocol, CancelTripButtonPressedProtocol {
     
     
     var trips: Bindable<[Trip]> = Bindable<[Trip]>(UserStore.shared.getUser()?.trips ?? StorageManeger.shared.trips)
        
-    
+    weak var showInfoDelegate: ShowFullInfoOfTripProtocol?
         
     func tripsCount() -> Int {
         return trips.value.count
@@ -45,6 +52,8 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, CancelTripButtonPresse
         
         // send trip to back-end
     }
+    
+    
 }
 
 

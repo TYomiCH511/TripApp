@@ -36,6 +36,7 @@ class HistoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var startCircleView: UIView!
     @IBOutlet weak var finalyStaitionCircleView: UIView!
+    @IBOutlet weak var infoAndButtonView: UIView!
     
     //Driver and car IBOutlets
     @IBOutlet weak var driverConteinerView: UIView!
@@ -60,44 +61,53 @@ class HistoryTableViewCell: UITableViewCell {
             
             //setup driver
             if let driver = viewModel.trip.driver {
-                modelOfCarLabel.text = "Модель автобуса: " + driver.carModel
-                colorOfCarLabel.text = "Цвет автобуса: " + driver.carColor
-                carNumberLabel.text = "Номер автобуса: " + driver.carNumber
-                phoneNumberDriverLabel.text = "Телефон водителя: " + driver.phoneNumber
-                raitingOfDriverLabel.text = "Рейтинг водителя: " + driver.raiting + " ⭐️"
+                modelOfCarLabel?.text = "Модель автобуса: " + driver.carModel
+                colorOfCarLabel?.text = "Цвет автобуса: " + driver.carColor
+                carNumberLabel?.text = "Номер автобуса: " + driver.carNumber
+                phoneNumberDriverLabel?.text = "Телефон водителя: " + driver.phoneNumber
+                raitingOfDriverLabel?.text = "Рейтинг водителя: " + driver.raiting + " ⭐️"
             }
             
             //setup trip stait
             switch viewModel.trip.tripStait {
                 
             case .notReserved:
-                mainConteinerView.backgroundColor = .orange
+                mainConteinerView.backgroundColor = .systemOrange
+                
                 clearDriverData()
-                setupReservedTrip(with: "Бронь не подтверждена", color: .orange, image: "questionmark.circle.fill")
+                setupReservedTrip(with: "Бронь не подтверждена", color: .systemOrange, image: "questionmark.circle.fill")
                 
             case .cancel:
-                mainConteinerView.backgroundColor = .red
-                reminderLabel.text = ""
+                mainConteinerView.backgroundColor = .systemRed
+                reminderLabel?.text = ""
                 clearDriverData()
-                setupReservedTrip(with: "Бронь отменена", color: .red, image: "multiply.circle")
+                setupReservedTrip(with: "Бронь отменена", color: .systemRed, image: "multiply.circle")
                 costTripLabel.text = "Итого: 0 руб"
                 
             case .reserved:
                 mainConteinerView.backgroundColor = .systemGreen
                
-                reminderLabel.text = ""
+                reminderLabel?.text = ""
                 setupReservedTrip(with: "Бронь подтверждена", color: .systemGreen, image: "checkmark.circle.fill")
                 
             case .complition:
                 mainConteinerView.backgroundColor = .lightGray
                 clearDriverData()
-                reminderLabel.text = ""
+                reminderLabel?.text = ""
                 setupReservedTrip(with: "Поездка завершена", color: .lightGray, image: "flag.circle.fill")
             }
         }
-        
-        
     }
+    
+    
+    var isShowFull = false {
+        willSet {
+            if newValue {
+                infoAndButtonView.removeFromSuperview()
+            }
+        }
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -107,6 +117,7 @@ class HistoryTableViewCell: UITableViewCell {
     }
     
     @IBAction func editTripButtonPressed(_ sender: UIButton) {
+        isShowFull.toggle()
         print("Edit trip")
     }
     
@@ -118,7 +129,7 @@ class HistoryTableViewCell: UITableViewCell {
     private func setupUI() {
         
         backgroundColor = .darkGray
-        
+        infoAndButtonView.backgroundColor = .clear
         mainConteinerView.layer.cornerRadius = 8
         DataConteinerView.layer.cornerRadius = 8
         startCircleView.layer.cornerRadius = startCircleView.frame.height / 2
@@ -149,22 +160,23 @@ class HistoryTableViewCell: UITableViewCell {
     
     
     private func setupReservedTrip(with text: String, color: UIColor, image: String) {
-        reservedInDataLabel.text = text
-        reservedInDataLabel.textColor = color
-        reservedTripInDataImageView.tintColor = color
-        reservedTripInDataImageView.backgroundColor = .white
-        reservedLabel.text = text
-        reservedLabel.textColor = .white
-        reservedImageView.tintColor = .white
-        reservedImageView.backgroundColor = color
-        reservedTripInDataImageView.image = UIImage(systemName: image)
-        reservedImageView.image = UIImage(systemName: image)
+        reservedInDataLabel?.text = text
+        reservedInDataLabel?.textColor = color
+        reservedTripInDataImageView?.tintColor = color
+        reservedTripInDataImageView?.backgroundColor = .white
+        reservedLabel?.text = text
+        reservedLabel?.textColor = .white
+        reservedImageView?.tintColor = .white
+        reservedImageView?.backgroundColor = color
+        reservedTripInDataImageView?.image = UIImage(systemName: image)
+        reservedImageView?.image = UIImage(systemName: image)
     }
     
     private func clearDriverData() {
-        guard let driverView = driverConteinerView else { return }
+        guard let driverView = driverConteinerView, let infoAndButtonView = infoAndButtonView else { return }
         if DataConteinerView.contains(driverView) {
             driverConteinerView.removeFromSuperview()
         }
+        //infoAndButtonView.removeFromSuperview()
     }
 }
