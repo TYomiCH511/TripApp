@@ -9,15 +9,24 @@ import UIKit
 
 class DataTripTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var mainTextLabel: UILabel!
+    @IBOutlet weak var secondaryTextLabel: UILabel!
+    @IBOutlet weak var infoImageView: UIImageView!
+    
+    var viewModel: DataTripViewModelProtocol! {
+        didSet {
+            mainTextLabel.text = viewModel.mainText
+            secondaryTextLabel.text = viewModel.secondaryText
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        backgroundColor = .white
+        
+        mainTextLabel.textColor = .black
+        secondaryTextLabel.textColor = .black
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
 }

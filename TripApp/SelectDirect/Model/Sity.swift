@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+
+struct City {
+    let name: String
+    let staition: [String]
+}
+
+
