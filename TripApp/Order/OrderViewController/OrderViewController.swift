@@ -26,7 +26,7 @@ class OrderViewController: UIViewController {
         guard let startVC = selectDirectionVC.viewControllers.first as? SelectDirectViewController else { return }
         startVC.viewModel = SelectDirectViewModel(trip: nil)
         selectDirectionVC.modalPresentationStyle = .currentContext
-        present(selectDirectionVC, animated: true)
+        navigationController?.pushViewController(startVC, animated: true)
     }
     
     

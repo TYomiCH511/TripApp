@@ -77,14 +77,22 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
             }
             
         case 2:
-            print("toch select time trip")
-            
+            if viewModel.trip?.finishStaition != nil {
+                print("select date row")
+                guard let selectDateVC = storyboard?.instantiateViewController(withIdentifier: "selectDate") as? SelectDateViewController else {
+                    print("exite vc")
+                    return }
+                navigationController?.pushViewController(selectDateVC, animated: true)
+            }
         default:
-            guard let selectCityVC = storyboard?.instantiateViewController(withIdentifier: "staitionVC") as? SelectStaitionViewController else { return }
-            let count = ["1", "2", "3"]
-            selectCityVC.delegate = self
-            selectCityVC.viewModel = SelectStaitionViewModel(staition: count)
-            navigationController?.pushViewController(selectCityVC, animated: true)
+            if viewModel.trip?.date != nil {
+                guard let selectCityVC = storyboard?.instantiateViewController(withIdentifier: "staitionVC") as? SelectStaitionViewController else { return }
+                let count = ["1", "2", "3"]
+                selectCityVC.delegate = self
+                selectCityVC.viewModel = SelectStaitionViewModel(staition: count)
+                navigationController?.pushViewController(selectCityVC, animated: true)
+            }
+            
         }
         
         

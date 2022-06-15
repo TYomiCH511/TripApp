@@ -64,13 +64,12 @@ extension HistoryTripViewController: UITableViewDelegate, UITableViewDataSource 
 
 extension HistoryTripViewController: EditTripProtocol {
     func editTrip(trip: Trip, tag: Int) {
-        guard let editVC = storyboard?.instantiateViewController(withIdentifier: "nav") as? UINavigationController else { return }
-        guard let startVC = editVC.viewControllers.first as? SelectDirectViewController else { return }
-        startVC.viewModel = SelectDirectViewModel(trip: trip)
-        editVC.modalPresentationStyle = .currentContext
-        startVC.modalPresentationStyle = .currentContext
-        present(editVC, animated: true)
-        //show(editVC, sender: nil)
+        
+        guard let editVC = storyboard?.instantiateViewController(withIdentifier: "selectDirection") as? SelectDirectViewController else { return }
+        editVC.viewModel = SelectDirectViewModel(trip: trip)
+        
+        navigationController?.pushViewController(editVC, animated: true)
+        
     }
     
     

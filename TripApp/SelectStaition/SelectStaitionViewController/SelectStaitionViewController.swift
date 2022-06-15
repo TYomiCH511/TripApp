@@ -42,7 +42,10 @@ extension SelectStaitionViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         delegate?.callBack(data: viewModel.staition[indexPath.row])
-        navigationController?.popToRootViewController(animated: true)
+        guard let vc = navigationController?.viewControllers[1] as? SelectDirectViewController else { return }
+        navigationController?.popToViewController(vc, animated: true)
+        
+        
         
     }
     

@@ -115,3 +115,35 @@ class CitySrore {
         return cities
     }
 }
+
+
+class TimeStore {
+    
+    static let shared = TimeStore()
+    private init() {}
+    
+    private let times: [Time] = [
+    Time(hour: 6, countPassager: 10),
+    Time(hour: 7, countPassager: 11),
+    Time(hour: 8, countPassager: 2),
+    Time(hour: 9, countPassager: 1),
+    Time(hour: 10, countPassager: 8),
+    Time(hour: 11, countPassager: 8),
+    Time(hour: 12, countPassager: 8),
+    Time(hour: 13, countPassager: 8),
+    Time(hour: 14, countPassager: 8),
+    Time(hour: 15, countPassager: 8),
+    Time(hour: 16, countPassager: 8),
+    Time(hour: 17, countPassager: 8),
+    Time(hour: 18, countPassager: 8),
+    Time(hour: 19, countPassager: 8),
+    Time(hour: 20, countPassager: 8),
+    
+    ]
+    
+    func getTime() -> [Time] {
+        print("get Time")
+        return times
+    }
+    
+}

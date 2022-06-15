@@ -43,6 +43,12 @@
 		AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E392851FA9E00B9C878 /* SettingViewModel.swift */; };
 		AC607E3C2851FAE900B9C878 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3B2851FAE900B9C878 /* AccountViewController.swift */; };
 		AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3F2852081B00B9C878 /* TabBarViewController.swift */; };
+		ACEC11BB2859AE5D005641AC /* SelectDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11BA2859AE5D005641AC /* SelectDateViewController.swift */; };
+		ACEC11BD2859AE77005641AC /* SelectDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11BC2859AE77005641AC /* SelectDateViewModel.swift */; };
+		ACEC11C32859E94F005641AC /* TimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11C12859E94F005641AC /* TimeCollectionViewCell.swift */; };
+		ACEC11C42859E94F005641AC /* TimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACEC11C22859E94F005641AC /* TimeCollectionViewCell.xib */; };
+		ACEC11C62859E9A7005641AC /* TimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11C52859E9A7005641AC /* TimeViewModel.swift */; };
+		ACEC11C92859EB72005641AC /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11C82859EB72005641AC /* Time.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +90,12 @@
 		AC607E392851FA9E00B9C878 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		AC607E3B2851FAE900B9C878 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		AC607E3F2852081B00B9C878 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		ACEC11BA2859AE5D005641AC /* SelectDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
+		ACEC11BC2859AE77005641AC /* SelectDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewModel.swift; sourceTree = "<group>"; };
+		ACEC11C12859E94F005641AC /* TimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewCell.swift; sourceTree = "<group>"; };
+		ACEC11C22859E94F005641AC /* TimeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeCollectionViewCell.xib; sourceTree = "<group>"; };
+		ACEC11C52859E9A7005641AC /* TimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewModel.swift; sourceTree = "<group>"; };
+		ACEC11C82859EB72005641AC /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +133,7 @@
 				AC4825A328530DBB008B593F /* Helpers */,
 				AC504208285895FC00B52B59 /* SelectCity */,
 				AC50420F2858A83000B52B59 /* SelectStaition */,
+				ACEC11B72859AE30005641AC /* SelectDate */,
 				AC607E3D285207DE00B9C878 /* BarController */,
 				AC44BD3A2850CDC3004A8C2A /* Extensions */,
 				AC44BD342850B532004A8C2A /* Login */,
@@ -461,6 +474,67 @@
 			path = TaBarViewController;
 			sourceTree = "<group>";
 		};
+		ACEC11B72859AE30005641AC /* SelectDate */ = {
+			isa = PBXGroup;
+			children = (
+				ACEC11BE2859E90D005641AC /* Time */,
+				ACEC11B92859AE45005641AC /* SelectDateViewController */,
+				ACEC11B82859AE3A005641AC /* SelectDateViewModel */,
+			);
+			path = SelectDate;
+			sourceTree = "<group>";
+		};
+		ACEC11B82859AE3A005641AC /* SelectDateViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				ACEC11BC2859AE77005641AC /* SelectDateViewModel.swift */,
+			);
+			path = SelectDateViewModel;
+			sourceTree = "<group>";
+		};
+		ACEC11B92859AE45005641AC /* SelectDateViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ACEC11BA2859AE5D005641AC /* SelectDateViewController.swift */,
+			);
+			path = SelectDateViewController;
+			sourceTree = "<group>";
+		};
+		ACEC11BE2859E90D005641AC /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				ACEC11C72859EB54005641AC /* model */,
+				ACEC11C02859E925005641AC /* TimeViewController */,
+				ACEC11BF2859E917005641AC /* TimeViewModel */,
+			);
+			path = Time;
+			sourceTree = "<group>";
+		};
+		ACEC11BF2859E917005641AC /* TimeViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				ACEC11C52859E9A7005641AC /* TimeViewModel.swift */,
+			);
+			path = TimeViewModel;
+			sourceTree = "<group>";
+		};
+		ACEC11C02859E925005641AC /* TimeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ACEC11C12859E94F005641AC /* TimeCollectionViewCell.swift */,
+				ACEC11C22859E94F005641AC /* TimeCollectionViewCell.xib */,
+			);
+			path = TimeViewController;
+			sourceTree = "<group>";
+		};
+		ACEC11C72859EB54005641AC /* model */ = {
+			isa = PBXGroup;
+			children = (
+				ACEC11C82859EB72005641AC /* Time.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -520,6 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC44BD2B2850B49E004A8C2A /* LaunchScreen.storyboard in Resources */,
+				ACEC11C42859E94F005641AC /* TimeCollectionViewCell.xib in Resources */,
 				AC44BD282850B49E004A8C2A /* Assets.xcassets in Resources */,
 				AC4825AE28532D15008B593F /* HistoryTableViewCell.xib in Resources */,
 				AC44BD262850B49B004A8C2A /* Main.storyboard in Resources */,
@@ -549,19 +624,24 @@
 				AC4825AA28532CF5008B593F /* HistoryViewModelCell.swift in Sources */,
 				AC607E312851E8A400B9C878 /* HistoryTripViewController.swift in Sources */,
 				AC44BD232850B49B004A8C2A /* LoginViewController.swift in Sources */,
+				ACEC11BD2859AE77005641AC /* SelectDateViewModel.swift in Sources */,
 				AC607E3C2851FAE900B9C878 /* AccountViewController.swift in Sources */,
 				AC5041F9285869FA00B52B59 /* SelectDirectViewController.swift in Sources */,
 				AC607E272851E4FD00B9C878 /* Trip.swift in Sources */,
+				ACEC11C32859E94F005641AC /* TimeCollectionViewCell.swift in Sources */,
 				AC607E202851D8F000B9C878 /* User.swift in Sources */,
 				AC5042162858A96100B52B59 /* SelectStaitionViewController.swift in Sources */,
 				AC50420328587C7500B52B59 /* DataTripTableViewCell.swift in Sources */,
 				AC607E232851D98900B9C878 /* StorageManager.swift in Sources */,
+				ACEC11C92859EB72005641AC /* Time.swift in Sources */,
+				ACEC11BB2859AE5D005641AC /* SelectDateViewController.swift in Sources */,
 				AC44BD1F2850B49B004A8C2A /* AppDelegate.swift in Sources */,
 				AC5042142858A94A00B52B59 /* SelecStaitionViewModel.swift in Sources */,
 				AC394564285707B400B4B8D7 /* Constant.swift in Sources */,
 				AC44BD212850B49B004A8C2A /* SceneDelegate.swift in Sources */,
 				AC607E2F2851E85100B9C878 /* HistoryTripViewModel.swift in Sources */,
 				AC4825AD28532D15008B593F /* HistoryTableViewCell.swift in Sources */,
+				ACEC11C62859E9A7005641AC /* TimeViewModel.swift in Sources */,
 				AC607E352851F9B900B9C878 /* OrderViewModel.swift in Sources */,
 				AC44BD3C2850CDE7004A8C2A /* UIButton+extension.swift in Sources */,
 				AC607E332851F9A800B9C878 /* OrderViewController.swift in Sources */,

@@ -17,6 +17,8 @@ class DataTripTableViewCell: UITableViewCell {
         didSet {
             mainTextLabel.text = viewModel.mainText
             secondaryTextLabel.text = viewModel.secondaryText
+            let image = UIImage(systemName: viewModel.imageName)
+            infoImageView.image = image
         }
     }
     

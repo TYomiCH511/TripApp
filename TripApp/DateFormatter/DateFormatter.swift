@@ -40,5 +40,14 @@ class CustomDate {
         return formatter.string(from: date).capitalized
     }
     
+    func showHour(from date: Date) -> String {
+        
+        let formatter = DateFormatter()
+        formatter.locale = .init(identifier: "ru_RU")
+        formatter.dateFormat = "HH"
+        
+        return formatter.string(from: date).capitalized
+    }
+    
     
 }

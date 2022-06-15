@@ -32,7 +32,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.down.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LBa-ka-JGf">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.up.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LBa-ka-JGf">
                                 <rect key="frame" x="0.0" y="17.5" width="40" height="34.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="byi-hX-HZ1"/>
@@ -73,6 +73,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="arrow.down.left" catalog="system" width="128" height="112"/>
+        <image name="arrow.up.right" catalog="system" width="128" height="112"/>
     </resources>
 </document>
