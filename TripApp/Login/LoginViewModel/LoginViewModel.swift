@@ -46,7 +46,10 @@ class LoginViewModel: LoginViewModelProcol {
     }
     
     func fetchUser(phoneNumber: String, password: String, complition: @escaping (User) -> ()) {
-        guard let user = StorageManeger.shared.getUser(phoneNumber: phoneNumber) else {
+        
+        guard let users = UserStore.shared.getUsers() else { return }
+        
+        guard let user = StorageManeger.shared.getUser(in: users, phoneNumber: phoneNumber) else {
             delegate?.showAlertLoginWrong()
             return
         }

@@ -38,7 +38,7 @@ protocol ShowFullInfoOfTripProtocol: AnyObject {
 class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProtocol {
     weak var editTripDelegate: EditTripProtocol?
     
-    var trips: Bindable<[Trip]> = Bindable<[Trip]>(UserStore.shared.getUser()?.trips ?? StorageManeger.shared.trips)
+    var trips: Bindable<[Trip]> = Bindable<[Trip]>(UserStore.shared.getUser()?.trips ?? tripsStore)
     
     weak var showInfoDelegate: ShowFullInfoOfTripProtocol?
     

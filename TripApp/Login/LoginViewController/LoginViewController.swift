@@ -65,6 +65,9 @@ class LoginViewController: UIViewController {
     
     @IBAction func fogotPasswordButtonPressed(_ sender: UIButton) {
         print("Fogot Password touch")
+        guard let registerVC = storyboard?.instantiateViewController(withIdentifier: "register") as? RegisterViewController else { return }
+        registerVC.modalPresentationStyle = .fullScreen
+        present(registerVC, animated: true)
     }
     
     
@@ -151,6 +154,7 @@ extension LoginViewController: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

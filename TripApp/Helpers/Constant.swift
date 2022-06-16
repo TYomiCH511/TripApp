@@ -9,7 +9,7 @@ import Foundation
 import UIKit
     
 
-var backgroundColor = UIColor.darkGray
-
+let mainBackgroundColor = UIColor.darkGray
+let cornerRadiusButton: CGFloat = 8
 let costTrip = 15
 

@@ -7,54 +7,56 @@
 
 import Foundation
 
+private var users = [
+    User(name: "Artem", surname: "Timankov",
+         phoneNumber: "5115711", email: nil,
+         password: "5115711", trips: tripsStore),
+    
+    User(name: "Kolya", surname: "Pupkin",
+         phoneNumber: "1111111", email: nil,
+         password: "1111111", trips: tripsStore),
+]
+
+var tripsStore = [
+    
+    Trip(date: Date(), startCity: "Минск", startStaition: "ЖД вокзал",
+         finishCity: "Новополоцк", finishStaition: "Кинотеатр Минск",
+         tripStait: .cancel, countPasseger: 1,
+         driver: Driver(carModel: "Mercedes Sprinter", carColor: "Белый", carNumber: "8888-2",
+                        phoneNumber: "+375 29 566 47 58", raiting: "4.84")),
+    
+    Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
+         finishCity: "Минск", finishStaition: "ЭкспоБел",
+         tripStait: .notReserved, countPasseger: 2, driver:
+            Driver(carModel: "Mercedes Sprinter", carColor: "Белый", carNumber: "8888-2",
+                   phoneNumber: "+375 29 566 47 58", raiting: "4.84")),
+    
+    Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
+         finishCity: "Минск", finishStaition: "ЭкспоБел",
+         tripStait: .reserved, countPasseger: 1,
+         driver: Driver(carModel: "Mercedes Sprinter", carColor: "Белый", carNumber: "8888-2",
+                        phoneNumber: "+375 29 566 47 58", raiting: "4.84")),
+    
+    Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
+         finishCity: "Минск", finishStaition: "ЭкспоБел",
+         tripStait: .complition, countPasseger: 3,
+         driver: Driver(carModel: "Mercedes Sprinter", carColor: "Белый", carNumber: "8888-2",
+                        phoneNumber: "+375 29 566 47 58", raiting: "4.84")),
+    
+]
 
 class StorageManeger {
+    
     static let shared = StorageManeger()
     private init() {}
-    lazy private var users = [
-        User(name: "Artem", surname: "Timankov",
-             phoneNumber: "5115711", email: nil,
-             password: "5115711", trips: trips),
-        
-        User(name: "Kolya", surname: "Pupkin",
-             phoneNumber: "1111111", email: nil,
-             password: "1111111", trips: trips),
-    ]
-    
-    var trips = [
-        
-        Trip(date: Date(), startCity: "Минск", startStaition: "ЖД вокзал",
-             finishCity: "Новополоцк", finishStaition: "Кинотеатр Минск",
-             tripStait: .cancel, countPasseger: 1,
-             driver: Driver(carModel: "Mercedes Sprinter", carColor: "Белый", carNumber: "8888-2",
-                            phoneNumber: "+375 29 566 47 58", raiting: "4.84")),
-        
-        Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
-             finishCity: "Минск", finishStaition: "ЭкспоБел",
-             tripStait: .notReserved, countPasseger: 2, driver:
-                Driver(carModel: "Mercedes Sprinter", carColor: "Белый", carNumber: "8888-2",
-                       phoneNumber: "+375 29 566 47 58", raiting: "4.84")),
-        
-        Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
-             finishCity: "Минск", finishStaition: "ЭкспоБел",
-             tripStait: .reserved, countPasseger: 1,
-             driver: Driver(carModel: "Mercedes Sprinter", carColor: "Белый", carNumber: "8888-2",
-                            phoneNumber: "+375 29 566 47 58", raiting: "4.84")),
-        
-        Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
-             finishCity: "Минск", finishStaition: "ЭкспоБел",
-             tripStait: .complition, countPasseger: 3,
-             driver: Driver(carModel: "Mercedes Sprinter", carColor: "Белый", carNumber: "8888-2",
-                            phoneNumber: "+375 29 566 47 58", raiting: "4.84")),
-        
-    ]
     
     
-    func getUser(phoneNumber: String) -> User? {
+    func getUser(in users: [User], phoneNumber: String) -> User? {
         var user1: User?
         users.forEach { user in
-            if user.phoneNumber.contains(phoneNumber) {
+            if user.phoneNumber == phoneNumber {
                 user1 = user
+                print(user)
                 return
             }
         }
@@ -62,11 +64,14 @@ class StorageManeger {
     }
 }
 
-
 class UserStore {
+    
     private let defaults = UserDefaults.standard
     static let shared = UserStore()
     let currentUser = "user"
+    let usersKey = "users"
+    
+    
     private init() {}
     
     func save(user: User) {
@@ -84,11 +89,38 @@ class UserStore {
         return user
     }
     
-    
+    func getUsers() -> [User]? {
+        
+        guard let userData = defaults.value(forKey: usersKey) as? Data else { return nil }
+        let users = try? JSONDecoder().decode([User].self, from: userData)
+        print("Get current user")
+        return users
+    }
     
     func deleteUser() {
         defaults.removeObject(forKey: currentUser)
     }
+    
+    func addNewUser(_ user: User) {
+        guard var users = getUsers() else { return }
+        users.append(user)
+        guard let users = try? JSONEncoder().encode(users) else { return }
+            defaults.set(users, forKey: usersKey)
+    }
+    
+    func firstStartApp() {
+        guard let _ = defaults.value(forKey: usersKey) as? Data else {
+            
+            guard let user = try? JSONEncoder().encode(users) else { return }
+                defaults.set(user, forKey: usersKey)
+            print("Save current user")
+            
+            return
+            
+        }
+        
+    }
+    
 }
 
 
