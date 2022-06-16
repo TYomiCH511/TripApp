@@ -68,7 +68,8 @@ class SelectDateViewController: UIViewController {
         selectorDatePicker.maximumDate = Date(timeIntervalSinceNow: 2_560_000)
         selectorDatePicker.minimumDate = Date()
         selectorDatePicker.tintColor = .systemOrange
-        
+        selectorDatePicker.locale = .init(identifier: "ru_RU")
+        selectorDatePicker.timeZone = .init(abbreviation: "ru_RU")
         selectorDatePicker.backgroundColor = .darkGray
     }
     
@@ -109,6 +110,7 @@ extension SelectDateViewController: UICollectionViewDelegate, UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(selectorDatePicker.date)
         print("select item timeCollection")
     }
 }

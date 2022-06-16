@@ -21,6 +21,8 @@
 		AC4825AA28532CF5008B593F /* HistoryViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825A928532CF5008B593F /* HistoryViewModelCell.swift */; };
 		AC4825AD28532D15008B593F /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825AB28532D15008B593F /* HistoryTableViewCell.swift */; };
 		AC4825AE28532D15008B593F /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */; };
+		AC5026CF285B0B64006DC13B /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5026CE285B0B64006DC13B /* RegisterViewModel.swift */; };
+		AC5026D1285B0B7F006DC13B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5026D0285B0B7F006DC13B /* RegisterViewController.swift */; };
 		AC5041F9285869FA00B52B59 /* SelectDirectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5041F8285869FA00B52B59 /* SelectDirectViewController.swift */; };
 		AC5041FB28586A1100B52B59 /* SelectDirectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5041FA28586A1100B52B59 /* SelectDirectViewModel.swift */; };
 		AC50420028587C4C00B52B59 /* DataTripViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5041FF28587C4C00B52B59 /* DataTripViewModelCell.swift */; };
@@ -68,6 +70,8 @@
 		AC4825A928532CF5008B593F /* HistoryViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelCell.swift; sourceTree = "<group>"; };
 		AC4825AB28532D15008B593F /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		AC5026CE285B0B64006DC13B /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		AC5026D0285B0B7F006DC13B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		AC5041F8285869FA00B52B59 /* SelectDirectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDirectViewController.swift; sourceTree = "<group>"; };
 		AC5041FA28586A1100B52B59 /* SelectDirectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDirectViewModel.swift; sourceTree = "<group>"; };
 		AC5041FF28587C4C00B52B59 /* DataTripViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTripViewModelCell.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 		AC44BD1D2850B49B004A8C2A /* TripApp */ = {
 			isa = PBXGroup;
 			children = (
+				AC5026CB285B0B32006DC13B /* Register */,
 				AC5C7D0C285367FA00D0885C /* DateFormatter */,
 				AC44BD322850B4D9004A8C2A /* App */,
 				AC4825A328530DBB008B593F /* Helpers */,
@@ -244,6 +249,31 @@
 				AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */,
 			);
 			path = HistoryTableViewCell;
+			sourceTree = "<group>";
+		};
+		AC5026CB285B0B32006DC13B /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				AC5026CD285B0B4B006DC13B /* RegisterViewController */,
+				AC5026CC285B0B41006DC13B /* RegisterViewModel */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		AC5026CC285B0B41006DC13B /* RegisterViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC5026CE285B0B64006DC13B /* RegisterViewModel.swift */,
+			);
+			path = RegisterViewModel;
+			sourceTree = "<group>";
+		};
+		AC5026CD285B0B4B006DC13B /* RegisterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AC5026D0285B0B7F006DC13B /* RegisterViewController.swift */,
+			);
+			path = RegisterViewController;
 			sourceTree = "<group>";
 		};
 		AC5041F5285869AA00B52B59 /* SelectDirect */ = {
@@ -613,6 +643,7 @@
 				AC607E252851DD6900B9C878 /* UIViewController+extension.swift in Sources */,
 				AC50420028587C4C00B52B59 /* DataTripViewModelCell.swift in Sources */,
 				AC50420C2858963200B52B59 /* SelectCityViewModel.swift in Sources */,
+				AC5026CF285B0B64006DC13B /* RegisterViewModel.swift in Sources */,
 				AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */,
 				AC5042072858935400B52B59 /* Sity.swift in Sources */,
 				AC39456628571DB200B4B8D7 /* Binding.swift in Sources */,
@@ -631,6 +662,7 @@
 				ACEC11C32859E94F005641AC /* TimeCollectionViewCell.swift in Sources */,
 				AC607E202851D8F000B9C878 /* User.swift in Sources */,
 				AC5042162858A96100B52B59 /* SelectStaitionViewController.swift in Sources */,
+				AC5026D1285B0B7F006DC13B /* RegisterViewController.swift in Sources */,
 				AC50420328587C7500B52B59 /* DataTripTableViewCell.swift in Sources */,
 				AC607E232851D98900B9C878 /* StorageManager.swift in Sources */,
 				ACEC11C92859EB72005641AC /* Time.swift in Sources */,

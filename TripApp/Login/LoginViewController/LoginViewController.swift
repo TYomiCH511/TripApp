@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     // MARK: - IBOutlets
     @IBOutlet weak var logintTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -22,6 +22,7 @@ class LoginViewController: UIViewController {
     private var viewModel: LoginViewModelProcol! {
         didSet {
             autoLoginSwitch.isOn = viewModel.autoLogin
+            viewModel.delegate = self
         }
     }
     
@@ -51,26 +52,11 @@ class LoginViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func autoLoginPressed(_ sender: UISwitch) {
-       
+        
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        guard let phoneNumber = logintTextField.text,
-              let password = passwordTextField.text else { return }
-        viewModel.fetchUser(phoneNumber: phoneNumber, password: password) { [unowned self] user in
-            self.onMain {
-                self.resetLoginButton()
-                self.clearTextField()
-                guard let orderViewComtroller = self.storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else { return }
-                orderViewComtroller.modalPresentationStyle = .fullScreen
-                self.present(orderViewComtroller, animated: true) {
-                    if self.autoLoginSwitch.isOn {
-                        self.viewModel.save()
-                    }
-                    
-                }
-            }
-        }
+        login()
     }
     
     @IBAction func callSupportPressed(_ sender: UIButton) {
@@ -95,11 +81,15 @@ class LoginViewController: UIViewController {
         setupTextField()
     }
     
-  
+    
     
     private func setupTextField() {
         logintTextField.placeholder = "+375.. enter phone number"
         passwordTextField.placeholder = "Enter password"
+        logintTextField.returnKeyType = .next
+        passwordTextField.returnKeyType = .done
+        logintTextField.delegate = self
+        passwordTextField.delegate = self
         
         logintTextField.addTarget(self, action: #selector(dataOfUserNotEmpty), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(dataOfUserNotEmpty), for: .editingChanged)
@@ -122,6 +112,27 @@ class LoginViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    private func login() {
+        guard let phoneNumber = logintTextField.text,
+              let password = passwordTextField.text else { return }
+        viewModel.fetchUser(phoneNumber: phoneNumber, password: password) {  user in
+            self.onMain {
+                self.resetLoginButton()
+                self.clearTextField()
+                
+                guard let orderViewComtroller = self.storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else { return }
+                orderViewComtroller.modalPresentationStyle = .fullScreen
+                self.present(orderViewComtroller, animated: true) {
+                    
+                    if self.autoLoginSwitch.isOn {
+                        self.viewModel.saveUser()
+                    }
+                }
+                
+            }
+        }
+    }
+    
     @objc private func dataOfUserNotEmpty() {
         
         if !logintTextField.text!.isEmpty && !passwordTextField.text!.isEmpty {
@@ -136,8 +147,36 @@ class LoginViewController: UIViewController {
 
 // MARK: - Extension: UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField {
+        case logintTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            login()
+        default: break
+        }
+        
+        return true
+    }
+    
+    
+}
+
+
+extension LoginViewController: AlertLoginProtocol {
+    func showAlertLoginWrong() {
+        let alert = Alert.shared.showAlertWrongLogin()
+        present(alert, animated: true) {
+            self.passwordTextField.text = nil
+        }
+    }
+    
+    
 }
