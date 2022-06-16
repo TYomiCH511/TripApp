@@ -18,7 +18,7 @@ enum TripState: Codable {
 }
 
 struct Trip: Codable {
-    let date: Date?
+    var date: Date?
     var startCity: String?
     var startStaition: String?
     var finishCity: String?

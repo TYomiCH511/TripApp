@@ -7,18 +7,28 @@
 
 import Foundation
 
+protocol EditTripDoneProtocol: AnyObject {
+    func updateTrip(trip: Trip)
+}
+
 protocol SelectDirectViewModelProtocol {
     var trip: Trip? { get set }
-    init(trip: Trip?)
+    var isEdit: Bool { get }
+    var editDelegate: EditTripDoneProtocol? { get set }
+    init(trip: Trip?, isEdit: Bool)
     func viewModelDataTripCell(at indexPath: IndexPath) -> DataTripViewModelProtocol
     func viewModelCity() -> SelectCityViewModel
+    func addTrip()
 }
 
 
 class SelectDirectViewModel: SelectDirectViewModelProtocol {
     var trip: Trip?
+    var isEdit: Bool
+    weak var editDelegate: EditTripDoneProtocol?
     let cities = CitySrore.shared.getCities()
-    required init(trip: Trip?) {
+    required init(trip: Trip?, isEdit: Bool) {
+        self.isEdit = isEdit
         self.trip = trip
     }
     
@@ -64,5 +74,22 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
     func viewModelCity() -> SelectCityViewModel {
         
         return SelectCityViewModel(cities: cities)
+    }
+    
+    func addTrip() {
+        
+        guard var user = UserStore.shared.getUser() else { return }
+        guard let trip = trip else { return }
+        
+        if isEdit {
+            editDelegate?.updateTrip(trip: trip)
+            print("edit done")
+        } else {
+            UserStore.shared.deleteUser()
+            user.trips.append(trip)
+            UserStore.shared.save(user: user)
+            print(user.trips.count)
+        }
+        
     }
 }

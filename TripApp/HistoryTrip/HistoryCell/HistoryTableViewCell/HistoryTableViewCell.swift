@@ -49,9 +49,10 @@ class HistoryTableViewCell: UITableViewCell {
     var viewModel: HistoryViewModelCellProtocol! {
         didSet {
             let dateFormat = CustomDate.shared
-            dayOfWeekLabel.text = dateFormat.showDay(from: viewModel.trip.date!)
-            dateTripLabel.text = dateFormat.showDate(from: viewModel.trip.date!)
-            timeTripLabel.text = dateFormat.showTime(from: viewModel.trip.date!)
+            guard let date = viewModel.trip.date else { return }
+            dayOfWeekLabel?.text = dateFormat.showDay(from: date)
+            dateTripLabel.text = dateFormat.showDate(from: date)
+            timeTripLabel.text = dateFormat.showTime(from: date)
             startCityLabel.text = viewModel.trip.startCity
             startStaitionLabel.text = viewModel.trip.startStaition
             finalyCityLabel.text = viewModel.trip.finishCity
@@ -135,7 +136,7 @@ class HistoryTableViewCell: UITableViewCell {
         startCircleView.layer.cornerRadius = startCircleView.frame.height / 2
         finalyStaitionCircleView.layer.cornerRadius = finalyStaitionCircleView.frame.height / 2
         
-        dayOfWeekLabel.textColor = .gray
+        dayOfWeekLabel?.textColor = .gray
         
         dateTripLabel.textColor = .systemBlue
         dateTripLabel.font = .systemFont(ofSize: 24, weight: .semibold)

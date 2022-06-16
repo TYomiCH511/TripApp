@@ -14,6 +14,7 @@ class HistoryTripViewController: UIViewController {
     // MARK: - properies
     private var viewModel: HistoryTripViewModelProtocol!
     
+    private var selectTrip = 0
     
     // MARK: - Life cicle View Controller
     override func viewDidLoad() {
@@ -32,7 +33,10 @@ class HistoryTripViewController: UIViewController {
             
         }
         
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
     }
     
@@ -48,7 +52,7 @@ extension HistoryTripViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HistoryTableViewCell else { return UITableViewCell()}
-        
+        selectTrip = indexPath.row
         cell.viewModel = viewModel.cellViewModel(at: indexPath)
         return cell
     }
@@ -66,12 +70,24 @@ extension HistoryTripViewController: EditTripProtocol {
     func editTrip(trip: Trip, tag: Int) {
         
         guard let editVC = storyboard?.instantiateViewController(withIdentifier: "selectDirection") as? SelectDirectViewController else { return }
-        editVC.viewModel = SelectDirectViewModel(trip: trip)
-        
+        editVC.viewModel = SelectDirectViewModel(trip: trip, isEdit: true)
+        editVC.viewModel.editDelegate = self
+        selectTrip = tag
         navigationController?.pushViewController(editVC, animated: true)
         
     }
     
+    
+    
+}
+
+extension HistoryTripViewController: EditTripDoneProtocol {
+    func updateTrip(trip: Trip) {
+        guard var user = UserStore.shared.getUser() else { return }
+        user.trips[selectTrip] = trip
+        UserStore.shared.save(user: user)
+        viewModel.trips.value[selectTrip] = trip
+    }
     
     
 }

@@ -27,6 +27,7 @@ class SelectDateViewController: UIViewController {
     private var sideWidth: CGFloat = 0
     private let sideHeight: CGFloat = 40
     
+    weak var delegate: CallBackDataTripToRootVCProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +111,9 @@ extension SelectDateViewController: UICollectionViewDelegate, UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.callBack(date: Date())
+        guard let selectDirectionVC = navigationController?.viewControllers[1] as? SelectDirectViewController else { return }
+        navigationController?.popToViewController(selectDirectionVC, animated: true)
         print(selectorDatePicker.date)
         print("select item timeCollection")
     }

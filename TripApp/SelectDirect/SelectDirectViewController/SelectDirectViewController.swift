@@ -10,12 +10,15 @@ import UIKit
 
 protocol CallBackDataTripToRootVCProtocol: AnyObject {
     func callBack(data: String)
+    func callBack(date: Date)
 }
 
 class SelectDirectViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var orderTableVIew: UITableView!
+    @IBOutlet weak var fillVIew: UIView!
+    @IBOutlet weak var orderTripButton: UIButton!
     
     
     // MARK: - Properties
@@ -31,12 +34,18 @@ class SelectDirectViewController: UIViewController {
         orderTableVIew.dataSource = self
         view.backgroundColor = .white
         orderTableVIew.backgroundColor = .white
+        fillVIew.backgroundColor = .clear
+        orderTripButton.orangeButton(with: "Завершить")
         
         let nib = UINib(nibName: String(describing: DataTripTableViewCell.self), bundle: .main)
         orderTableVIew.register(nib, forCellReuseIdentifier: "cell")
     }
     
     
+    @IBAction func orderTripButtonPressed(_ sender: UIButton) {
+        viewModel.addTrip()
+        navigationController?.popToRootViewController(animated: true)
+    }
     
     
 }
@@ -79,9 +88,8 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
         case 2:
             if viewModel.trip?.finishStaition != nil {
                 print("select date row")
-                guard let selectDateVC = storyboard?.instantiateViewController(withIdentifier: "selectDate") as? SelectDateViewController else {
-                    print("exite vc")
-                    return }
+                guard let selectDateVC = storyboard?.instantiateViewController(withIdentifier: "selectDate") as? SelectDateViewController else { return }
+                selectDateVC.delegate = self
                 navigationController?.pushViewController(selectDateVC, animated: true)
             }
         default:
@@ -102,6 +110,11 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
 }
 
 extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
+    func callBack(date: Date) {
+        viewModel.trip?.date = date
+        orderTableVIew.reloadData()
+    }
+    
     func callBack(data: String) {
         switch selectRow {
         case 0:
@@ -112,7 +125,8 @@ extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
                 }
                 
             }
-            viewModel.trip = Trip(date: nil, startCity: city1, startStaition: data, finishCity: nil, finishStaition: nil, tripStait: .notReserved, countPasseger: nil, driver: nil)
+            viewModel.trip?.startCity = city1
+            viewModel.trip?.startStaition = data
             
         case 1:
             var city1 = ""

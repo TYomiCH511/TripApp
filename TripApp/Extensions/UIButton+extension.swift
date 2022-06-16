@@ -18,4 +18,15 @@ extension UIButton {
         layer.shadowColor = backgroundColor?.cgColor
         
     }
+    
+    func orangeButton(with title: String) {
+        backgroundColor = .systemOrange
+        setTitle(title, for: .normal)
+        layer.cornerRadius = cornerRadiusButton
+        titleLabel?.font = .systemFont(ofSize: 24, weight: .semibold)
+        tintColor = .white
+        self.addShadow()
+    }
+    
+    
 }

@@ -397,6 +397,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fSP-a0-vY4">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="X54-Re-M8K">
+                                    <rect key="frame" x="0.0" y="111" width="390" height="233"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="08S-Kd-Rb3">
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
@@ -408,10 +413,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nah-iS-AJL">
+                                <rect key="frame" x="30" y="680" width="330" height="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="orderTripButtonPressed:" destination="4rV-U0-c0z" eventType="touchUpInside" id="Uha-aT-0r0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Axr-ta-iks"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="nah-iS-AJL" firstAttribute="leading" secondItem="Axr-ta-iks" secondAttribute="leading" constant="30" id="3Z4-oW-p4w"/>
+                            <constraint firstItem="Axr-ta-iks" firstAttribute="bottom" secondItem="nah-iS-AJL" secondAttribute="bottom" constant="100" id="a3l-I0-lDz"/>
+                            <constraint firstItem="Axr-ta-iks" firstAttribute="trailing" secondItem="nah-iS-AJL" secondAttribute="trailing" constant="30" id="dWQ-Xh-Hb0"/>
                             <constraint firstItem="fSP-a0-vY4" firstAttribute="trailing" secondItem="Axr-ta-iks" secondAttribute="trailing" id="em0-iG-dff"/>
                             <constraint firstItem="fSP-a0-vY4" firstAttribute="top" secondItem="Ex5-ht-92S" secondAttribute="top" id="fLG-7H-YYO"/>
                             <constraint firstItem="fSP-a0-vY4" firstAttribute="leading" secondItem="Axr-ta-iks" secondAttribute="leading" id="h5w-Nb-lQu"/>
@@ -420,12 +436,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="5K7-i0-fJu"/>
                     <connections>
+                        <outlet property="fillVIew" destination="X54-Re-M8K" id="QQB-NR-bEj"/>
                         <outlet property="orderTableVIew" destination="fSP-a0-vY4" id="Gqc-26-aso"/>
+                        <outlet property="orderTripButton" destination="nah-iS-AJL" id="ayh-3f-wm9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSJ-F0-S16" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7304" y="-560"/>
+            <point key="canvasLocation" x="7303.0769230769229" y="-560.18957345971558"/>
         </scene>
         <!--Select Date View Controller-->
         <scene sceneID="C5k-hd-qqQ">
@@ -724,7 +742,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o91-Zw-X9f">
-                                <rect key="frame" x="100" y="651" width="190" height="40"/>
+                                <rect key="frame" x="100" y="514" width="190" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="dB4-6X-krH"/>
                                 </constraints>
@@ -735,7 +753,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diZ-GE-sZq">
-                                <rect key="frame" x="100" y="591" width="190" height="40"/>
+                                <rect key="frame" x="100" y="454" width="190" height="40"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Save changes"/>
                                 <connections>
@@ -749,9 +767,9 @@
                             <constraint firstItem="3Zq-pK-1Gz" firstAttribute="top" secondItem="UFG-th-cVS" secondAttribute="top" constant="30" id="2DA-dL-nKX"/>
                             <constraint firstItem="UFG-th-cVS" firstAttribute="trailing" secondItem="o91-Zw-X9f" secondAttribute="trailing" constant="100" id="7GA-RC-8LP"/>
                             <constraint firstItem="diZ-GE-sZq" firstAttribute="height" secondItem="o91-Zw-X9f" secondAttribute="height" id="LIk-1i-yh2"/>
-                            <constraint firstItem="UFG-th-cVS" firstAttribute="bottom" secondItem="o91-Zw-X9f" secondAttribute="bottom" constant="70" id="Vka-48-72F"/>
                             <constraint firstItem="diZ-GE-sZq" firstAttribute="leading" secondItem="UFG-th-cVS" secondAttribute="leading" constant="100" id="dHE-rI-H30"/>
                             <constraint firstItem="o91-Zw-X9f" firstAttribute="top" secondItem="diZ-GE-sZq" secondAttribute="bottom" constant="20" id="ee7-bb-x7f"/>
+                            <constraint firstItem="diZ-GE-sZq" firstAttribute="top" secondItem="3Zq-pK-1Gz" secondAttribute="bottom" constant="50" id="exE-1N-BKS"/>
                             <constraint firstItem="o91-Zw-X9f" firstAttribute="leading" secondItem="UFG-th-cVS" secondAttribute="leading" constant="100" id="gZu-0a-nwv"/>
                             <constraint firstItem="UFG-th-cVS" firstAttribute="trailing" secondItem="3Zq-pK-1Gz" secondAttribute="trailing" constant="20" id="gjy-rl-u40"/>
                             <constraint firstItem="3Zq-pK-1Gz" firstAttribute="leading" secondItem="UFG-th-cVS" secondAttribute="leading" constant="20" id="hkt-d3-hdZ"/>

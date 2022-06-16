@@ -68,22 +68,22 @@ class UserStore {
     
     private let defaults = UserDefaults.standard
     static let shared = UserStore()
-    let currentUser = "user"
-    let usersKey = "users"
+    private let currentUserKey = "user"
+    private let usersKey = "users"
     
     
     private init() {}
     
     func save(user: User) {
         guard let user = try? JSONEncoder().encode(user) else { return }
-            defaults.set(user, forKey: currentUser)
+            defaults.set(user, forKey: currentUserKey)
         print("Save current user")
     
     }
     
     func getUser() -> User? {
         
-        guard let userData = defaults.value(forKey: currentUser) as? Data else { return nil }
+        guard let userData = defaults.value(forKey: currentUserKey) as? Data else { return nil }
         let user = try? JSONDecoder().decode(User.self, from: userData)
         print("Get current user")
         return user
@@ -98,7 +98,7 @@ class UserStore {
     }
     
     func deleteUser() {
-        defaults.removeObject(forKey: currentUser)
+        defaults.removeObject(forKey: currentUserKey)
     }
     
     func addNewUser(_ user: User) {
