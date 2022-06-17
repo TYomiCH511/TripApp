@@ -35,7 +35,7 @@ class SelectDirectViewController: UIViewController {
         view.backgroundColor = .white
         orderTableVIew.backgroundColor = .white
         fillVIew.backgroundColor = .clear
-        orderTripButton.orangeButton(with: "Завершить")
+        orderTripButton.orangeButton(with: "Завершить", isEnable: true)
         
         let nib = UINib(nibName: String(describing: DataTripTableViewCell.self), bundle: .main)
         orderTableVIew.register(nib, forCellReuseIdentifier: "cell")
@@ -118,6 +118,9 @@ extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
     func callBack(data: String) {
         switch selectRow {
         case 0:
+            if viewModel.trip == nil {
+                viewModel.trip = Trip(date: nil, startCity: nil, startStaition: nil, finishCity: nil, finishStaition: nil, tripStait: .notReserved, countPasseger: nil, driver: nil)
+            }
             var city1 = ""
             CitySrore.shared.getCities().forEach { city in
                 if city.staition.contains(data) {

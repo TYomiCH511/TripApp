@@ -86,7 +86,7 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
             print("edit done")
         } else {
             UserStore.shared.deleteUser()
-            user.trips.append(trip)
+            user.trips.insert(trip, at: 0)
             UserStore.shared.save(user: user)
             print(user.trips.count)
         }

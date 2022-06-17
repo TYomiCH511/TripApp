@@ -45,6 +45,7 @@
 		AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E392851FA9E00B9C878 /* SettingViewModel.swift */; };
 		AC607E3C2851FAE900B9C878 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3B2851FAE900B9C878 /* AccountViewController.swift */; };
 		AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3F2852081B00B9C878 /* TabBarViewController.swift */; };
+		AC877B3A285C564E005B3BF1 /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B39285C564E005B3BF1 /* UITextField+extension.swift */; };
 		ACEC11BB2859AE5D005641AC /* SelectDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11BA2859AE5D005641AC /* SelectDateViewController.swift */; };
 		ACEC11BD2859AE77005641AC /* SelectDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11BC2859AE77005641AC /* SelectDateViewModel.swift */; };
 		ACEC11C32859E94F005641AC /* TimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11C12859E94F005641AC /* TimeCollectionViewCell.swift */; };
@@ -94,6 +95,7 @@
 		AC607E392851FA9E00B9C878 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		AC607E3B2851FAE900B9C878 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		AC607E3F2852081B00B9C878 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		AC877B39285C564E005B3BF1 /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
 		ACEC11BA2859AE5D005641AC /* SelectDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
 		ACEC11BC2859AE77005641AC /* SelectDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewModel.swift; sourceTree = "<group>"; };
 		ACEC11C12859E94F005641AC /* TimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		AC44BD1D2850B49B004A8C2A /* TripApp */ = {
 			isa = PBXGroup;
 			children = (
+				AC877B3B285C6CA6005B3BF1 /* AboutUs */,
 				AC5C7D0C285367FA00D0885C /* DateFormatter */,
 				AC44BD322850B4D9004A8C2A /* App */,
 				AC4825A328530DBB008B593F /* Helpers */,
@@ -211,6 +214,7 @@
 			children = (
 				AC44BD3B2850CDE7004A8C2A /* UIButton+extension.swift */,
 				AC607E242851DD6900B9C878 /* UIViewController+extension.swift */,
+				AC877B39285C564E005B3BF1 /* UITextField+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -504,6 +508,13 @@
 			path = TaBarViewController;
 			sourceTree = "<group>";
 		};
+		AC877B3B285C6CA6005B3BF1 /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AboutUs;
+			sourceTree = "<group>";
+		};
 		ACEC11B72859AE30005641AC /* SelectDate */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,6 +655,7 @@
 				AC50420028587C4C00B52B59 /* DataTripViewModelCell.swift in Sources */,
 				AC50420C2858963200B52B59 /* SelectCityViewModel.swift in Sources */,
 				AC5026CF285B0B64006DC13B /* RegisterViewModel.swift in Sources */,
+				AC877B3A285C564E005B3BF1 /* UITextField+extension.swift in Sources */,
 				AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */,
 				AC5042072858935400B52B59 /* Sity.swift in Sources */,
 				AC39456628571DB200B4B8D7 /* Binding.swift in Sources */,

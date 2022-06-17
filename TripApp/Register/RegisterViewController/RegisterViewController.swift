@@ -11,7 +11,14 @@ class RegisterViewController: UIViewController {
     
     // MARK: -  IBOutlets
     @IBOutlet weak var mainScrollView: UIScrollView!
+    
     @IBOutlet weak var conteinerView: UIView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var registerInfoLabel: UILabel!
+    
+    @IBOutlet weak var registrationTextLable: UILabel!
+    
+    @IBOutlet weak var conteinerTextFieldsView: UIView!
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
@@ -45,16 +52,27 @@ class RegisterViewController: UIViewController {
                                    password: password)
             dismiss(animated: true)
         }
-        
+    }
+    
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true)
     }
     
     
     // MARK: - Custom function
     private func setupUI() {
         view.backgroundColor = mainBackgroundColor
-        conteinerView.backgroundColor = mainBackgroundColor
+        conteinerView.backgroundColor = .clear
+        conteinerTextFieldsView.backgroundColor = mainBackgroundColor
         configureTextField()
-        registButton.layer.cornerRadius = cornerRadiusButton
+        registerInfoLabel.text = "Регистрация"
+        registerInfoLabel.font = .systemFont(ofSize: 20, weight: .semibold)
+        registrationTextLable.text = "Для регистрациия введите свой номер телефона, имя, фамилию и пароль с подтверждением"
+        registrationTextLable.textColor = .lightText
+        backButton.clearBackgroundButton(with: "Назад")
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        registButton.orangeButton(with: "Зарегестрироваться", isEnable: true)
         mainScrollView.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignFirsResponderTap))
         mainScrollView.addGestureRecognizer(tapGesture)
@@ -65,20 +83,14 @@ class RegisterViewController: UIViewController {
         let textFieldArray = [surnameTextField, nameTextField, phoneNumberTextField, passwordTextField, confirmPasswordTextField]
         
         textFieldArray.forEach { textField in
-            textField?.backgroundColor = .white
-            textField?.textColor = .black
-            textField?.tintColor = .red
-            textField?.attributedPlaceholder = NSAttributedString(
-                string: "Placeholder Text",
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-            )
-            textField?.font = .systemFont(ofSize: 20, weight: .light)
+           
             textField?.delegate = self
-            textField?.returnKeyType = .next
+            textField?.customConfigure(with: "11", returnKey: .next)
         }
         surnameTextField.placeholder = "Фамилия"
         nameTextField.placeholder = "Имя"
         phoneNumberTextField.placeholder = "Телефонный номер"
+        phoneNumberTextField.keyboardType = .phonePad
         passwordTextField.placeholder = "Пароль"
         confirmPasswordTextField.placeholder = "Подтверждение пароля"
         confirmPasswordTextField.returnKeyType = .done
@@ -90,10 +102,11 @@ class RegisterViewController: UIViewController {
             mainScrollView.endEditing(true)
     }
     
+    
     @objc private func kbWillShow(notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardSize = (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let difference = conteinerView.frame.maxY - keyboardSize.origin.y
+        let difference = conteinerTextFieldsView.frame.maxY - keyboardSize.origin.y
         mainScrollView.contentOffset = CGPoint(x: 0, y: difference)
     }
     
@@ -128,14 +141,10 @@ extension RegisterViewController: UITextFieldDelegate {
         return true
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        
-    }
-    
+   
 }
 
 extension RegisterViewController: UIScrollViewDelegate {
     
-    
+
 }

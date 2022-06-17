@@ -10,13 +10,18 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // MARK: - IBOutlets
+    @IBOutlet weak var mainScrollView: UIScrollView!
+    
+    @IBOutlet weak var mainConteiner: UIView!
+    @IBOutlet weak var phoneCallButton: UIButton!
     @IBOutlet weak var logintTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var autoLoginSwitch: UISwitch!
     @IBOutlet weak var autoLoginLabel: UILabel!
-    @IBOutlet weak var fogotPasswordButton: UIButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var registerButton: UIButton!
     
     // MARK: - let/var property
     private var viewModel: LoginViewModelProcol! {
@@ -64,36 +69,44 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func fogotPasswordButtonPressed(_ sender: UIButton) {
-        print("Fogot Password touch")
+        print("Fogot button pressed")
+    }
+    
+    @IBAction func registerButtonPressed(_ sender: UIButton) {
         guard let registerVC = storyboard?.instantiateViewController(withIdentifier: "register") as? RegisterViewController else { return }
         registerVC.modalPresentationStyle = .fullScreen
         present(registerVC, animated: true)
     }
     
-    
     // MARK: - Custom function
     private func setupUI() {
         
         resetLoginButton()
-        loginButton.layer.cornerRadius = 8
-        loginButton.addShadow()
-        loginButton.titleLabel!.font = .systemFont(ofSize: 32, weight: .semibold)
-        loginButton.setTitleColor(.white, for: .normal)
-        loginButton.setTitleColor(.white, for: .highlighted)
-        
+        loginButton.grayButton(with: "Войти", isEnable: false)
+        mainConteiner.backgroundColor = .clear
+        autoLoginSwitch.tintColor = mainColor
+        phoneCallButton.tintColor = mainColor
+        registerButton.tintColor = mainColor
+        autoLoginLabel.text = "Входить автоматически"
+        registerButton.setTitle("Зарегистрироваться", for: .normal)
+        registerButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .medium)
+        forgotPasswordButton.setTitle("Забыли пароль?", for: .normal)
+        let scrollTapGesure = UITapGestureRecognizer(target: self, action: #selector(tapScrollGesture))
+        mainScrollView.addGestureRecognizer(scrollTapGesure)
+        mainScrollView.showsVerticalScrollIndicator = false
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         setupTextField()
     }
     
     
     
     private func setupTextField() {
-        logintTextField.placeholder = "+375.. enter phone number"
-        passwordTextField.placeholder = "Enter password"
-        logintTextField.returnKeyType = .next
-        passwordTextField.returnKeyType = .done
+        logintTextField.customConfigure(with: "+375.. номер телефона", returnKey: .next)
+        passwordTextField.customConfigure(with: "Пароль", returnKey: .done)
+        logintTextField.keyboardType = .phonePad
         logintTextField.delegate = self
         passwordTextField.delegate = self
-        
         logintTextField.addTarget(self, action: #selector(dataOfUserNotEmpty), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(dataOfUserNotEmpty), for: .editingChanged)
     }
@@ -106,7 +119,7 @@ class LoginViewController: UIViewController {
     }
     
     private func resetLoginButton() {
-        loginButton.backgroundColor = .lightGray
+        loginButton.grayButton(with: "Войти", isEnable: false)
         loginButton.isEnabled = false
     }
     
@@ -136,10 +149,29 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @objc private func kbWillShow(notification: Notification) {
+        let userInfo = notification.userInfo
+        let keyboardSize = (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let difference = mainConteiner.frame.maxY - keyboardSize.origin.y
+        UIView.animate(withDuration: 0.3) {
+            self.mainScrollView.contentOffset = CGPoint(x: 0, y: difference)
+        }
+
+        
+    }
+    
+    @objc private func kbWillHide() {
+        mainScrollView.contentOffset = CGPoint(x: 0, y: 0)
+    }
+    
+    @objc private func tapScrollGesture() {
+        view.endEditing(true)
+    }
+    
     @objc private func dataOfUserNotEmpty() {
         
         if !logintTextField.text!.isEmpty && !passwordTextField.text!.isEmpty {
-            loginButton.backgroundColor = .yellow
+            loginButton.orangeButton(with: "Войти", isEnable: true)
             loginButton.isEnabled = true
         } else {
             resetLoginButton()
@@ -151,11 +183,7 @@ class LoginViewController: UIViewController {
 // MARK: - Extension: UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        view.endEditing(true)
-        
-    }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -183,4 +211,9 @@ extension LoginViewController: AlertLoginProtocol {
     }
     
     
+}
+
+extension LoginViewController: UIScrollViewDelegate {
+    
+
 }

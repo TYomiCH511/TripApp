@@ -20,14 +20,15 @@ class HistoryTripViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HistoryTripViewModel()
-        viewModel.editTripDelegate = self 
+        viewModel.editTripDelegate = self
         historyTableView.delegate = self
         historyTableView.dataSource = self
         let nib = UINib(nibName: String(describing: HistoryTableViewCell.self), bundle: .main)
         historyTableView.register(nib, forCellReuseIdentifier: "cell")
         historyTableView.backgroundColor = .darkGray
         historyTableView.showsVerticalScrollIndicator = false
-        
+        historyTableView.refreshControl = UIRefreshControl()
+        historyTableView.refreshControl?.addTarget(self, action: #selector(fetchNewTrip), for: .valueChanged)
         viewModel.trips.bind { _ in
             self.historyTableView.reloadData()
             
@@ -35,12 +36,29 @@ class HistoryTripViewController: UIViewController {
         
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        historyTableView.refreshControl?.beginRefreshing()
+        guard let user = UserStore.shared.getUser() else { return }
+        viewModel.trips.value = user.trips
+        print(user.trips.count)
         
     }
     
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //This method past in fetch TripsData
+        self.historyTableView.refreshControl?.endRefreshing()
+    }
+    
+    @objc private func fetchNewTrip() {
+        guard let user = UserStore.shared.getUser() else { return }
+        viewModel.trips.value = user.trips
+        print(user.trips.count)
+        historyTableView.refreshControl?.endRefreshing()
+    }
+    
 }
 
 

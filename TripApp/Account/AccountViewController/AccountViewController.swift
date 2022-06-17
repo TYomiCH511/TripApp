@@ -40,7 +40,6 @@ class AccountViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         newPasswordTextField.frame.origin.y = currentPasswordTextField.frame.origin.y
         confirmPasswordTextField.frame.origin.y = currentPasswordTextField.frame.origin.y
-        print(#function)
         clearPaswordTextFields()
     }
     
@@ -59,11 +58,7 @@ class AccountViewController: UIViewController {
     
     private func setupUI() {
         configureTextField()
-        
-        saveChangesButton.backgroundColor = .systemYellow
-        saveChangesButton.layer.cornerRadius = 12
-        saveChangesButton.setTitleColor(.white, for: .normal)
-        saveChangesButton.addShadow()
+        saveChangesButton.orangeButton(with: "Сохранить", isEnable: true)
         
         logoutButton.backgroundColor = .lightGray
         logoutButton.layer.cornerRadius = 12
