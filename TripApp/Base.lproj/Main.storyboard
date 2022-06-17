@@ -478,7 +478,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="X54-Re-M8K">
-                                    <rect key="frame" x="0.0" y="110.99999999999997" width="390" height="233.00000000000003"/>
+                                    <rect key="frame" x="0.0" y="111" width="390" height="233"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
@@ -722,7 +722,7 @@
         <!--About us-->
         <scene sceneID="xlT-V9-JUx">
             <objects>
-                <viewController id="9o4-U3-Iwr" sceneMemberID="viewController">
+                <viewController id="9o4-U3-Iwr" customClass="AboutUsViewController" customModule="TripApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HWc-RV-abX">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

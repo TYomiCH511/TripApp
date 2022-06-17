@@ -46,6 +46,7 @@
 		AC607E3C2851FAE900B9C878 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3B2851FAE900B9C878 /* AccountViewController.swift */; };
 		AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3F2852081B00B9C878 /* TabBarViewController.swift */; };
 		AC877B3A285C564E005B3BF1 /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B39285C564E005B3BF1 /* UITextField+extension.swift */; };
+		AC877B3E285C6DB5005B3BF1 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B3D285C6DB5005B3BF1 /* AboutUsViewController.swift */; };
 		ACEC11BB2859AE5D005641AC /* SelectDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11BA2859AE5D005641AC /* SelectDateViewController.swift */; };
 		ACEC11BD2859AE77005641AC /* SelectDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11BC2859AE77005641AC /* SelectDateViewModel.swift */; };
 		ACEC11C32859E94F005641AC /* TimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11C12859E94F005641AC /* TimeCollectionViewCell.swift */; };
@@ -96,6 +97,7 @@
 		AC607E3B2851FAE900B9C878 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		AC607E3F2852081B00B9C878 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		AC877B39285C564E005B3BF1 /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
+		AC877B3D285C6DB5005B3BF1 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		ACEC11BA2859AE5D005641AC /* SelectDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
 		ACEC11BC2859AE77005641AC /* SelectDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewModel.swift; sourceTree = "<group>"; };
 		ACEC11C12859E94F005641AC /* TimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -134,21 +136,21 @@
 		AC44BD1D2850B49B004A8C2A /* TripApp */ = {
 			isa = PBXGroup;
 			children = (
-				AC877B3B285C6CA6005B3BF1 /* AboutUs */,
 				AC5C7D0C285367FA00D0885C /* DateFormatter */,
 				AC44BD322850B4D9004A8C2A /* App */,
 				AC4825A328530DBB008B593F /* Helpers */,
+				AC44BD342850B532004A8C2A /* Login */,
+				AC5026CB285B0B32006DC13B /* Register */,
+				AC607E282851E7D700B9C878 /* Order */,
+				AC607E362851FA5C00B9C878 /* Account */,
+				AC607E2B2851E80800B9C878 /* HistoryTrip */,
+				AC877B3B285C6CA6005B3BF1 /* AboutUs */,
+				AC5041F5285869AA00B52B59 /* SelectDirect */,
 				AC504208285895FC00B52B59 /* SelectCity */,
 				AC50420F2858A83000B52B59 /* SelectStaition */,
 				ACEC11B72859AE30005641AC /* SelectDate */,
 				AC607E3D285207DE00B9C878 /* BarController */,
 				AC44BD3A2850CDC3004A8C2A /* Extensions */,
-				AC44BD342850B532004A8C2A /* Login */,
-				AC5026CB285B0B32006DC13B /* Register */,
-				AC607E282851E7D700B9C878 /* Order */,
-				AC5041F5285869AA00B52B59 /* SelectDirect */,
-				AC607E2B2851E80800B9C878 /* HistoryTrip */,
-				AC607E362851FA5C00B9C878 /* Account */,
 				AC607E212851D96D00B9C878 /* StorageManager */,
 				AC44BD242850B49B004A8C2A /* Main.storyboard */,
 				AC44BD332850B4E6004A8C2A /* Resource */,
@@ -511,8 +513,17 @@
 		AC877B3B285C6CA6005B3BF1 /* AboutUs */ = {
 			isa = PBXGroup;
 			children = (
+				AC877B3C285C6D92005B3BF1 /* AboutUsViewController */,
 			);
 			path = AboutUs;
+			sourceTree = "<group>";
+		};
+		AC877B3C285C6D92005B3BF1 /* AboutUsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AC877B3D285C6DB5005B3BF1 /* AboutUsViewController.swift */,
+			);
+			path = AboutUsViewController;
 			sourceTree = "<group>";
 		};
 		ACEC11B72859AE30005641AC /* SelectDate */ = {
@@ -650,6 +661,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC877B3E285C6DB5005B3BF1 /* AboutUsViewController.swift in Sources */,
 				AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */,
 				AC607E252851DD6900B9C878 /* UIViewController+extension.swift in Sources */,
 				AC50420028587C4C00B52B59 /* DataTripViewModelCell.swift in Sources */,
