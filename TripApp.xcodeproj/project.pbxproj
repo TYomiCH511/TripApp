@@ -148,6 +148,7 @@
 		AC44BD1D2850B49B004A8C2A /* TripApp */ = {
 			isa = PBXGroup;
 			children = (
+				ACB3A2B8285CB0E000D7AAB2 /* OrderDone */,
 				AC5C7D0C285367FA00D0885C /* DateFormatter */,
 				AC44BD322850B4D9004A8C2A /* App */,
 				AC4825A328530DBB008B593F /* Helpers */,
@@ -574,6 +575,29 @@
 				AC877B4C285C9324005B3BF1 /* CancelTableViewCell.xib */,
 			);
 			path = Cancel;
+			sourceTree = "<group>";
+		};
+		ACB3A2B8285CB0E000D7AAB2 /* OrderDone */ = {
+			isa = PBXGroup;
+			children = (
+				ACB3A2BA285CB13C00D7AAB2 /* OrderDoneViewController */,
+				ACB3A2B9285CB12700D7AAB2 /* OrderDoneViewModel */,
+			);
+			path = OrderDone;
+			sourceTree = "<group>";
+		};
+		ACB3A2B9285CB12700D7AAB2 /* OrderDoneViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OrderDoneViewModel;
+			sourceTree = "<group>";
+		};
+		ACB3A2BA285CB13C00D7AAB2 /* OrderDoneViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OrderDoneViewController;
 			sourceTree = "<group>";
 		};
 		ACEC11B72859AE30005641AC /* SelectDate */ = {

@@ -17,6 +17,8 @@ class NotReservedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reservedTripInDataImageView: UIImageView!
     
+    @IBOutlet weak var fullDataTripConteinerView: UIView!
+    @IBOutlet weak var directionConteinerView: UIView!
     @IBOutlet weak var reservedInDataLabel: UILabel!
     @IBOutlet weak var timeTripLabel: UILabel!
     @IBOutlet weak var startCityLabel: UILabel!
@@ -31,7 +33,7 @@ class NotReservedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reminderLabel: UILabel!
     
-    @IBOutlet weak var editAndCancelConteinerView: UIView!
+    
     @IBOutlet weak var editTripButton: UIButton!
     @IBOutlet weak var cancelTripButton: UIButton!
     
@@ -39,13 +41,6 @@ class NotReservedTableViewCell: UITableViewCell {
     @IBOutlet weak var finalyStaitionCircleView: UIView!
     @IBOutlet weak var infoAndButtonView: UIView!
     
-    //Driver and car IBOutlets
-    @IBOutlet weak var driverConteinerView: UIView!
-    @IBOutlet weak var modelOfCarLabel: UILabel!
-    @IBOutlet weak var colorOfCarLabel: UILabel!
-    @IBOutlet weak var carNumberLabel: UILabel!
-    @IBOutlet weak var phoneNumberDriverLabel: UILabel!
-    @IBOutlet weak var raitingOfDriverLabel: UILabel!
     
     var viewModel: HistoryViewModelCellProtocol! {
         didSet {
@@ -60,15 +55,7 @@ class NotReservedTableViewCell: UITableViewCell {
             finalyStaitionLabel.text = viewModel.trip.finishStaition
             countPassenger.text = String(viewModel.trip.countPasseger!)
             costTripLabel.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
-            
-            //setup driver
-            if let driver = viewModel.trip.driver {
-                modelOfCarLabel?.text = "Модель автобуса: " + driver.carModel
-                colorOfCarLabel?.text = "Цвет автобуса: " + driver.carColor
-                carNumberLabel?.text = "Номер автобуса: " + driver.carNumber
-                phoneNumberDriverLabel?.text = "Телефон водителя: " + driver.phoneNumber
-                raitingOfDriverLabel?.text = "Рейтинг водителя: " + driver.raiting + " ⭐️"
-            }
+                       
             
             //setup trip stait
             switch viewModel.trip.tripStait {
@@ -76,14 +63,13 @@ class NotReservedTableViewCell: UITableViewCell {
             case .notReserved:
                 mainConteinerView.backgroundColor = .systemOrange
                 
-                clearDriverData()
+                
                 setupReservedTrip(with: "Бронь не подтверждена", color: .systemOrange, image: "questionmark.circle.fill")
                 
             case .cancel:
                 mainConteinerView.backgroundColor = .systemRed
                 reminderLabel?.text = ""
-                clearDriverData()
-                removeInfoData()
+                
                 setupReservedTrip(with: "Бронь отменена", color: .systemRed, image: "multiply.circle")
                 costTripLabel.text = "Итого: 0 руб"
                 
@@ -95,7 +81,7 @@ class NotReservedTableViewCell: UITableViewCell {
                 
             case .complition:
                 mainConteinerView.backgroundColor = .lightGray
-                clearDriverData()
+               
                 reminderLabel?.text = ""
                 setupReservedTrip(with: "Поездка завершена", color: .lightGray, image: "flag.circle.fill")
             }
@@ -130,8 +116,9 @@ class NotReservedTableViewCell: UITableViewCell {
     
     
     private func setupUI() {
-        editAndCancelConteinerView.backgroundColor = .clear
+        fullDataTripConteinerView.backgroundColor = .clear
         backgroundColor = .darkGray
+        directionConteinerView.backgroundColor = .white
         infoAndButtonView.backgroundColor = .clear
         mainConteinerView.layer.cornerRadius = 8
         DataConteinerView.layer.cornerRadius = 8
@@ -175,27 +162,7 @@ class NotReservedTableViewCell: UITableViewCell {
         reservedImageView?.image = UIImage(systemName: image)
     }
     
-    private func clearDriverData() {
-        guard let driverView = driverConteinerView else { return }
-        if DataConteinerView.contains(driverView) {
-            driverConteinerView.removeFromSuperview()
-        }
-        
-    }
     
-    private func removeInfoData() {
-        guard let infoAndButtonView = infoAndButtonView else {
-            return }
-        if mainConteinerView.contains(infoAndButtonView) {
-            infoAndButtonView.removeFromSuperview()
-        }
-    }
     
-    private func removEditAndCancelView() {
-        guard let actionConteinerView = editAndCancelConteinerView else {
-            return }
-        if infoAndButtonView.contains(actionConteinerView) {
-            actionConteinerView.removeFromSuperview()
-        }
-    }
+    
 }

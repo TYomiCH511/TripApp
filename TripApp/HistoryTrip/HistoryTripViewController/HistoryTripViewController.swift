@@ -22,8 +22,15 @@ class HistoryTripViewController: UIViewController {
         viewModel.editTripDelegate = self
         historyTableView.delegate = self
         historyTableView.dataSource = self
-        let nib = UINib(nibName: String(describing: NotReservedTableViewCell.self), bundle: .main)
-        historyTableView.register(nib, forCellReuseIdentifier: "cell")
+        let notReservedNib = UINib(nibName: String(describing: NotReservedTableViewCell.self), bundle: .main)
+        let reservedNib = UINib(nibName: String(describing: ReservedTableViewCell.self), bundle: .main)
+        let complitionNib = UINib(nibName: String(describing: ComplitionTableViewCell.self), bundle: .main)
+        let cancelNib = UINib(nibName: String(describing: CancelTableViewCell.self), bundle: .main)
+        historyTableView.register(notReservedNib, forCellReuseIdentifier: "notReserved")
+        historyTableView.register(reservedNib, forCellReuseIdentifier: "reserved")
+        historyTableView.register(complitionNib, forCellReuseIdentifier: "complition")
+        historyTableView.register(cancelNib, forCellReuseIdentifier: "cancel")
+        
         historyTableView.backgroundColor = .darkGray
         historyTableView.showsVerticalScrollIndicator = false
         historyTableView.refreshControl = UIRefreshControl()
@@ -69,20 +76,27 @@ extension HistoryTripViewController: UITableViewDelegate, UITableViewDataSource 
         
         switch viewModel.trips.value[indexPath.row].tripStait {
         case .notReserved:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NotReservedTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "notReserved", for: indexPath) as? NotReservedTableViewCell else { return UITableViewCell() }
             selectTrip = indexPath.row
             cell.viewModel = viewModel.cellViewModel(at: indexPath)
             return cell
             
         case .reserved:
-            print("11111")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "reserved", for: indexPath) as? ReservedTableViewCell else { return UITableViewCell() }
+            selectTrip = indexPath.row
+            cell.viewModel = viewModel.cellViewModel(at: indexPath)
+            return cell
         case .complition:
-            print("11111")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "complition", for: indexPath) as? ComplitionTableViewCell else { return UITableViewCell() }
+            selectTrip = indexPath.row
+            cell.viewModel = viewModel.cellViewModel(at: indexPath)
+            return cell
         case .cancel:
-            print("11111")
-            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cancel", for: indexPath) as? CancelTableViewCell else { return UITableViewCell() }
+            selectTrip = indexPath.row
+            cell.viewModel = viewModel.cellViewModel(at: indexPath)
+            return cell
         }
-        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
