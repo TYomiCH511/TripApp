@@ -10,6 +10,7 @@ import UIKit
     
 
 let mainBackgroundColor = UIColor.darkGray
+let mainColor = UIColor.systemOrange
 let cornerRadiusButton: CGFloat = 8
 let costTrip = 15
 
