@@ -56,7 +56,6 @@ class StorageManeger {
         users.forEach { user in
             if user.phoneNumber == phoneNumber {
                 user1 = user
-                print(user)
                 return
             }
         }
@@ -174,7 +173,6 @@ class TimeStore {
     ]
     
     func getTime() -> [Time] {
-        print("get Time")
         return times
     }
     

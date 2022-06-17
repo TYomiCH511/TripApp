@@ -19,8 +19,8 @@
 		AC44BD3C2850CDE7004A8C2A /* UIButton+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44BD3B2850CDE7004A8C2A /* UIButton+extension.swift */; };
 		AC4825A528530DE4008B593F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825A428530DE4008B593F /* Alert.swift */; };
 		AC4825AA28532CF5008B593F /* HistoryViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825A928532CF5008B593F /* HistoryViewModelCell.swift */; };
-		AC4825AD28532D15008B593F /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825AB28532D15008B593F /* HistoryTableViewCell.swift */; };
-		AC4825AE28532D15008B593F /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */; };
+		AC4825AD28532D15008B593F /* NotReservedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825AB28532D15008B593F /* NotReservedTableViewCell.swift */; };
+		AC4825AE28532D15008B593F /* NotReservedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4825AC28532D15008B593F /* NotReservedTableViewCell.xib */; };
 		AC5026CF285B0B64006DC13B /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5026CE285B0B64006DC13B /* RegisterViewModel.swift */; };
 		AC5026D1285B0B7F006DC13B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5026D0285B0B7F006DC13B /* RegisterViewController.swift */; };
 		AC5041F9285869FA00B52B59 /* SelectDirectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5041F8285869FA00B52B59 /* SelectDirectViewController.swift */; };
@@ -47,6 +47,12 @@
 		AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3F2852081B00B9C878 /* TabBarViewController.swift */; };
 		AC877B3A285C564E005B3BF1 /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B39285C564E005B3BF1 /* UITextField+extension.swift */; };
 		AC877B3E285C6DB5005B3BF1 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B3D285C6DB5005B3BF1 /* AboutUsViewController.swift */; };
+		AC877B45285C92ED005B3BF1 /* ReservedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B43285C92ED005B3BF1 /* ReservedTableViewCell.swift */; };
+		AC877B46285C92ED005B3BF1 /* ReservedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC877B44285C92ED005B3BF1 /* ReservedTableViewCell.xib */; };
+		AC877B49285C9313005B3BF1 /* ComplitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B47285C9313005B3BF1 /* ComplitionTableViewCell.swift */; };
+		AC877B4A285C9313005B3BF1 /* ComplitionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC877B48285C9313005B3BF1 /* ComplitionTableViewCell.xib */; };
+		AC877B4D285C9324005B3BF1 /* CancelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B4B285C9324005B3BF1 /* CancelTableViewCell.swift */; };
+		AC877B4E285C9324005B3BF1 /* CancelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC877B4C285C9324005B3BF1 /* CancelTableViewCell.xib */; };
 		ACEC11BB2859AE5D005641AC /* SelectDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11BA2859AE5D005641AC /* SelectDateViewController.swift */; };
 		ACEC11BD2859AE77005641AC /* SelectDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11BC2859AE77005641AC /* SelectDateViewModel.swift */; };
 		ACEC11C32859E94F005641AC /* TimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11C12859E94F005641AC /* TimeCollectionViewCell.swift */; };
@@ -70,8 +76,8 @@
 		AC44BD3B2850CDE7004A8C2A /* UIButton+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+extension.swift"; sourceTree = "<group>"; };
 		AC4825A428530DE4008B593F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		AC4825A928532CF5008B593F /* HistoryViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelCell.swift; sourceTree = "<group>"; };
-		AC4825AB28532D15008B593F /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
-		AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		AC4825AB28532D15008B593F /* NotReservedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotReservedTableViewCell.swift; sourceTree = "<group>"; };
+		AC4825AC28532D15008B593F /* NotReservedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotReservedTableViewCell.xib; sourceTree = "<group>"; };
 		AC5026CE285B0B64006DC13B /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		AC5026D0285B0B7F006DC13B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		AC5041F8285869FA00B52B59 /* SelectDirectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDirectViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +104,12 @@
 		AC607E3F2852081B00B9C878 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		AC877B39285C564E005B3BF1 /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
 		AC877B3D285C6DB5005B3BF1 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		AC877B43285C92ED005B3BF1 /* ReservedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservedTableViewCell.swift; sourceTree = "<group>"; };
+		AC877B44285C92ED005B3BF1 /* ReservedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReservedTableViewCell.xib; sourceTree = "<group>"; };
+		AC877B47285C9313005B3BF1 /* ComplitionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplitionTableViewCell.swift; sourceTree = "<group>"; };
+		AC877B48285C9313005B3BF1 /* ComplitionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComplitionTableViewCell.xib; sourceTree = "<group>"; };
+		AC877B4B285C9324005B3BF1 /* CancelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTableViewCell.swift; sourceTree = "<group>"; };
+		AC877B4C285C9324005B3BF1 /* CancelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelTableViewCell.xib; sourceTree = "<group>"; };
 		ACEC11BA2859AE5D005641AC /* SelectDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
 		ACEC11BC2859AE77005641AC /* SelectDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewModel.swift; sourceTree = "<group>"; };
 		ACEC11C12859E94F005641AC /* TimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -251,8 +263,10 @@
 		AC4825A828532B4F008B593F /* HistoryTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				AC4825AB28532D15008B593F /* HistoryTableViewCell.swift */,
-				AC4825AC28532D15008B593F /* HistoryTableViewCell.xib */,
+				AC877B3F285C926A005B3BF1 /* NotReserved */,
+				AC877B40285C9279005B3BF1 /* Reserved */,
+				AC877B41285C9285005B3BF1 /* Complition */,
+				AC877B42285C928F005B3BF1 /* Cancel */,
 			);
 			path = HistoryTableViewCell;
 			sourceTree = "<group>";
@@ -526,6 +540,42 @@
 			path = AboutUsViewController;
 			sourceTree = "<group>";
 		};
+		AC877B3F285C926A005B3BF1 /* NotReserved */ = {
+			isa = PBXGroup;
+			children = (
+				AC4825AB28532D15008B593F /* NotReservedTableViewCell.swift */,
+				AC4825AC28532D15008B593F /* NotReservedTableViewCell.xib */,
+			);
+			path = NotReserved;
+			sourceTree = "<group>";
+		};
+		AC877B40285C9279005B3BF1 /* Reserved */ = {
+			isa = PBXGroup;
+			children = (
+				AC877B43285C92ED005B3BF1 /* ReservedTableViewCell.swift */,
+				AC877B44285C92ED005B3BF1 /* ReservedTableViewCell.xib */,
+			);
+			path = Reserved;
+			sourceTree = "<group>";
+		};
+		AC877B41285C9285005B3BF1 /* Complition */ = {
+			isa = PBXGroup;
+			children = (
+				AC877B47285C9313005B3BF1 /* ComplitionTableViewCell.swift */,
+				AC877B48285C9313005B3BF1 /* ComplitionTableViewCell.xib */,
+			);
+			path = Complition;
+			sourceTree = "<group>";
+		};
+		AC877B42285C928F005B3BF1 /* Cancel */ = {
+			isa = PBXGroup;
+			children = (
+				AC877B4B285C9324005B3BF1 /* CancelTableViewCell.swift */,
+				AC877B4C285C9324005B3BF1 /* CancelTableViewCell.xib */,
+			);
+			path = Cancel;
+			sourceTree = "<group>";
+		};
 		ACEC11B72859AE30005641AC /* SelectDate */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,8 +698,11 @@
 				AC44BD2B2850B49E004A8C2A /* LaunchScreen.storyboard in Resources */,
 				ACEC11C42859E94F005641AC /* TimeCollectionViewCell.xib in Resources */,
 				AC44BD282850B49E004A8C2A /* Assets.xcassets in Resources */,
-				AC4825AE28532D15008B593F /* HistoryTableViewCell.xib in Resources */,
+				AC4825AE28532D15008B593F /* NotReservedTableViewCell.xib in Resources */,
 				AC44BD262850B49B004A8C2A /* Main.storyboard in Resources */,
+				AC877B4E285C9324005B3BF1 /* CancelTableViewCell.xib in Resources */,
+				AC877B4A285C9313005B3BF1 /* ComplitionTableViewCell.xib in Resources */,
+				AC877B46285C92ED005B3BF1 /* ReservedTableViewCell.xib in Resources */,
 				AC50420428587C7500B52B59 /* DataTripTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,12 +718,15 @@
 				AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */,
 				AC607E252851DD6900B9C878 /* UIViewController+extension.swift in Sources */,
 				AC50420028587C4C00B52B59 /* DataTripViewModelCell.swift in Sources */,
+				AC877B45285C92ED005B3BF1 /* ReservedTableViewCell.swift in Sources */,
 				AC50420C2858963200B52B59 /* SelectCityViewModel.swift in Sources */,
 				AC5026CF285B0B64006DC13B /* RegisterViewModel.swift in Sources */,
 				AC877B3A285C564E005B3BF1 /* UITextField+extension.swift in Sources */,
+				AC877B4D285C9324005B3BF1 /* CancelTableViewCell.swift in Sources */,
 				AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */,
 				AC5042072858935400B52B59 /* Sity.swift in Sources */,
 				AC39456628571DB200B4B8D7 /* Binding.swift in Sources */,
+				AC877B49285C9313005B3BF1 /* ComplitionTableViewCell.swift in Sources */,
 				AC4825A528530DE4008B593F /* Alert.swift in Sources */,
 				AC5041FB28586A1100B52B59 /* SelectDirectViewModel.swift in Sources */,
 				AC5C7D0F2853681300D0885C /* DateFormatter.swift in Sources */,
@@ -696,7 +752,7 @@
 				AC394564285707B400B4B8D7 /* Constant.swift in Sources */,
 				AC44BD212850B49B004A8C2A /* SceneDelegate.swift in Sources */,
 				AC607E2F2851E85100B9C878 /* HistoryTripViewModel.swift in Sources */,
-				AC4825AD28532D15008B593F /* HistoryTableViewCell.swift in Sources */,
+				AC4825AD28532D15008B593F /* NotReservedTableViewCell.swift in Sources */,
 				ACEC11C62859E9A7005641AC /* TimeViewModel.swift in Sources */,
 				AC607E352851F9B900B9C878 /* OrderViewModel.swift in Sources */,
 				AC44BD3C2850CDE7004A8C2A /* UIButton+extension.swift in Sources */,

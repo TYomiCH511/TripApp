@@ -168,7 +168,7 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @objc private func dataOfUserNotEmpty() {
+    @objc private func dataOfUserNotEmpty(textField: UITextField) {
         
         if !logintTextField.text!.isEmpty && !passwordTextField.text!.isEmpty {
             loginButton.orangeButton(with: "Войти", isEnable: true)
@@ -176,6 +176,8 @@ class LoginViewController: UIViewController {
         } else {
             resetLoginButton()
         }
+        
+       
     }
     
 }
@@ -183,7 +185,17 @@ class LoginViewController: UIViewController {
 // MARK: - Extension: UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == logintTextField && textField.text == "" {
+            textField.text = ""
+        }
+    }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == logintTextField && textField.text?.count ?? 0 < 6  {
+            textField.text = ""
+        }
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -201,7 +213,6 @@ extension LoginViewController: UITextFieldDelegate {
     
 }
 
-
 extension LoginViewController: AlertLoginProtocol {
     func showAlertLoginWrong() {
         let alert = Alert.shared.showAlertWrongLogin()
@@ -209,7 +220,6 @@ extension LoginViewController: AlertLoginProtocol {
             self.passwordTextField.text = nil
         }
     }
-    
     
 }
 

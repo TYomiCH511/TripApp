@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HistoryTableViewCell: UITableViewCell {
+class NotReservedTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var mainConteinerView: UIView!
@@ -31,6 +31,7 @@ class HistoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reminderLabel: UILabel!
     
+    @IBOutlet weak var editAndCancelConteinerView: UIView!
     @IBOutlet weak var editTripButton: UIButton!
     @IBOutlet weak var cancelTripButton: UIButton!
     
@@ -82,6 +83,7 @@ class HistoryTableViewCell: UITableViewCell {
                 mainConteinerView.backgroundColor = .systemRed
                 reminderLabel?.text = ""
                 clearDriverData()
+                removeInfoData()
                 setupReservedTrip(with: "Бронь отменена", color: .systemRed, image: "multiply.circle")
                 costTripLabel.text = "Итого: 0 руб"
                 
@@ -128,7 +130,7 @@ class HistoryTableViewCell: UITableViewCell {
     
     
     private func setupUI() {
-        
+        editAndCancelConteinerView.backgroundColor = .clear
         backgroundColor = .darkGray
         infoAndButtonView.backgroundColor = .clear
         mainConteinerView.layer.cornerRadius = 8
@@ -174,10 +176,26 @@ class HistoryTableViewCell: UITableViewCell {
     }
     
     private func clearDriverData() {
-        guard let driverView = driverConteinerView, let infoAndButtonView = infoAndButtonView else { return }
+        guard let driverView = driverConteinerView else { return }
         if DataConteinerView.contains(driverView) {
             driverConteinerView.removeFromSuperview()
         }
-        //infoAndButtonView.removeFromSuperview()
+        
+    }
+    
+    private func removeInfoData() {
+        guard let infoAndButtonView = infoAndButtonView else {
+            return }
+        if mainConteinerView.contains(infoAndButtonView) {
+            infoAndButtonView.removeFromSuperview()
+        }
+    }
+    
+    private func removEditAndCancelView() {
+        guard let actionConteinerView = editAndCancelConteinerView else {
+            return }
+        if infoAndButtonView.contains(actionConteinerView) {
+            actionConteinerView.removeFromSuperview()
+        }
     }
 }
