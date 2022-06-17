@@ -9,6 +9,6 @@ import Foundation
 
 
 struct Time {
-    let hour: Int
+    let hour: String
     let countPassager: Int
 }

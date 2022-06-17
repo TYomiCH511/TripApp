@@ -111,6 +111,7 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
 
 extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
     func callBack(date: Date) {
+        print(date)
         viewModel.trip?.date = date
         orderTableVIew.reloadData()
     }

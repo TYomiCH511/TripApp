@@ -23,13 +23,7 @@ class TimeViewModel: TimeViewModelProtocol {
     }
     
     func getInfoPerHour() -> String {
-        var infoHour = ""
-        if time.hour < 10 {
-            infoHour = "0\(time.hour):00"
-        } else {
-            infoHour = "\(time.hour):00"
-        }
-        
+    
         var infoPassager = ""
         switch time.countPassager {
         case 0:
@@ -40,7 +34,7 @@ class TimeViewModel: TimeViewModelProtocol {
             infoPassager = "(>3)"
             
         }
-        let info = infoHour + " " + infoPassager
+        let info = time.hour + ":00 "  + infoPassager
         return info
     }
     

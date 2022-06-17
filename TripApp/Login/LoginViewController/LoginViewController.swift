@@ -84,7 +84,7 @@ class LoginViewController: UIViewController {
         resetLoginButton()
         loginButton.grayButton(with: "Войти", isEnable: false)
         mainConteiner.backgroundColor = .clear
-        autoLoginSwitch.tintColor = mainColor
+        autoLoginSwitch.onTintColor = mainColor
         phoneCallButton.tintColor = mainColor
         registerButton.tintColor = mainColor
         autoLoginLabel.text = "Входить автоматически"

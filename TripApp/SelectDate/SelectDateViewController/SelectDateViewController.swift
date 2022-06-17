@@ -111,10 +111,14 @@ extension SelectDateViewController: UICollectionViewDelegate, UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.callBack(date: Date())
+        
         guard let selectDirectionVC = navigationController?.viewControllers[1] as? SelectDirectViewController else { return }
+        let date = selectorDatePicker.date
+        let dateTrip = viewModel.dateTrip(date: date, indexPath: indexPath)
+        delegate?.callBack(date: dateTrip)
+        
+        
         navigationController?.popToViewController(selectDirectionVC, animated: true)
-        print(selectorDatePicker.date)
-        print("select item timeCollection")
+        
     }
 }
