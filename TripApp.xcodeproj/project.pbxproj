@@ -53,6 +53,10 @@
 		AC877B4A285C9313005B3BF1 /* ComplitionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC877B48285C9313005B3BF1 /* ComplitionTableViewCell.xib */; };
 		AC877B4D285C9324005B3BF1 /* CancelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B4B285C9324005B3BF1 /* CancelTableViewCell.swift */; };
 		AC877B4E285C9324005B3BF1 /* CancelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC877B4C285C9324005B3BF1 /* CancelTableViewCell.xib */; };
+		ACB3A2BC285CB1C700D7AAB2 /* OrderDoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB3A2BB285CB1C700D7AAB2 /* OrderDoneViewModel.swift */; };
+		ACB3A2BE285CB21B00D7AAB2 /* OrderDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB3A2BD285CB21B00D7AAB2 /* OrderDoneViewController.swift */; };
+		ACB3A2C3285CB26B00D7AAB2 /* ReviewDriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB3A2C2285CB26B00D7AAB2 /* ReviewDriverViewModel.swift */; };
+		ACB3A2C5285CB27C00D7AAB2 /* ReviewDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB3A2C4285CB27C00D7AAB2 /* ReviewDriverViewController.swift */; };
 		ACEC11BB2859AE5D005641AC /* SelectDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11BA2859AE5D005641AC /* SelectDateViewController.swift */; };
 		ACEC11BD2859AE77005641AC /* SelectDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11BC2859AE77005641AC /* SelectDateViewModel.swift */; };
 		ACEC11C32859E94F005641AC /* TimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC11C12859E94F005641AC /* TimeCollectionViewCell.swift */; };
@@ -110,6 +114,10 @@
 		AC877B48285C9313005B3BF1 /* ComplitionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComplitionTableViewCell.xib; sourceTree = "<group>"; };
 		AC877B4B285C9324005B3BF1 /* CancelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTableViewCell.swift; sourceTree = "<group>"; };
 		AC877B4C285C9324005B3BF1 /* CancelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelTableViewCell.xib; sourceTree = "<group>"; };
+		ACB3A2BB285CB1C700D7AAB2 /* OrderDoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDoneViewModel.swift; sourceTree = "<group>"; };
+		ACB3A2BD285CB21B00D7AAB2 /* OrderDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDoneViewController.swift; sourceTree = "<group>"; };
+		ACB3A2C2285CB26B00D7AAB2 /* ReviewDriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDriverViewModel.swift; sourceTree = "<group>"; };
+		ACB3A2C4285CB27C00D7AAB2 /* ReviewDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDriverViewController.swift; sourceTree = "<group>"; };
 		ACEC11BA2859AE5D005641AC /* SelectDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
 		ACEC11BC2859AE77005641AC /* SelectDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewModel.swift; sourceTree = "<group>"; };
 		ACEC11C12859E94F005641AC /* TimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -148,7 +156,6 @@
 		AC44BD1D2850B49B004A8C2A /* TripApp */ = {
 			isa = PBXGroup;
 			children = (
-				ACB3A2B8285CB0E000D7AAB2 /* OrderDone */,
 				AC5C7D0C285367FA00D0885C /* DateFormatter */,
 				AC44BD322850B4D9004A8C2A /* App */,
 				AC4825A328530DBB008B593F /* Helpers */,
@@ -162,6 +169,8 @@
 				AC504208285895FC00B52B59 /* SelectCity */,
 				AC50420F2858A83000B52B59 /* SelectStaition */,
 				ACEC11B72859AE30005641AC /* SelectDate */,
+				ACB3A2B8285CB0E000D7AAB2 /* OrderDone */,
+				ACB3A2BF285CB22B00D7AAB2 /* ReviewDriver */,
 				AC607E3D285207DE00B9C878 /* BarController */,
 				AC44BD3A2850CDC3004A8C2A /* Extensions */,
 				AC607E212851D96D00B9C878 /* StorageManager */,
@@ -589,6 +598,7 @@
 		ACB3A2B9285CB12700D7AAB2 /* OrderDoneViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				ACB3A2BB285CB1C700D7AAB2 /* OrderDoneViewModel.swift */,
 			);
 			path = OrderDoneViewModel;
 			sourceTree = "<group>";
@@ -596,8 +606,34 @@
 		ACB3A2BA285CB13C00D7AAB2 /* OrderDoneViewController */ = {
 			isa = PBXGroup;
 			children = (
+				ACB3A2BD285CB21B00D7AAB2 /* OrderDoneViewController.swift */,
 			);
 			path = OrderDoneViewController;
+			sourceTree = "<group>";
+		};
+		ACB3A2BF285CB22B00D7AAB2 /* ReviewDriver */ = {
+			isa = PBXGroup;
+			children = (
+				ACB3A2C1285CB24900D7AAB2 /* ReviewDriverViewController */,
+				ACB3A2C0285CB23600D7AAB2 /* ReviewDriverViewModel */,
+			);
+			path = ReviewDriver;
+			sourceTree = "<group>";
+		};
+		ACB3A2C0285CB23600D7AAB2 /* ReviewDriverViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				ACB3A2C2285CB26B00D7AAB2 /* ReviewDriverViewModel.swift */,
+			);
+			path = ReviewDriverViewModel;
+			sourceTree = "<group>";
+		};
+		ACB3A2C1285CB24900D7AAB2 /* ReviewDriverViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ACB3A2C4285CB27C00D7AAB2 /* ReviewDriverViewController.swift */,
+			);
+			name = ReviewDriverViewController;
 			sourceTree = "<group>";
 		};
 		ACEC11B72859AE30005641AC /* SelectDate */ = {
@@ -752,6 +788,7 @@
 				AC39456628571DB200B4B8D7 /* Binding.swift in Sources */,
 				AC877B49285C9313005B3BF1 /* ComplitionTableViewCell.swift in Sources */,
 				AC4825A528530DE4008B593F /* Alert.swift in Sources */,
+				ACB3A2C3285CB26B00D7AAB2 /* ReviewDriverViewModel.swift in Sources */,
 				AC5041FB28586A1100B52B59 /* SelectDirectViewModel.swift in Sources */,
 				AC5C7D0F2853681300D0885C /* DateFormatter.swift in Sources */,
 				AC44BD382850B568004A8C2A /* LoginViewModel.swift in Sources */,
@@ -760,6 +797,7 @@
 				AC607E312851E8A400B9C878 /* HistoryTripViewController.swift in Sources */,
 				AC44BD232850B49B004A8C2A /* LoginViewController.swift in Sources */,
 				ACEC11BD2859AE77005641AC /* SelectDateViewModel.swift in Sources */,
+				ACB3A2C5285CB27C00D7AAB2 /* ReviewDriverViewController.swift in Sources */,
 				AC607E3C2851FAE900B9C878 /* AccountViewController.swift in Sources */,
 				AC5041F9285869FA00B52B59 /* SelectDirectViewController.swift in Sources */,
 				AC607E272851E4FD00B9C878 /* Trip.swift in Sources */,
@@ -779,6 +817,8 @@
 				AC4825AD28532D15008B593F /* NotReservedTableViewCell.swift in Sources */,
 				ACEC11C62859E9A7005641AC /* TimeViewModel.swift in Sources */,
 				AC607E352851F9B900B9C878 /* OrderViewModel.swift in Sources */,
+				ACB3A2BE285CB21B00D7AAB2 /* OrderDoneViewController.swift in Sources */,
+				ACB3A2BC285CB1C700D7AAB2 /* OrderDoneViewModel.swift in Sources */,
 				AC44BD3C2850CDE7004A8C2A /* UIButton+extension.swift in Sources */,
 				AC607E332851F9A800B9C878 /* OrderViewController.swift in Sources */,
 			);
