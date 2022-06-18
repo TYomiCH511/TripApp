@@ -20,6 +20,7 @@ class HistoryTripViewController: UIViewController {
         super.viewDidLoad()
         viewModel = HistoryTripViewModel()
         viewModel.editTripDelegate = self
+        viewModel.reviewDelegate = self
         historyTableView.delegate = self
         historyTableView.dataSource = self
         let notReservedNib = UINib(nibName: String(describing: NotReservedTableViewCell.self), bundle: .main)
@@ -122,13 +123,24 @@ extension HistoryTripViewController: EditTripProtocol {
     
     
 }
-
+// MARK: - EditTripDoneProtocol
 extension HistoryTripViewController: EditTripDoneProtocol {
     func updateTrip(trip: Trip) {
         guard var user = UserStore.shared.getUser() else { return }
         user.trips[selectTrip] = trip
         UserStore.shared.save(user: user)
         viewModel.trips.value[selectTrip] = trip
+    }
+    
+    
+}
+
+// MARK: - LeaveReviewDriverProtocol
+extension HistoryTripViewController: LeaveReviewDriverProtocol {
+    func leaveReview(complition: @escaping () -> ()) {
+        guard let reviewVC = storyboard?.instantiateViewController(withIdentifier: "review") else { return }
+        
+        navigationController?.pushViewController(reviewVC, animated: true)
     }
     
     

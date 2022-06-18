@@ -9,8 +9,9 @@ import UIKit
 
 class OrderViewController: UIViewController {
 
+    @IBOutlet weak var selectDirectionLabel: UILabel!
     @IBOutlet weak var minskDirectionButton: UIButton!
-    @IBOutlet var vitebskDirectionButton: UIView!
+    @IBOutlet var vitebskDirectionButton: UIButton!
     
     
     var viewModel: OrderViewModelProtocol!
@@ -18,7 +19,7 @@ class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = OrderViewmodel()
-        
+        setupUI()
     }
     
     @IBAction func minskDirectionButtonPressed(_ sender: UIButton) {
@@ -31,6 +32,12 @@ class OrderViewController: UIViewController {
     
     
     @IBAction func vitebskDirectionButtonPressed(_ sender: UIButton) {
+    }
+    
+    private func setupUI() {
+        selectDirectionLabel.text = "Выберите направление"
+        minskDirectionButton.setTitle("Минск - Полоцк - Новополоцк", for: .normal)
+        vitebskDirectionButton.setTitle("Витебск - Полоцк - Новополоцк", for: .normal)
     }
     
 }

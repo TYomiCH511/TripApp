@@ -65,7 +65,7 @@ class ComplitionTableViewCell: UITableViewCell {
     }
     
     @IBAction func leaveReviewPressed(_ sender: UIButton) {
-        print("leave")
+        viewModel.reviewTrip()
     }
     
    

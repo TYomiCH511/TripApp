@@ -8,7 +8,7 @@
 import UIKit
 
 class CancelTableViewCell: UITableViewCell {
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var mainConteinerView: UIView!
     
     @IBOutlet weak var DataConteinerView: UIView!
@@ -26,7 +26,6 @@ class CancelTableViewCell: UITableViewCell {
     @IBOutlet weak var costTripLabel: UILabel!
     @IBOutlet weak var countPassenger: UILabel!
     
-    
     @IBOutlet weak var startCircleView: UIView!
     @IBOutlet weak var finalyStaitionCircleView: UIView!
     
@@ -35,21 +34,20 @@ class CancelTableViewCell: UITableViewCell {
         didSet {
             let dateFormat = CustomDate.shared
             guard let date = viewModel.trip.date else { return }
-            dayOfWeekLabel?.text = dateFormat.showDay(from: date)
+            dayOfWeekLabel.text = dateFormat.showDay(from: date)
             dateTripLabel.text = dateFormat.showDate(from: date)
             timeTripLabel.text = dateFormat.showTime(from: date)
             startCityLabel.text = viewModel.trip.startCity
             startStaitionLabel.text = viewModel.trip.startStaition
             finalyCityLabel.text = viewModel.trip.finishCity
             finalyStaitionLabel.text = viewModel.trip.finishStaition
-            countPassenger.text = String(viewModel.trip.countPasseger!)
+            countPassenger.text = viewModel.trip.countPasseger?.description
             costTripLabel.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
             
             mainConteinerView.backgroundColor = .systemRed
             
             setupReservedTrip(with: "Бронь отменена", color: .systemRed, image: "multiply.circle")
             costTripLabel.text = "Итого: 0 руб"
-            
         }
     }
     
@@ -90,13 +88,11 @@ class CancelTableViewCell: UITableViewCell {
         
     }
     
-    
     private func setupReservedTrip(with text: String, color: UIColor, image: String) {
         reservedInDataLabel?.text = text
         reservedInDataLabel?.textColor = color
         reservedTripInDataImageView?.tintColor = color
         reservedTripInDataImageView?.backgroundColor = .white
-        
     }
     
     

@@ -26,6 +26,7 @@ struct Trip: Codable {
     var tripStait: TripState
     var countPasseger: Int?
     let driver: Driver?
+    var isReviewDriver: Bool = false
 }
 
 

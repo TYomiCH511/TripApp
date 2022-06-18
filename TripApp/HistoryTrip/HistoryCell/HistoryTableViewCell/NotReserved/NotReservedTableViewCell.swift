@@ -89,15 +89,6 @@ class NotReservedTableViewCell: UITableViewCell {
     }
     
     
-    var isShowFull = false {
-        willSet {
-            if newValue {
-                infoAndButtonView.removeFromSuperview()
-            }
-        }
-    }
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
