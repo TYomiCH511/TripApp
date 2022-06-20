@@ -17,6 +17,7 @@
 		AC44BD2B2850B49E004A8C2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC44BD292850B49E004A8C2A /* LaunchScreen.storyboard */; };
 		AC44BD382850B568004A8C2A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44BD372850B568004A8C2A /* LoginViewModel.swift */; };
 		AC44BD3C2850CDE7004A8C2A /* UIButton+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44BD3B2850CDE7004A8C2A /* UIButton+extension.swift */; };
+		AC46A2CC2860514700941AE3 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC46A2CB2860514700941AE3 /* UIView+extension.swift */; };
 		AC4825A528530DE4008B593F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825A428530DE4008B593F /* Alert.swift */; };
 		AC4825AA28532CF5008B593F /* HistoryViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825A928532CF5008B593F /* HistoryViewModelCell.swift */; };
 		AC4825AD28532D15008B593F /* NotReservedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4825AB28532D15008B593F /* NotReservedTableViewCell.swift */; };
@@ -78,6 +79,7 @@
 		AC44BD2C2850B49E004A8C2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC44BD372850B568004A8C2A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		AC44BD3B2850CDE7004A8C2A /* UIButton+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+extension.swift"; sourceTree = "<group>"; };
+		AC46A2CB2860514700941AE3 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		AC4825A428530DE4008B593F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		AC4825A928532CF5008B593F /* HistoryViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelCell.swift; sourceTree = "<group>"; };
 		AC4825AB28532D15008B593F /* NotReservedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotReservedTableViewCell.swift; sourceTree = "<group>"; };
@@ -158,7 +160,6 @@
 			children = (
 				AC5C7D0C285367FA00D0885C /* DateFormatter */,
 				AC44BD322850B4D9004A8C2A /* App */,
-				AC4825A328530DBB008B593F /* Helpers */,
 				AC44BD342850B532004A8C2A /* Login */,
 				AC5026CB285B0B32006DC13B /* Register */,
 				AC607E282851E7D700B9C878 /* Order */,
@@ -172,6 +173,7 @@
 				ACB3A2B8285CB0E000D7AAB2 /* OrderDone */,
 				ACB3A2BF285CB22B00D7AAB2 /* ReviewDriver */,
 				AC607E3D285207DE00B9C878 /* BarController */,
+				AC4825A328530DBB008B593F /* Helpers */,
 				AC44BD3A2850CDC3004A8C2A /* Extensions */,
 				AC607E212851D96D00B9C878 /* StorageManager */,
 				AC44BD242850B49B004A8C2A /* Main.storyboard */,
@@ -239,6 +241,7 @@
 				AC44BD3B2850CDE7004A8C2A /* UIButton+extension.swift */,
 				AC607E242851DD6900B9C878 /* UIViewController+extension.swift */,
 				AC877B39285C564E005B3BF1 /* UITextField+extension.swift */,
+				AC46A2CB2860514700941AE3 /* UIView+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -792,6 +795,7 @@
 				AC5041FB28586A1100B52B59 /* SelectDirectViewModel.swift in Sources */,
 				AC5C7D0F2853681300D0885C /* DateFormatter.swift in Sources */,
 				AC44BD382850B568004A8C2A /* LoginViewModel.swift in Sources */,
+				AC46A2CC2860514700941AE3 /* UIView+extension.swift in Sources */,
 				AC50420E2858964E00B52B59 /* SelectCityViewController.swift in Sources */,
 				AC4825AA28532CF5008B593F /* HistoryViewModelCell.swift in Sources */,
 				AC607E312851E8A400B9C878 /* HistoryTripViewController.swift in Sources */,

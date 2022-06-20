@@ -50,4 +50,21 @@ class Alert {
         return alert
     }
     
+    func showAlertLeaveReview(vc: UIViewController) -> UIAlertController {
+        let alert = UIAlertController(title: "Спасибо за оценку",
+                                      message: "Ваше оценка поможет нам становиться лучше",
+                                      preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "Ок",
+                                        style: .default)
+        { _ in
+            vc.navigationController?.popToRootViewController(animated: true)
+        }
+        
+
+        alert.addAction(ok)
+        
+        return alert
+    }
+    
 }
