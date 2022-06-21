@@ -34,6 +34,7 @@
 		AC50420E2858964E00B52B59 /* SelectCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC50420D2858964E00B52B59 /* SelectCityViewController.swift */; };
 		AC5042142858A94A00B52B59 /* SelecStaitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5042132858A94A00B52B59 /* SelecStaitionViewModel.swift */; };
 		AC5042162858A96100B52B59 /* SelectStaitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5042152858A96100B52B59 /* SelectStaitionViewController.swift */; };
+		AC57AE4F2861977F0081D51B /* TypeSelectDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC57AE4E2861977F0081D51B /* TypeSelectDirection.swift */; };
 		AC5C7D0F2853681300D0885C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C7D0E2853681300D0885C /* DateFormatter.swift */; };
 		AC607E202851D8F000B9C878 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E1F2851D8F000B9C878 /* User.swift */; };
 		AC607E232851D98900B9C878 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E222851D98900B9C878 /* StorageManager.swift */; };
@@ -96,6 +97,7 @@
 		AC50420D2858964E00B52B59 /* SelectCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCityViewController.swift; sourceTree = "<group>"; };
 		AC5042132858A94A00B52B59 /* SelecStaitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelecStaitionViewModel.swift; sourceTree = "<group>"; };
 		AC5042152858A96100B52B59 /* SelectStaitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStaitionViewController.swift; sourceTree = "<group>"; };
+		AC57AE4E2861977F0081D51B /* TypeSelectDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectDirection.swift; sourceTree = "<group>"; };
 		AC5C7D0E2853681300D0885C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		AC607E1F2851D8F000B9C878 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC607E222851D98900B9C878 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				AC5042062858935400B52B59 /* Sity.swift */,
+				AC57AE4E2861977F0081D51B /* TypeSelectDirection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 				AC5026CF285B0B64006DC13B /* RegisterViewModel.swift in Sources */,
 				AC877B3A285C564E005B3BF1 /* UITextField+extension.swift in Sources */,
 				AC877B4D285C9324005B3BF1 /* CancelTableViewCell.swift in Sources */,
+				AC57AE4F2861977F0081D51B /* TypeSelectDirection.swift in Sources */,
 				AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */,
 				AC5042072858935400B52B59 /* Sity.swift in Sources */,
 				AC39456628571DB200B4B8D7 /* Binding.swift in Sources */,
