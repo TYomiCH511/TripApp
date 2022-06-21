@@ -11,6 +11,7 @@ enum ActionTrip {
     case edit
     case cancel
     case review
+    case reserv
 }
 
 protocol HistoryTripViewModelProtocol {
@@ -18,8 +19,10 @@ protocol HistoryTripViewModelProtocol {
     var editTripDelegate: EditTripProtocol? { get set }
     var reviewDelegate: LeaveReviewDriverProtocol? { get set }
     var trips: Bindable<[Trip]> { get }
+    var isShowFull: [Bool] { get set }
     func tripsCount() -> Int
     func cellViewModel(at indexPath: IndexPath) -> HistoryViewModelCellProtocol
+    func reviewViewModel(atSelectRow selectRow: Int) -> ReviewDriverViewModelProtocol
     
 }
 
@@ -37,7 +40,7 @@ protocol ShowFullInfoOfTripProtocol: AnyObject {
 }
 
 protocol LeaveReviewDriverProtocol: AnyObject {
-    func leaveReview(complition: @escaping () -> ())
+    func leaveReview(viewModel: ReviewDriverViewModelProtocol)
 }
 
 
@@ -47,7 +50,7 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
     weak var reviewDelegate: LeaveReviewDriverProtocol?
     weak var editTripDelegate: EditTripProtocol?
     weak var showInfoDelegate: ShowFullInfoOfTripProtocol?
-    
+    lazy var isShowFull: [Bool] = Array(repeating: false, count: trips.value.count)
     func tripsCount() -> Int {
         return trips.value.count
     }
@@ -55,7 +58,11 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
     func cellViewModel(at indexPath: IndexPath) -> HistoryViewModelCellProtocol {
         
         let trip = trips.value[indexPath.row]
-        return HistoryViewModelCell(trip: trip, tag: indexPath.row, delegate: self)
+        if isShowFull.count != trips.value.count {
+        isShowFull = Array(repeating: false, count: trips.value.count)
+        } 
+        let isFullData = isShowFull[indexPath.row]
+        return HistoryViewModelCell(trip: trip, tag: indexPath.row, delegate: self, fullData: isFullData)
     }
     
     
@@ -74,19 +81,26 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
             //TO DO
             // send trip to back-end
         case .review:
-            reviewDelegate?.leaveReview(complition: {
-                
-            })
+            let reviewViewModel = reviewViewModel(atSelectRow: tag)
+            reviewDelegate?.leaveReview(viewModel: reviewViewModel)
             
             //TO DO
             // send trip to back-end
+            
+        case .reserv:
+            guard var user = UserStore.shared.getUser() else { return }
+            trips.value[tag].tripStait = .reserved
+            user.trips = trips.value
+            UserStore.shared.save(user: user)
         }
         
         
     }
     
-    
-    
+    func reviewViewModel(atSelectRow selectRow: Int) -> ReviewDriverViewModelProtocol {
+        let trip = trips.value[selectRow]
+        return ReviewDriverViewModel(trip: trip, tripSelect: selectRow)
+    }
     
     
 }

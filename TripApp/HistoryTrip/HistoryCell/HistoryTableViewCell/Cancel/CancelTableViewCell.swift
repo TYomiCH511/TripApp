@@ -29,6 +29,7 @@ class CancelTableViewCell: UITableViewCell {
     @IBOutlet weak var startCircleView: UIView!
     @IBOutlet weak var finalyStaitionCircleView: UIView!
     
+    @IBOutlet weak var heightFullData: NSLayoutConstraint!
     
     var viewModel: HistoryViewModelCellProtocol! {
         didSet {
@@ -36,18 +37,25 @@ class CancelTableViewCell: UITableViewCell {
             guard let date = viewModel.trip.date else { return }
             dayOfWeekLabel.text = dateFormat.showDay(from: date)
             dateTripLabel.text = dateFormat.showDate(from: date)
-            timeTripLabel.text = dateFormat.showTime(from: date)
-            startCityLabel.text = viewModel.trip.startCity
-            startStaitionLabel.text = viewModel.trip.startStaition
-            finalyCityLabel.text = viewModel.trip.finishCity
-            finalyStaitionLabel.text = viewModel.trip.finishStaition
-            countPassenger.text = viewModel.trip.countPasseger?.description
-            costTripLabel.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
+            timeTripLabel?.text = dateFormat.showTime(from: date)
+            startCityLabel?.text = viewModel.trip.startCity
+            startStaitionLabel?.text = viewModel.trip.startStaition
+            finalyCityLabel?.text = viewModel.trip.finishCity
+            finalyStaitionLabel?.text = viewModel.trip.finishStaition
+            countPassenger?.text = viewModel.trip.countPasseger?.description
+            costTripLabel?.text = "Итого: 0 руб"
             
             mainConteinerView.backgroundColor = .systemRed
-            
             setupReservedTrip(with: "Бронь отменена", color: .systemRed, image: "multiply.circle")
-            costTripLabel.text = "Итого: 0 руб"
+            
+            
+            if !viewModel.fullData {
+                heightFullData.constant = 0
+                fullDataTripConteinerView.isHidden = true
+            } else {
+                heightFullData.constant = 508
+                fullDataTripConteinerView.isHidden = false
+            }
         }
     }
     
@@ -94,7 +102,6 @@ class CancelTableViewCell: UITableViewCell {
         reservedTripInDataImageView?.tintColor = color
         reservedTripInDataImageView?.backgroundColor = .white
     }
-    
     
     
 }

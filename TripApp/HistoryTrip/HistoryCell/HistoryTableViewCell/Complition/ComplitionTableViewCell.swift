@@ -36,23 +36,32 @@ class ComplitionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var leaveReviewButton: UIButton!
     
+    @IBOutlet weak var heightFullData: NSLayoutConstraint!
     var viewModel: HistoryViewModelCellProtocol! {
         didSet {
             let dateFormat = CustomDate.shared
             guard let date = viewModel.trip.date else { return }
             dayOfWeekLabel?.text = dateFormat.showDay(from: date)
-            dateTripLabel.text = dateFormat.showDate(from: date)
-            timeTripLabel.text = dateFormat.showTime(from: date)
-            startCityLabel.text = viewModel.trip.startCity
-            startStaitionLabel.text = viewModel.trip.startStaition
-            finalyCityLabel.text = viewModel.trip.finishCity
-            finalyStaitionLabel.text = viewModel.trip.finishStaition
-            countPassenger.text = String(viewModel.trip.countPasseger!)
-            costTripLabel.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
+            dateTripLabel?.text = dateFormat.showDate(from: date)
+            timeTripLabel?.text = dateFormat.showTime(from: date)
+            startCityLabel?.text = viewModel.trip.startCity
+            startStaitionLabel?.text = viewModel.trip.startStaition
+            finalyCityLabel?.text = viewModel.trip.finishCity
+            finalyStaitionLabel?.text = viewModel.trip.finishStaition
+            countPassenger?.text = String(viewModel.trip.countPasseger!)
+            costTripLabel?.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
             
             mainConteinerView.backgroundColor = .lightGray
 
             setupReservedTrip(with: "Поездка завершена", color: .lightGray, image: "flag.circle.fill")
+            
+            if !viewModel.fullData {
+                heightFullData.constant = 0
+                fullDataTripConteinerView.isHidden = true
+            } else {
+                heightFullData.constant = 508
+                fullDataTripConteinerView.isHidden = false
+            }
             
         }
     }
@@ -114,5 +123,6 @@ class ComplitionTableViewCell: UITableViewCell {
         reservedTripInDataImageView?.image = UIImage(systemName: image)
         reservedImageView?.image = UIImage(systemName: image)
     }
+    
     
 }

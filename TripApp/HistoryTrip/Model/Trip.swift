@@ -25,7 +25,7 @@ struct Trip: Codable {
     var finishStaition: String?
     var tripStait: TripState
     var countPasseger: Int?
-    let driver: Driver?
+    let driver: Driver
     var isReviewDriver: Bool = false
 }
 
@@ -37,5 +37,7 @@ struct Driver: Codable {
     let carNumber: String
     let phoneNumber: String
     let raiting: String
+    let fullName: String
+    let photo: String
     
 }

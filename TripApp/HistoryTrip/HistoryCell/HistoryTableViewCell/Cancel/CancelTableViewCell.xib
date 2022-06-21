@@ -197,6 +197,7 @@
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstItem="P1M-wT-7tn" firstAttribute="top" secondItem="ktv-4j-FD1" secondAttribute="bottom" id="7r6-uK-oDc"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="9cO-om-v5u"/>
                                     <constraint firstAttribute="bottom" secondItem="LLI-0J-UI5" secondAttribute="bottom" constant="16" id="CCe-Om-pwP"/>
                                     <constraint firstAttribute="trailing" secondItem="ktv-4j-FD1" secondAttribute="trailing" id="F8n-iq-FRS"/>
                                     <constraint firstAttribute="trailing" secondItem="P1M-wT-7tn" secondAttribute="trailing" id="HGo-71-Dkn"/>
@@ -224,6 +225,7 @@
                             <constraint firstItem="4Wq-4q-tRl" firstAttribute="top" secondItem="vfD-gG-tgX" secondAttribute="bottom" id="G4A-oc-nYD"/>
                             <constraint firstItem="vfD-gG-tgX" firstAttribute="leading" secondItem="MOy-zd-I5Y" secondAttribute="leading" constant="8" id="GUm-ES-OMB"/>
                             <constraint firstAttribute="bottom" secondItem="4Wq-4q-tRl" secondAttribute="bottom" constant="8" id="ITr-5s-cYK"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vfD-gG-tgX" secondAttribute="bottom" constant="8" id="Rdr-gn-z6n"/>
                             <constraint firstItem="vfD-gG-tgX" firstAttribute="top" secondItem="MOy-zd-I5Y" secondAttribute="top" constant="8" id="ZjH-ZR-A6i"/>
                             <constraint firstAttribute="trailing" secondItem="vfD-gG-tgX" secondAttribute="trailing" constant="8" id="reO-WD-Ul4"/>
                             <constraint firstAttribute="trailing" secondItem="4Wq-4q-tRl" secondAttribute="trailing" constant="8" id="sgf-qT-EsA"/>
@@ -248,6 +250,7 @@
                 <outlet property="finalyStaitionCircleView" destination="UBv-YI-45B" id="1T2-gS-8Ka"/>
                 <outlet property="finalyStaitionLabel" destination="b3V-Bo-7WR" id="GDI-jj-HIi"/>
                 <outlet property="fullDataTripConteinerView" destination="4Wq-4q-tRl" id="NQk-VJ-xKa"/>
+                <outlet property="heightFullData" destination="9cO-om-v5u" id="9Cu-JH-9EK"/>
                 <outlet property="mainConteinerView" destination="MOy-zd-I5Y" id="L0Y-zH-xWn"/>
                 <outlet property="reservedInDataLabel" destination="O48-yo-CGQ" id="LNv-q8-HEI"/>
                 <outlet property="reservedTripInDataImageView" destination="fwJ-Tt-Ao6" id="QVa-0J-3pg"/>

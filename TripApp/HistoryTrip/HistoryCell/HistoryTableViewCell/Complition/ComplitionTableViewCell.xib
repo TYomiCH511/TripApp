@@ -251,6 +251,7 @@
                                         <constraints>
                                             <constraint firstItem="Aqh-n6-MLc" firstAttribute="centerX" secondItem="zWB-b9-Nj2" secondAttribute="centerX" id="5Vw-Pd-Sub"/>
                                             <constraint firstItem="eDi-je-IDw" firstAttribute="leading" secondItem="zWB-b9-Nj2" secondAttribute="leading" constant="20" id="F1E-sm-nHM"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Aqh-n6-MLc" secondAttribute="bottom" constant="16" id="FXM-9C-7BT"/>
                                             <constraint firstItem="9NR-5b-BP9" firstAttribute="centerY" secondItem="Aqh-n6-MLc" secondAttribute="centerY" id="Mfe-Mv-VXz"/>
                                             <constraint firstAttribute="bottom" secondItem="eDi-je-IDw" secondAttribute="bottom" constant="16" id="WCN-dJ-i2P"/>
                                             <constraint firstItem="Aqh-n6-MLc" firstAttribute="top" secondItem="zWB-b9-Nj2" secondAttribute="top" constant="16" id="Wbm-Zw-U4y"/>
@@ -266,6 +267,7 @@
                                     <constraint firstItem="itX-7p-B4Y" firstAttribute="top" secondItem="jAf-wa-Slg" secondAttribute="top" id="ILb-ix-aTM"/>
                                     <constraint firstItem="itX-7p-B4Y" firstAttribute="leading" secondItem="jAf-wa-Slg" secondAttribute="leading" id="NDW-gU-ykv"/>
                                     <constraint firstAttribute="trailing" secondItem="zWB-b9-Nj2" secondAttribute="trailing" constant="8" id="bQS-N9-wXW"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="iLZ-B8-Ybc"/>
                                     <constraint firstItem="zWB-b9-Nj2" firstAttribute="leading" secondItem="jAf-wa-Slg" secondAttribute="leading" constant="8" id="m7M-tm-3q4"/>
                                     <constraint firstAttribute="bottom" secondItem="zWB-b9-Nj2" secondAttribute="bottom" id="t3V-xu-ctK"/>
                                     <constraint firstAttribute="trailing" secondItem="itX-7p-B4Y" secondAttribute="trailing" id="yrM-uy-R0w"/>
@@ -279,6 +281,7 @@
                             <constraint firstItem="jAf-wa-Slg" firstAttribute="leading" secondItem="GAm-ys-uFz" secondAttribute="leading" constant="8" id="Dkg-0v-OEE"/>
                             <constraint firstAttribute="bottom" secondItem="jAf-wa-Slg" secondAttribute="bottom" constant="8" id="GYH-oy-m55"/>
                             <constraint firstItem="4Zd-qi-lkW" firstAttribute="top" secondItem="GAm-ys-uFz" secondAttribute="top" constant="8" id="gPM-vu-ij2"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4Zd-qi-lkW" secondAttribute="bottom" constant="8" id="lfS-uO-djb"/>
                             <constraint firstAttribute="trailing" secondItem="jAf-wa-Slg" secondAttribute="trailing" constant="8" id="vv9-o2-Ipc"/>
                             <constraint firstAttribute="trailing" secondItem="4Zd-qi-lkW" secondAttribute="trailing" constant="8" id="yHB-hA-drg"/>
                         </constraints>
@@ -303,6 +306,7 @@
                 <outlet property="finalyStaitionCircleView" destination="8xw-PI-Yqk" id="h80-zt-D1b"/>
                 <outlet property="finalyStaitionLabel" destination="jfQ-3c-OCl" id="t0e-rm-Uda"/>
                 <outlet property="fullDataTripConteinerView" destination="jAf-wa-Slg" id="KRq-LB-qI2"/>
+                <outlet property="heightFullData" destination="iLZ-B8-Ybc" id="Zqg-Pw-RTX"/>
                 <outlet property="leaveReviewButton" destination="eDi-je-IDw" id="Phh-xB-e44"/>
                 <outlet property="mainConteinerView" destination="GAm-ys-uFz" id="Q4C-Q1-QxH"/>
                 <outlet property="reservedConteinerView" destination="zWB-b9-Nj2" id="i7h-rm-eBs"/>

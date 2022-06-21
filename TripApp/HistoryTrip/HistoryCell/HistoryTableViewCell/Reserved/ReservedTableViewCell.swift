@@ -51,44 +51,46 @@ class ReservedTableViewCell: UITableViewCell {
     @IBOutlet weak var phoneNumberDriverLabel: UILabel!
     @IBOutlet weak var raitingOfDriverLabel: UILabel!
     
+    @IBOutlet weak var heightFullData: NSLayoutConstraint!
     var viewModel: HistoryViewModelCellProtocol! {
         didSet {
             let dateFormat = CustomDate.shared
             guard let date = viewModel.trip.date else { return }
             dayOfWeekLabel?.text = dateFormat.showDay(from: date)
-            dateTripLabel.text = dateFormat.showDate(from: date)
-            timeTripLabel.text = dateFormat.showTime(from: date)
-            startCityLabel.text = viewModel.trip.startCity
-            startStaitionLabel.text = viewModel.trip.startStaition
-            finalyCityLabel.text = viewModel.trip.finishCity
-            finalyStaitionLabel.text = viewModel.trip.finishStaition
-            countPassenger.text = String(viewModel.trip.countPasseger!)
-            costTripLabel.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
+            dateTripLabel?.text = dateFormat.showDate(from: date)
+            timeTripLabel?.text = dateFormat.showTime(from: date)
+            startCityLabel?.text = viewModel.trip.startCity
+            startStaitionLabel?.text = viewModel.trip.startStaition
+            finalyCityLabel?.text = viewModel.trip.finishCity
+            finalyStaitionLabel?.text = viewModel.trip.finishStaition
+            countPassenger?.text = String(viewModel.trip.countPasseger!)
+            costTripLabel?.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
             
             //setup driver
-            if let driver = viewModel.trip.driver {
-                modelOfCarLabel?.text = "Модель автобуса: " + driver.carModel
-                colorOfCarLabel?.text = "Цвет автобуса: " + driver.carColor
-                carNumberLabel?.text = "Номер автобуса: " + driver.carNumber
-                phoneNumberDriverLabel?.text = "Телефон водителя: " + driver.phoneNumber
-                raitingOfDriverLabel?.text = "Рейтинг водителя: " + driver.raiting + " ⭐️"
-            }
+            let driver = viewModel.trip.driver
+            modelOfCarLabel?.text = "Модель автобуса: " + driver.carModel
+            colorOfCarLabel?.text = "Цвет автобуса: " + driver.carColor
+            carNumberLabel?.text = "Номер автобуса: " + driver.carNumber
+            phoneNumberDriverLabel?.text = "Телефон водителя: " + driver.phoneNumber
+            raitingOfDriverLabel?.text = "Рейтинг водителя: " + driver.raiting + " ⭐️"
+            
             mainConteinerView.backgroundColor = .systemGreen
             
             reminderLabel?.text = ""
             setupReservedTrip(with: "Бронь подтверждена", color: .systemGreen, image: "checkmark.circle.fill")
             
-        }
-    }
-    
-    
-    var isShowFull = false {
-        willSet {
-            if newValue {
-                infoAndButtonView.removeFromSuperview()
+            if !viewModel.fullData {
+                heightFullData.constant = 0
+                fullDataTripConteinerView.isHidden = true
+            } else {
+                heightFullData.constant = 508
+                fullDataTripConteinerView.isHidden = false
             }
         }
     }
+    
+    
+    
     
     
     override func awakeFromNib() {

@@ -49,7 +49,7 @@ class HistoryTripViewController: UIViewController {
         historyTableView.refreshControl?.beginRefreshing()
         guard let user = UserStore.shared.getUser() else { return }
         viewModel.trips.value = user.trips
-        
+        tabBarController?.tabBar.selectedItem?.badgeValue = nil
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,6 +61,7 @@ class HistoryTripViewController: UIViewController {
     @objc private func fetchNewTrip() {
         guard let user = UserStore.shared.getUser() else { return }
         viewModel.trips.value = user.trips
+        viewModel.isShowFull.removeAll()
         historyTableView.refreshControl?.endRefreshing()
     }
     
@@ -81,7 +82,6 @@ extension HistoryTripViewController: UITableViewDelegate, UITableViewDataSource 
             selectTrip = indexPath.row
             cell.viewModel = viewModel.cellViewModel(at: indexPath)
             return cell
-            
         case .reserved:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "reserved", for: indexPath) as? ReservedTableViewCell else { return UITableViewCell() }
             selectTrip = indexPath.row
@@ -101,8 +101,14 @@ extension HistoryTripViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath)?.frame.size.height ?? 0 < 150 {
+            viewModel.isShowFull[indexPath.row] = true
+            tableView.reloadRows(at: [indexPath], with: .fade)
+        } else {
+            viewModel.isShowFull[indexPath.row] = false
+            tableView.reloadRows(at: [indexPath], with: .fade)
+        }
         
-        print("select row \(indexPath.row)")
     }
     
     
@@ -113,7 +119,7 @@ extension HistoryTripViewController: EditTripProtocol {
     func editTrip(trip: Trip, tag: Int) {
         
         guard let editVC = storyboard?.instantiateViewController(withIdentifier: "selectDirection") as? SelectDirectViewController else { return }
-        editVC.viewModel = SelectDirectViewModel(trip: trip, isEdit: true)
+        editVC.viewModel = SelectDirectViewModel(trip: trip, typeSelectDirection: .edit)
         editVC.viewModel.editDelegate = self
         selectTrip = tag
         navigationController?.pushViewController(editVC, animated: true)
@@ -137,10 +143,13 @@ extension HistoryTripViewController: EditTripDoneProtocol {
 
 // MARK: - LeaveReviewDriverProtocol
 extension HistoryTripViewController: LeaveReviewDriverProtocol {
-    func leaveReview(complition: @escaping () -> ()) {
-        guard let reviewVC = storyboard?.instantiateViewController(withIdentifier: "review") else { return }
+    
+    func leaveReview(viewModel: ReviewDriverViewModelProtocol) {
         
-        navigationController?.pushViewController(reviewVC, animated: true)
+        guard let reviewVC = storyboard?.instantiateViewController(withIdentifier: "review") as? ReviewDriverViewController else { return }
+            reviewVC.viewModel = viewModel
+            navigationController?.pushViewController(reviewVC, animated: true)
+            
     }
     
     

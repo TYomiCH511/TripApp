@@ -11,11 +11,13 @@ import Foundation
 protocol HistoryViewModelCellProtocol {
     var trip: Trip { get }
     var tag: Int { get }
+    var fullData: Bool { get }
     var actionTripDelegate: ActionTripPressedProtocol? { get }
-    init(trip: Trip, tag: Int, delegate: ActionTripPressedProtocol)
+    init(trip: Trip, tag: Int, delegate: ActionTripPressedProtocol, fullData: Bool)
     func cancelTrip()
     func editTrip()
     func reviewTrip()
+    func reservTrip()
 }
 
 
@@ -24,11 +26,12 @@ class HistoryViewModelCell: HistoryViewModelCellProtocol {
     weak var actionTripDelegate: ActionTripPressedProtocol?
     var trip: Trip
     var tag: Int
-    
-    required init(trip: Trip, tag: Int, delegate: ActionTripPressedProtocol) {
+    var fullData: Bool
+    required init(trip: Trip, tag: Int, delegate: ActionTripPressedProtocol, fullData: Bool = false) {
         self.trip = trip
         self.tag  = tag
         actionTripDelegate = delegate
+        self.fullData = fullData
     }
     
     func cancelTrip() {
@@ -44,6 +47,12 @@ class HistoryViewModelCell: HistoryViewModelCellProtocol {
     
     func reviewTrip() {
         actionTripDelegate?.actionTripPressed(trip: trip, tag: tag, action: .review)
+    }
+    
+    func reservTrip() {
+        trip.tripStait = .reserved
+        actionTripDelegate?.actionTripPressed(trip: trip, tag: tag, action: .reserv)
+        
     }
     
 }

@@ -304,7 +304,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybj-4H-C3u">
-                                                <rect key="frame" x="451.5" y="111" width="72.5" height="76"/>
+                                                <rect key="frame" x="455" y="111" width="69" height="76"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -314,7 +314,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zd2-VU-kJk">
-                                                <rect key="frame" x="16" y="111" width="52.5" height="76"/>
+                                                <rect key="frame" x="16" y="111" width="48.5" height="76"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -351,6 +351,7 @@
                                     <constraint firstItem="L1z-ne-WDw" firstAttribute="leading" secondItem="Crt-FH-rtY" secondAttribute="leading" constant="8" id="IZh-fc-mid"/>
                                     <constraint firstAttribute="trailing" secondItem="L1z-ne-WDw" secondAttribute="trailing" constant="8" id="bkh-XC-ZBY"/>
                                     <constraint firstItem="L1z-ne-WDw" firstAttribute="top" secondItem="N9K-8p-Iep" secondAttribute="bottom" constant="8" id="dXa-mj-OQo"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="508" id="frr-4X-YBv"/>
                                     <constraint firstAttribute="trailing" secondItem="N9K-8p-Iep" secondAttribute="trailing" id="na4-VI-IV2"/>
                                     <constraint firstItem="N9K-8p-Iep" firstAttribute="top" secondItem="Crt-FH-rtY" secondAttribute="top" id="ut9-wj-nQQ"/>
                                     <constraint firstItem="N9K-8p-Iep" firstAttribute="leading" secondItem="Crt-FH-rtY" secondAttribute="leading" id="wBe-B7-Bk7"/>
@@ -362,6 +363,7 @@
                             <constraint firstItem="ph6-gC-VUq" firstAttribute="top" secondItem="vIH-O2-Q6o" secondAttribute="top" constant="8" id="7SS-IY-4g6"/>
                             <constraint firstAttribute="trailing" secondItem="ph6-gC-VUq" secondAttribute="trailing" constant="8" id="E8o-S7-KRq"/>
                             <constraint firstAttribute="bottom" secondItem="Crt-FH-rtY" secondAttribute="bottom" constant="8" id="Lkm-fN-cUN"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ph6-gC-VUq" secondAttribute="bottom" constant="8" id="Z2d-mZ-m2S"/>
                             <constraint firstAttribute="trailing" secondItem="Crt-FH-rtY" secondAttribute="trailing" constant="8" id="aIf-C4-XxU"/>
                             <constraint firstItem="Crt-FH-rtY" firstAttribute="top" secondItem="ph6-gC-VUq" secondAttribute="bottom" id="auF-Sg-vCe"/>
                             <constraint firstItem="ph6-gC-VUq" firstAttribute="leading" secondItem="vIH-O2-Q6o" secondAttribute="leading" constant="8" id="bBP-bB-Dkq"/>
@@ -393,6 +395,7 @@
                 <outlet property="finalyStaitionCircleView" destination="84w-Al-Qo9" id="aUP-bt-fCA"/>
                 <outlet property="finalyStaitionLabel" destination="ldw-DS-dLH" id="LXy-ZA-KFP"/>
                 <outlet property="fullDataTripConteinerView" destination="Crt-FH-rtY" id="tpn-AU-e4R"/>
+                <outlet property="heightFullData" destination="frr-4X-YBv" id="Z75-SW-qnh"/>
                 <outlet property="infoAndButtonView" destination="L1z-ne-WDw" id="YZ2-PY-fRG"/>
                 <outlet property="mainConteinerView" destination="vIH-O2-Q6o" id="jh5-r7-ea7"/>
                 <outlet property="modelOfCarLabel" destination="gKq-P8-hXR" id="yKI-yI-7qH"/>

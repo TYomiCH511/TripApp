@@ -28,6 +28,7 @@ class NotReservedTableViewCell: UITableViewCell {
     @IBOutlet weak var costTripLabel: UILabel!
     @IBOutlet weak var countPassenger: UILabel!
     
+    @IBOutlet weak var reservTripButton: UIButton!
     @IBOutlet weak var reservedLabel: UILabel!
     @IBOutlet weak var reservedImageView: UIImageView!
     
@@ -41,49 +42,44 @@ class NotReservedTableViewCell: UITableViewCell {
     @IBOutlet weak var finalyStaitionCircleView: UIView!
     @IBOutlet weak var infoAndButtonView: UIView!
     
+    @IBOutlet weak var heightFullData: NSLayoutConstraint!
     
     var viewModel: HistoryViewModelCellProtocol! {
         didSet {
             let dateFormat = CustomDate.shared
             guard let date = viewModel.trip.date else { return }
-            dayOfWeekLabel?.text = dateFormat.showDay(from: date)
-            dateTripLabel.text = dateFormat.showDate(from: date)
-            timeTripLabel.text = dateFormat.showTime(from: date)
-            startCityLabel.text = viewModel.trip.startCity
-            startStaitionLabel.text = viewModel.trip.startStaition
-            finalyCityLabel.text = viewModel.trip.finishCity
-            finalyStaitionLabel.text = viewModel.trip.finishStaition
-            countPassenger.text = String(viewModel.trip.countPasseger!)
-            costTripLabel.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
-                       
+            if dateFormat.showDate(from: Date()) == dateFormat.showDate(from: date) {
+                reservTripButton.isHidden = false
+                reservedLabel.isHidden = true
+                reservedImageView.isHidden = true
+                reminderLabel.isHidden = true
+                reminderLabel.font = .systemFont(ofSize: 1, weight: .thin)
+            } else {
+                reservTripButton.isHidden = true
+                reservedLabel.isHidden = false
+                reservedImageView.isHidden = false
+                reminderLabel.isHidden = false
+                reminderLabel.font = .systemFont(ofSize: 14, weight: .thin)
+            }
             
-            //setup trip stait
-            switch viewModel.trip.tripStait {
-                
-            case .notReserved:
-                mainConteinerView.backgroundColor = .systemOrange
-                
-                
-                setupReservedTrip(with: "Бронь не подтверждена", color: .systemOrange, image: "questionmark.circle.fill")
-                
-            case .cancel:
-                mainConteinerView.backgroundColor = .systemRed
-                reminderLabel?.text = ""
-                
-                setupReservedTrip(with: "Бронь отменена", color: .systemRed, image: "multiply.circle")
-                costTripLabel.text = "Итого: 0 руб"
-                
-            case .reserved:
-                mainConteinerView.backgroundColor = .systemGreen
-               
-                reminderLabel?.text = ""
-                setupReservedTrip(with: "Бронь подтверждена", color: .systemGreen, image: "checkmark.circle.fill")
-                
-            case .complition:
-                mainConteinerView.backgroundColor = .lightGray
-               
-                reminderLabel?.text = ""
-                setupReservedTrip(with: "Поездка завершена", color: .lightGray, image: "flag.circle.fill")
+            dayOfWeekLabel?.text = dateFormat.showDay(from: date)
+            dateTripLabel?.text = dateFormat.showDate(from: date)
+            timeTripLabel?.text = dateFormat.showTime(from: date)
+            startCityLabel?.text = viewModel.trip.startCity
+            startStaitionLabel?.text = viewModel.trip.startStaition
+            finalyCityLabel?.text = viewModel.trip.finishCity
+            finalyStaitionLabel?.text = viewModel.trip.finishStaition
+            countPassenger?.text = String(viewModel.trip.countPasseger!)
+            costTripLabel?.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
+            mainConteinerView?.backgroundColor = .systemOrange
+            setupReservedTrip(with: "Бронь не подтверждена", color: .systemOrange, image: "questionmark.circle.fill")
+            
+            if !viewModel.fullData {
+                heightFullData.constant = 0
+                fullDataTripConteinerView.isHidden = true
+            } else {
+                heightFullData.constant = 508
+                fullDataTripConteinerView.isHidden = false
             }
         }
     }
@@ -95,6 +91,11 @@ class NotReservedTableViewCell: UITableViewCell {
         selectionStyle = .none
         
     }
+    
+    @IBAction func reservTripButtonPressed(_ sender: UIButton) {
+        viewModel.reservTrip()
+    }
+    
     
     @IBAction func editTripButtonPressed(_ sender: UIButton) {
         viewModel.editTrip()
@@ -116,11 +117,15 @@ class NotReservedTableViewCell: UITableViewCell {
         startCircleView.layer.cornerRadius = startCircleView.frame.height / 2
         finalyStaitionCircleView.layer.cornerRadius = finalyStaitionCircleView.frame.height / 2
         
-        dayOfWeekLabel?.textColor = .gray
-        
+        dayOfWeekLabel.textColor = .gray
+        dayOfWeekLabel.font = .systemFont(ofSize: 19, weight: .semibold)
+        reservedLabel.font = .systemFont(ofSize: 19, weight: .semibold)
+        reservedInDataLabel.font = .systemFont(ofSize: 19, weight: .semibold)
         dateTripLabel.textColor = .systemBlue
-        dateTripLabel.font = .systemFont(ofSize: 24, weight: .semibold)
+        dateTripLabel.font = .systemFont(ofSize: 22, weight: .semibold)
         
+        
+        reservTripButton.orangeButton(with: "Забронировать", isEnable: true)
         timeTripLabel.textColor = .black
         startCityLabel.textColor = .black
         startCityLabel.font = .systemFont(ofSize: 17, weight: .semibold)
@@ -128,7 +133,7 @@ class NotReservedTableViewCell: UITableViewCell {
         finalyCityLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         startStaitionLabel.textColor = .gray
         finalyStaitionLabel.textColor = .gray
-        
+        reminderLabel.font = .systemFont(ofSize: 16, weight: .thin)
         reminderLabel.textColor = .black
         costTripLabel.textColor = .black
         countPassenger.textColor = .black
@@ -153,7 +158,10 @@ class NotReservedTableViewCell: UITableViewCell {
         reservedImageView?.image = UIImage(systemName: image)
     }
     
-    
+    private func removeFullDataView() {
+        guard let dataView = fullDataTripConteinerView else { return}
+        dataView.removeFromSuperview()
+    }
     
     
 }
