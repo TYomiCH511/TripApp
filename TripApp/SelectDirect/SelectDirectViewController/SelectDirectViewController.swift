@@ -29,25 +29,91 @@ class SelectDirectViewController: UIViewController {
     // MARK: - life cycle View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
+         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        orderTableVIew.delegate = self
-        orderTableVIew.dataSource = self
-        view.backgroundColor = .white
-        orderTableVIew.backgroundColor = .white
-        fillVIew.backgroundColor = .clear
-        orderTripButton.orangeButton(with: "Завершить", isEnable: true)
-        
-        let nib = UINib(nibName: String(describing: DataTripTableViewCell.self), bundle: .main)
-        orderTableVIew.register(nib, forCellReuseIdentifier: "cell")
+        if viewModel.trip?.countPasseger ?? 0 <= 0 {
+            
+            switch viewModel.typeSelectDirection {
+            case .new:
+                orderTripButton.grayButton(with: "Заказать", isEnable: false)
+            case .orderBack:
+                orderTableVIew.reloadData()
+                orderTripButton.grayButton(with: "Заказать", isEnable: false)
+            case .edit:
+                orderTripButton.grayButton(with: "Изменить", isEnable: false)
+            }
+            
+        } else {
+            switch viewModel.typeSelectDirection {
+            case .new:
+                
+                orderTripButton.orangeButton(with: "Заказать", isEnable: true)
+            case .orderBack:
+                orderTripButton.orangeButton(with: "Заказать", isEnable: true)
+            case .edit:
+                orderTripButton.orangeButton(with: "Изменить", isEnable: true)
+            }
+        }
     }
     
     
     @IBAction func orderTripButtonPressed(_ sender: UIButton) {
-        viewModel.addTrip()
-        navigationController?.popToRootViewController(animated: true)
+        
+        switch viewModel.typeSelectDirection {
+        case .new:
+            guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: "orderDone") as? OrderDoneViewController else { return }
+            viewModel.addTrip()
+            navigationController?.pushViewController(orderDoneVC, animated: true)
+            tabBarController?.viewControllers![1].tabBarItem.badgeColor = mainColor
+            tabBarController?.viewControllers![1].tabBarItem.badgeValue = "1"
+        case .orderBack:
+            guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: "orderDone") as? OrderDoneViewController else { return }
+            viewModel.addTrip()
+            
+            navigationController?.pushViewController(orderDoneVC, animated: true)
+        case .edit:
+            viewModel.addTrip()
+            let alertView = UIView()
+            
+            view.addSubview(alertView)
+            alertView.center = self.orderTableVIew.center
+            
+            alertView.frame.size = CGSize(width: 100, height: 100)
+            alertView.backgroundColor = .black
+            alertView.layer.cornerRadius = 8
+            alertView.alpha = 1
+            let imageView = UIImageView(image: UIImage(systemName: "checkmark.circle.fill"))
+            imageView.frame.size = CGSize(width: 100, height: 100)
+            
+            imageView.tintColor = .white
+            alertView.addSubview(imageView)
+            
+            UIView.animate(withDuration: 0.5, delay: 0, options: []) {
+                alertView.alpha = 0
+                
+            } completion: { _ in
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+
+        }
+        
     }
     
-    
+    private func setupUI() {
+        view.backgroundColor = mainBackgroundColor
+        orderTableVIew.delegate = self
+        orderTableVIew.dataSource = self
+        orderTableVIew.backgroundColor = mainBackgroundColor
+        fillVIew.backgroundColor = .clear
+        
+            
+        let nib = UINib(nibName: String(describing: DataTripTableViewCell.self), bundle: .main)
+        orderTableVIew.register(nib, forCellReuseIdentifier: "cell")
+    }
 }
 
 
@@ -120,7 +186,17 @@ extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
         switch selectRow {
         case 0:
             if viewModel.trip == nil {
-                viewModel.trip = Trip(date: nil, startCity: nil, startStaition: nil, finishCity: nil, finishStaition: nil, tripStait: .notReserved, countPasseger: nil, driver: nil)
+                viewModel.trip = Trip(date: nil, startCity: nil,
+                                      startStaition: nil, finishCity: nil,
+                                      finishStaition: nil, tripStait: .notReserved,
+                                      countPasseger: nil,
+                                      driver: Driver(carModel: "Mercedes Sprinter",
+                                                     carColor: "Белый",
+                                                     carNumber: "8888-2",
+                                                     phoneNumber: "+375 29 566 47 58",
+                                                     raiting: "4.84",
+                                                     fullName: "Сидоров Алексей Петрович",
+                                                     photo: "avatar"))
             }
             var city1 = ""
             CitySrore.shared.getCities().forEach { city in

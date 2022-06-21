@@ -9,6 +9,7 @@ import UIKit
 
 class DataTripTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var conteinerView: UIView!
     @IBOutlet weak var mainTextLabel: UILabel!
     @IBOutlet weak var secondaryTextLabel: UILabel!
     @IBOutlet weak var infoImageView: UIImageView!
@@ -24,10 +25,11 @@ class DataTripTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .white
-        
-        mainTextLabel.textColor = .black
-        secondaryTextLabel.textColor = .black
+        self.backgroundColor = mainBackgroundColor
+        conteinerView.backgroundColor = mainBackgroundColor
+        selectionStyle = .none
+        mainTextLabel.textColor = .white
+        secondaryTextLabel.textColor = .white
     }
 
     

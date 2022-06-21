@@ -9,16 +9,17 @@ import UIKit
 
 class SelectCityViewController: UIViewController {
 
-    @IBOutlet weak var selecorTableView: UITableView!
+    @IBOutlet weak var cityTableView: UITableView!
     
     
     var viewModel: SelectCityViewModelProtocol!
     weak var delegate: CallBackDataTripToRootVCProtocol?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        selecorTableView.delegate = self
-        selecorTableView.dataSource = self
+        view.backgroundColor = mainBackgroundColor
+        cityTableView.backgroundColor = mainBackgroundColor
+        cityTableView.delegate = self
+        cityTableView.dataSource = self
     }
     
 
@@ -34,7 +35,8 @@ extension SelectCityViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath)
-        
+        cell.backgroundColor = mainBackgroundColor
+        cell.textLabel?.textColor = .white
         cell.textLabel?.text = viewModel.cities[indexPath.row].name
         
         return cell

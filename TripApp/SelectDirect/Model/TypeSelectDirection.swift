@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+
+enum TypeSelectDirection {
+    case new
+    case orderBack
+    case edit
+}
