@@ -7,8 +7,18 @@
 
 import UIKit
 
-class TabBarViewController: UITabBar {
+class TabBarViewController: UITabBarController {
 
     
-
+    override func loadView() {
+        super.loadView()
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tabBar.tintColor = mainColor
+        tabBar.barStyle = .black
+        tabBar.unselectedItemTintColor = .lightText
+    }
 }

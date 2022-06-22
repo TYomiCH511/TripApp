@@ -17,6 +17,11 @@ class DataTripTableViewCell: UITableViewCell {
     var viewModel: DataTripViewModelProtocol! {
         didSet {
             mainTextLabel.text = viewModel.mainText
+            if viewModel.secondaryText == "" {
+                secondaryTextLabel.font = .systemFont(ofSize: 1, weight: .thin)
+            } else {
+                secondaryTextLabel.font = .systemFont(ofSize: 16, weight: .medium)
+            }
             secondaryTextLabel.text = viewModel.secondaryText
             let image = UIImage(systemName: viewModel.imageName)
             infoImageView.image = image
@@ -27,9 +32,12 @@ class DataTripTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.backgroundColor = mainBackgroundColor
         conteinerView.backgroundColor = mainBackgroundColor
+        infoImageView.tintColor = mainColor
         selectionStyle = .none
         mainTextLabel.textColor = .white
-        secondaryTextLabel.textColor = .white
+        mainTextLabel.font = .systemFont(ofSize: 22, weight: .medium)
+        secondaryTextLabel.textColor = .lightText
+        
     }
 
     

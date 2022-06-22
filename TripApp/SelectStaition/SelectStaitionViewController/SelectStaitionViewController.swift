@@ -16,7 +16,8 @@ class SelectStaitionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = mainBackgroundColor
+        staitionTableView.backgroundColor = mainBackgroundColor
         staitionTableView.delegate = self
         staitionTableView.dataSource = self
         
@@ -34,6 +35,9 @@ extension SelectStaitionViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "staition", for: indexPath)
+        cell.backgroundColor = mainBackgroundColor
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.textAlignment = .center
         cell.textLabel?.text = viewModel.staition[indexPath.row]
         return cell
     }

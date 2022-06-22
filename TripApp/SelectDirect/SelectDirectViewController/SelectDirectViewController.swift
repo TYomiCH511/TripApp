@@ -10,7 +10,7 @@ import UIKit
 
 protocol CallBackDataTripToRootVCProtocol: AnyObject {
     func callBack(data: String)
-    func callBack(date: Date)
+    func callBack(date: Date, countPassager: Int)
 }
 
 class SelectDirectViewController: UIViewController {
@@ -29,7 +29,7 @@ class SelectDirectViewController: UIViewController {
     // MARK: - life cycle View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-         setupUI()
+        setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,11 +51,11 @@ class SelectDirectViewController: UIViewController {
             switch viewModel.typeSelectDirection {
             case .new:
                 
-                orderTripButton.orangeButton(with: "Заказать", isEnable: true)
+                orderTripButton.mainActionButton(with: "Заказать", isEnable: true)
             case .orderBack:
-                orderTripButton.orangeButton(with: "Заказать", isEnable: true)
+                orderTripButton.mainActionButton(with: "Заказать", isEnable: true)
             case .edit:
-                orderTripButton.orangeButton(with: "Изменить", isEnable: true)
+                orderTripButton.mainActionButton(with: "Изменить", isEnable: true)
             }
         }
     }
@@ -67,14 +67,15 @@ class SelectDirectViewController: UIViewController {
         case .new:
             guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: "orderDone") as? OrderDoneViewController else { return }
             viewModel.addTrip()
-            navigationController?.pushViewController(orderDoneVC, animated: true)
+            orderDoneVC.viewModel = viewModel.viewModelOrderDone()
             tabBarController?.viewControllers![1].tabBarItem.badgeColor = mainColor
             tabBarController?.viewControllers![1].tabBarItem.badgeValue = "1"
+            navigationController?.pushViewController(orderDoneVC, animated: true)
         case .orderBack:
             guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: "orderDone") as? OrderDoneViewController else { return }
             viewModel.addTrip()
-            
             navigationController?.pushViewController(orderDoneVC, animated: true)
+            
         case .edit:
             viewModel.addTrip()
             let alertView = UIView()
@@ -98,19 +99,20 @@ class SelectDirectViewController: UIViewController {
             } completion: { _ in
                 self.navigationController?.popToRootViewController(animated: true)
             }
-
+            
         }
         
     }
     
     private func setupUI() {
+        navigationController?.title = "Выбор данных"
         view.backgroundColor = mainBackgroundColor
         orderTableVIew.delegate = self
         orderTableVIew.dataSource = self
         orderTableVIew.backgroundColor = mainBackgroundColor
         fillVIew.backgroundColor = .clear
         
-            
+        
         let nib = UINib(nibName: String(describing: DataTripTableViewCell.self), bundle: .main)
         orderTableVIew.register(nib, forCellReuseIdentifier: "cell")
     }
@@ -139,14 +141,16 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
             
             guard let selectCityVC = storyboard?.instantiateViewController(withIdentifier: "city") as? SelectCityViewController else { return }
             navigationController?.pushViewController(selectCityVC, animated: true)
-            selectCityVC.viewModel =  viewModel.viewModelCity()
+            selectCityVC.viewModel =  viewModel.viewModelFromCity()
+            selectCityVC.navigationItem.title = "Откуда"
             selectCityVC.delegate = self
             
         case 1:
             if viewModel.trip?.startStaition != nil {
                 guard let selectCityVC = storyboard?.instantiateViewController(withIdentifier: "city") as? SelectCityViewController else { return }
                 navigationController?.pushViewController(selectCityVC, animated: true)
-                selectCityVC.viewModel =  viewModel.viewModelCity()
+                selectCityVC.viewModel =  viewModel.viewModelWhereCity()
+                selectCityVC.navigationItem.title = "Куда"
                 selectCityVC.delegate = self
                 
             }
@@ -155,49 +159,63 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
             if viewModel.trip?.finishStaition != nil {
                 print("select date row")
                 guard let selectDateVC = storyboard?.instantiateViewController(withIdentifier: "selectDate") as? SelectDateViewController else { return }
+                selectDateVC.navigationItem.title = "Выбор даты и времени"
                 selectDateVC.delegate = self
                 navigationController?.pushViewController(selectDateVC, animated: true)
             }
         default:
             if viewModel.trip?.date != nil {
-                guard let selectCityVC = storyboard?.instantiateViewController(withIdentifier: "staitionVC") as? SelectStaitionViewController else { return }
-                let count = ["1", "2", "3"]
-                selectCityVC.delegate = self
-                selectCityVC.viewModel = SelectStaitionViewModel(staition: count)
-                navigationController?.pushViewController(selectCityVC, animated: true)
+                guard let selectCountPassagerVC = storyboard?.instantiateViewController(withIdentifier: "staitionVC") as? SelectStaitionViewController else { return }
+                var count: [String] = []
+                if viewModel.countPassager > 3 {
+                    for i in 1...3 {
+                        count.append("\(i)")
+                    }
+                } else {
+                    for i in 1...viewModel.countPassager {
+                        count.append("\(i)")
+                    }
+                }
+                selectCountPassagerVC.navigationItem.title = "Количество пассажиров"
+                selectCountPassagerVC.delegate = self
+                selectCountPassagerVC.viewModel = SelectStaitionViewModel(staition: count)
+                navigationController?.pushViewController(selectCountPassagerVC, animated: true)
             }
             
         }
-        
-        
         
     }
     
 }
 
 extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
-    func callBack(date: Date) {
-        print(date)
+    func callBack(date: Date, countPassager: Int) {
         viewModel.trip?.date = date
+        let currentDay = CustomDate.shared.showDate(from: Date())
+        let orderTripDay = CustomDate.shared.showDate(from: date)
+        if currentDay == orderTripDay {
+            viewModel.trip?.tripStait = .reserved
+        } 
+        viewModel.countPassager = countPassager
         orderTableVIew.reloadData()
     }
     
     func callBack(data: String) {
         switch selectRow {
         case 0:
-            if viewModel.trip == nil {
-                viewModel.trip = Trip(date: nil, startCity: nil,
-                                      startStaition: nil, finishCity: nil,
-                                      finishStaition: nil, tripStait: .notReserved,
-                                      countPasseger: nil,
-                                      driver: Driver(carModel: "Mercedes Sprinter",
-                                                     carColor: "Белый",
-                                                     carNumber: "8888-2",
-                                                     phoneNumber: "+375 29 566 47 58",
-                                                     raiting: "4.84",
-                                                     fullName: "Сидоров Алексей Петрович",
-                                                     photo: "avatar"))
-            }
+            
+            viewModel.trip = Trip(date: nil, startCity: nil,
+                                  startStaition: nil, finishCity: nil,
+                                  finishStaition: nil, tripStait: .notReserved,
+                                  countPasseger: nil,
+                                  driver: Driver(carModel: "Mercedes Sprinter",
+                                                 carColor: "Белый",
+                                                 carNumber: "8888-2",
+                                                 phoneNumber: "+375 29 566 47 58",
+                                                 raiting: "4.84",
+                                                 fullName: "Сидоров Алексей Петрович",
+                                                 photo: "avatar"))
+            
             var city1 = ""
             CitySrore.shared.getCities().forEach { city in
                 if city.staition.contains(data) {
@@ -231,8 +249,10 @@ extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
             viewModel.trip?.finishStaition = data
             
         case 3:
-            print(Int(data)!)
-            viewModel.trip?.countPasseger = Int(data)!
+            if let countPassager = Int(data) {
+                viewModel.trip?.countPasseger = countPassager
+            }
+            
             
         default: break
         }

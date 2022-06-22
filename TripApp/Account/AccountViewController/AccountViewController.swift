@@ -13,6 +13,8 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    
+    @IBOutlet weak var changePasswordLabel: UILabel!
     @IBOutlet weak var currentPasswordTextField: UITextField!
     @IBOutlet weak var newPasswordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
@@ -58,25 +60,24 @@ class AccountViewController: UIViewController {
     
     private func setupUI() {
         configureTextField()
-        saveChangesButton.orangeButton(with: "Сохранить", isEnable: true)
-        
-        logoutButton.backgroundColor = .lightGray
-        logoutButton.layer.cornerRadius = 12
-        logoutButton.setTitleColor(.white, for: .normal)
+        saveChangesButton.mainActionButton(with: "Сохранить", isEnable: true)
+        changePasswordLabel.text = "Изменить пароль"
+        logoutButton.grayButton(with: "Выйти из аккаунта", isEnable: true, sizeFont: 18)
     }
     
     
     private func configureTextField() {
         
-        nameTextField.placeholder = "Enter your name"
-        surnameTextField.placeholder = "Enter you surname"
-        emailTextField.placeholder = "Enter your email"
-        currentPasswordTextField.placeholder = "Entert current password"
+        nameTextField.customConfigure(with: "Имя", returnKey: .next)
+        surnameTextField.customConfigure(with: "Фамилия", returnKey: .next)
+        emailTextField.customConfigure(with: "Электронная почта", returnKey: .next)
+        
+        currentPasswordTextField.customConfigure(with: "Текущий пароль", returnKey: .next)
         currentPasswordTextField.delegate = self
-        newPasswordTextField.placeholder = "Enter new password"
+        newPasswordTextField.customConfigure(with: "Новый пароль", returnKey: .next)
         newPasswordTextField.alpha = 0
         newPasswordTextField.frame.origin.y = currentPasswordTextField.frame.origin.y
-        confirmPasswordTextField.placeholder = "Confirm new password"
+        confirmPasswordTextField.customConfigure(with: "Повторите пароль", returnKey: .done)
         confirmPasswordTextField.alpha = 0
         confirmPasswordTextField.frame.origin.y = currentPasswordTextField.frame.origin.y
         

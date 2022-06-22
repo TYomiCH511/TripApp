@@ -19,7 +19,7 @@ extension UIButton {
         
     }
     
-    func orangeButton(with title: String, isEnable: Bool) {
+    func mainActionButton(with title: String, isEnable: Bool) {
         backgroundColor = mainColor
         setTitle(title, for: .normal)
         layer.cornerRadius = cornerRadiusButton
@@ -29,11 +29,11 @@ extension UIButton {
         isEnabled = isEnable
     }
     
-    func grayButton(with title: String, isEnable: Bool) {
+    func grayButton(with title: String, isEnable: Bool, sizeFont: CGFloat = 20) {
         backgroundColor = .lightGray
         setTitle(title, for: .normal)
         layer.cornerRadius = cornerRadiusButton
-        titleLabel?.font = .systemFont(ofSize: 22, weight: .semibold)
+        titleLabel?.font = .systemFont(ofSize: sizeFont, weight: .semibold)
         tintColor = .white
         self.addShadow()
         isEnabled = isEnable

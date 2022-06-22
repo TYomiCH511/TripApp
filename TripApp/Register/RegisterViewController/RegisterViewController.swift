@@ -72,7 +72,7 @@ class RegisterViewController: UIViewController {
         registrationTextLable.textColor = .lightText
         backButton.clearBackgroundButton(with: "Назад")
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        registButton.orangeButton(with: "Зарегестрироваться", isEnable: true)
+        registButton.mainActionButton(with: "Зарегестрироваться", isEnable: true)
         mainScrollView.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignFirsResponderTap))
         mainScrollView.addGestureRecognizer(tapGesture)

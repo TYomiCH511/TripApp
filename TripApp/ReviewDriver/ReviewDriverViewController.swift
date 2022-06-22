@@ -56,7 +56,7 @@ class ReviewDriverViewController: UIViewController {
         driverInfoConteinerView.addShadowOnView()
         evaluationDriverConteinerView.backgroundColor = .clear
         evaluationCarConteinerView.backgroundColor = .clear
-        leaveReviewDriverButton.orangeButton(with: "Отправить", isEnable: true)
+        leaveReviewDriverButton.mainActionButton(with: "Отправить", isEnable: true)
         
         informationLabel.text = "Для улучшения качества обслуживания, пожалуста, оцените работу водителя и уровень комфорта автобуса."
         informationLabel.textColor = .white

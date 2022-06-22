@@ -13,19 +13,24 @@ protocol EditTripDoneProtocol: AnyObject {
 
 protocol SelectDirectViewModelProtocol {
     var trip: Trip? { get set }
+    var countPassager: Int { get set }
     var typeSelectDirection: TypeSelectDirection { get }
     var editDelegate: EditTripDoneProtocol? { get set }
     func viewModelDataTripCell(at indexPath: IndexPath) -> DataTripViewModelProtocol
-    func viewModelCity() -> SelectCityViewModel
+    func viewModelFromCity() -> SelectCityViewModel
+    func viewModelWhereCity() -> SelectCityViewModel
+    func viewModelOrderDone() -> OrderDoneViewModelProtocol?
     func addTrip()
 }
 
 
 class SelectDirectViewModel: SelectDirectViewModelProtocol {
+    
     var trip: Trip?
+    var countPassager: Int = 0
     var typeSelectDirection: TypeSelectDirection
     weak var editDelegate: EditTripDoneProtocol?
-    let cities = CitySrore.shared.getCities()
+    var cities = CitySrore.shared.getCities()
     required init(trip: Trip?, typeSelectDirection: TypeSelectDirection) {
         self.typeSelectDirection = typeSelectDirection
         self.trip = trip
@@ -70,9 +75,23 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
                                   imageName: "person")
     }
     
-    func viewModelCity() -> SelectCityViewModel {
-        
+    func viewModelFromCity() -> SelectCityViewModel {
         return SelectCityViewModel(cities: cities)
+    }
+    
+    func viewModelWhereCity() -> SelectCityViewModel {
+        if trip?.startCity == "Минск" {
+            var sortedCity = cities
+            sortedCity.remove(at: 0)
+            return SelectCityViewModel(cities: sortedCity)
+        } else {
+            var sortedCity: [City] = []
+            sortedCity.append(cities[0])
+            return SelectCityViewModel(cities: sortedCity)
+        }
+        
+            
+        
     }
     
     func addTrip() {
@@ -96,7 +115,12 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
             editDelegate?.updateTrip(trip: trip)
             print("edit done")
         }
+    }
+    
+    func viewModelOrderDone() -> OrderDoneViewModelProtocol? {
+            
+        guard let trip = trip else { return nil }
 
-        
+        return OrderDoneViewModel(trip: trip)
     }
 }

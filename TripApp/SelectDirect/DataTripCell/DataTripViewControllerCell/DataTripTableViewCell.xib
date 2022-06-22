@@ -21,13 +21,13 @@
                         <rect key="frame" x="10" y="0.0" width="309" height="70"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWb-4n-4LG">
-                                <rect key="frame" x="56" y="8" width="245" height="22"/>
+                                <rect key="frame" x="56" y="8" width="245" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Brc-8f-2J1">
-                                <rect key="frame" x="56" y="38" width="245" height="24"/>
+                                <rect key="frame" x="56" y="32.5" width="245" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -43,14 +43,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="VWb-4n-4LG" secondAttribute="trailing" constant="8" id="4gY-Wa-m1o"/>
-                            <constraint firstItem="Brc-8f-2J1" firstAttribute="top" secondItem="VWb-4n-4LG" secondAttribute="bottom" constant="8" id="8mh-yL-J3t"/>
-                            <constraint firstItem="Brc-8f-2J1" firstAttribute="height" secondItem="VWb-4n-4LG" secondAttribute="height" multiplier="1.09524" id="Ji4-Fy-8bQ"/>
+                            <constraint firstItem="Brc-8f-2J1" firstAttribute="top" secondItem="VWb-4n-4LG" secondAttribute="bottom" constant="4" id="8mh-yL-J3t"/>
                             <constraint firstAttribute="trailing" secondItem="Brc-8f-2J1" secondAttribute="trailing" constant="8" id="idF-I9-pby"/>
                             <constraint firstItem="LBa-ka-JGf" firstAttribute="centerY" secondItem="mnR-nE-k0A" secondAttribute="centerY" id="nTc-1A-1PS"/>
                             <constraint firstItem="VWb-4n-4LG" firstAttribute="top" secondItem="mnR-nE-k0A" secondAttribute="top" constant="8" id="od4-Wg-kLK"/>
                             <constraint firstItem="Brc-8f-2J1" firstAttribute="leading" secondItem="LBa-ka-JGf" secondAttribute="trailing" constant="16" id="qbp-cb-m3f"/>
                             <constraint firstItem="VWb-4n-4LG" firstAttribute="leading" secondItem="LBa-ka-JGf" secondAttribute="trailing" constant="16" id="tUG-h2-zJk"/>
-                            <constraint firstAttribute="bottom" secondItem="Brc-8f-2J1" secondAttribute="bottom" constant="8" id="w8T-wl-wZn"/>
+                            <constraint firstAttribute="bottom" secondItem="Brc-8f-2J1" secondAttribute="bottom" constant="4" id="w8T-wl-wZn"/>
                             <constraint firstItem="LBa-ka-JGf" firstAttribute="leading" secondItem="mnR-nE-k0A" secondAttribute="leading" id="xRX-Oz-o43"/>
                         </constraints>
                     </view>

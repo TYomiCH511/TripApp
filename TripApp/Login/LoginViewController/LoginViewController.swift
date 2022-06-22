@@ -80,7 +80,6 @@ class LoginViewController: UIViewController {
     
     // MARK: - Custom function
     private func setupUI() {
-        
         resetLoginButton()
         loginButton.grayButton(with: "Войти", isEnable: false)
         mainConteiner.backgroundColor = .clear
@@ -157,7 +156,6 @@ class LoginViewController: UIViewController {
             self.mainScrollView.contentOffset = CGPoint(x: 0, y: difference)
         }
 
-        
     }
     
     @objc private func kbWillHide() {
@@ -171,7 +169,7 @@ class LoginViewController: UIViewController {
     @objc private func dataOfUserNotEmpty(textField: UITextField) {
         
         if !logintTextField.text!.isEmpty && !passwordTextField.text!.isEmpty {
-            loginButton.orangeButton(with: "Войти", isEnable: true)
+            loginButton.mainActionButton(with: "Войти", isEnable: true)
             loginButton.isEnabled = true
         } else {
             resetLoginButton()

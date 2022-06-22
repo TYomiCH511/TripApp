@@ -8,7 +8,7 @@
 import UIKit
 
 class SelectDateViewController: UIViewController {
-
+    
     @IBOutlet weak var selectDateLabel: UILabel!
     @IBOutlet weak var selectTimeLabel: UILabel!
     @IBOutlet weak var timeCollectionView: UICollectionView!
@@ -17,12 +17,9 @@ class SelectDateViewController: UIViewController {
     
     @IBOutlet weak var selectorDatePicker: UIDatePicker!
     
-   
-    
     private let window = UIScreen.main.bounds
     
     private var viewModel: SelectDateViewModelProtocol!
-    private var  countItem = 5
     
     private var sideWidth: CGFloat = 0
     private let sideHeight: CGFloat = 40
@@ -33,16 +30,13 @@ class SelectDateViewController: UIViewController {
         super.viewDidLoad()
         viewModel = SelectDateViewmodel()
         sideWidth = timeCollectionView.frame.width / 3 - 10
-        countItem = viewModel.numberOfItem()
-        UIView.animate(withDuration: 0.3) {
-            let countOfRow = (CGFloat(self.viewModel.numberOfItem()) / 3).rounded(.up)
-            self.heightCollectionView.constant = self.sideHeight * countOfRow  + 10 * countOfRow - 10
-            self.loadViewIfNeeded()
-        }
+        let countOfRow = (CGFloat(self.viewModel.numberOfItem()) / 3).rounded(.up)
+        heightCollectionView.constant = self.sideHeight * countOfRow  + 10 * countOfRow - 10
+        loadViewIfNeeded()
+        
         setupUI()
         
     }
-    
     
     private func setupUI() {
         view.backgroundColor = .darkGray
@@ -54,12 +48,12 @@ class SelectDateViewController: UIViewController {
         timeCollectionView.dataSource = self
         timeCollectionView.delegate = self
         timeCollectionView.backgroundColor = .darkGray
-        
-        
+        selectDateLabel.text = "Выберите дату"
+        selectTimeLabel.text = "Выберите время"
         setupDatePicker()
     }
     
-//Setup date picker
+    //Setup date picker
     private func setupDatePicker() {
         
         selectorDatePicker.addTarget(self, action: #selector(showFreeTimeAndSeat), for: .valueChanged)
@@ -81,11 +75,10 @@ class SelectDateViewController: UIViewController {
         UIView.animate(withDuration: 1) {
             let countOfRow = (CGFloat(self.viewModel.numberOfItem()) / 3).rounded(.up)
             self.heightCollectionView.constant = self.sideHeight * countOfRow  + 10 * countOfRow - 10
-            print(self.heightCollectionView.constant)
             self.loadViewIfNeeded()
         }
     }
-
+    
 }
 
 
@@ -96,7 +89,7 @@ extension SelectDateViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+                   
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? TimeCollectionViewCell else { return UICollectionViewCell()}
         cell.viewModel = viewModel.viewModelTimeCell(at: indexPath)
         return cell
@@ -105,20 +98,20 @@ extension SelectDateViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        
         return CGSize(width: sideWidth, height: sideHeight)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let selectDirectionVC = navigationController?.viewControllers[1] as? SelectDirectViewController else { return }
-        let date = selectorDatePicker.date
-        let dateTrip = viewModel.dateTrip(date: date, indexPath: indexPath)
-        delegate?.callBack(date: dateTrip)
-        
-        
-        navigationController?.popToViewController(selectDirectionVC, animated: true)
-        
+        if viewModel.times[indexPath.item].countPassager != 0 {
+            
+            guard let selectDirectionVC = navigationController?.viewControllers[1] as? SelectDirectViewController else { return }
+            let date = selectorDatePicker.date
+            let dateTrip = viewModel.dateTrip(date: date, indexPath: indexPath)
+            delegate?.callBack(date: dateTrip, countPassager: viewModel.times[indexPath.item].countPassager)
+            
+            navigationController?.popToViewController(selectDirectionVC, animated: true)
+        }
     }
 }

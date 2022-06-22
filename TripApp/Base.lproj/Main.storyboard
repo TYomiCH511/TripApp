@@ -479,7 +479,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="X54-Re-M8K">
-                                    <rect key="frame" x="0.0" y="110.99999999999997" width="390" height="233.00000000000003"/>
+                                    <rect key="frame" x="0.0" y="111" width="390" height="233"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
@@ -938,8 +938,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="countPassagerTrip" destination="YMS-aW-Axh" id="ldx-Ao-Ifh"/>
-                        <outlet property="coustTrip" destination="bv8-cs-oSc" id="zsx-lN-aZ1"/>
+                        <outlet property="costTripLabel" destination="bv8-cs-oSc" id="zsx-lN-aZ1"/>
+                        <outlet property="countPassagerTripLabel" destination="YMS-aW-Axh" id="ldx-Ao-Ifh"/>
                         <outlet property="dateTripLabel" destination="52t-GD-MEa" id="3ql-6V-aOQ"/>
                         <outlet property="dayOfWeekLabel" destination="5Tc-hh-m6J" id="cSW-HG-gVm"/>
                         <outlet property="doneOrderImageView" destination="bnm-Wa-TKD" id="4Oc-jO-1o8"/>
@@ -1210,7 +1210,7 @@
                                     <constraint firstItem="mLm-rh-Kkb" firstAttribute="leading" secondItem="goL-SR-Nfr" secondAttribute="leading" id="aFY-Px-hzO"/>
                                     <constraint firstItem="T7F-O5-DEv" firstAttribute="top" secondItem="ny3-NL-FYl" secondAttribute="bottom" constant="24" id="i9S-PG-i5k"/>
                                     <constraint firstAttribute="trailing" secondItem="T7F-O5-DEv" secondAttribute="trailing" constant="20" id="jct-zw-6db"/>
-                                    <constraint firstAttribute="bottom" secondItem="8zi-9V-lua" secondAttribute="bottom" constant="170" id="tlp-YC-6No"/>
+                                    <constraint firstAttribute="bottom" secondItem="8zi-9V-lua" secondAttribute="bottom" constant="50" id="tlp-YC-6No"/>
                                     <constraint firstItem="mLm-rh-Kkb" firstAttribute="width" secondItem="goL-SR-Nfr" secondAttribute="width" id="yDV-lA-UqE"/>
                                     <constraint firstItem="8zi-9V-lua" firstAttribute="leading" secondItem="goL-SR-Nfr" secondAttribute="leading" constant="20" id="zdj-Mk-Q3p"/>
                                     <constraint firstAttribute="trailing" secondItem="mLm-rh-Kkb" secondAttribute="trailing" id="zyG-D2-FHX"/>
@@ -1408,6 +1408,7 @@
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="changePasswordLabel" destination="fhf-aj-8tF" id="yiC-Qm-2Qp"/>
                         <outlet property="confirmPasswordTextField" destination="kmU-wx-RzH" id="m3C-ba-xFc"/>
                         <outlet property="currentPasswordTextField" destination="Vt6-7n-MEa" id="PmL-mU-xfh"/>
                         <outlet property="emailTextField" destination="uXI-TN-pAC" id="QRH-41-eOt"/>

@@ -16,7 +16,15 @@ class TimeCollectionViewCell: UICollectionViewCell {
     var viewModel: TimeViewModelProtocol! {
         didSet {
             timeLabel.text = viewModel.getInfoPerHour()
+            if viewModel.time.countPassager == 0 {
+                timeLabel.textColor = .lightGray
+                self.isSelected = true
+            }
         }
+    }
+    
+    override func prepareForReuse() {
+        timeLabel.textColor = .white
     }
     
     override func awakeFromNib() {
