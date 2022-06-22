@@ -13,7 +13,7 @@ class ReservedTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var mainConteinerView: UIView!
-    @IBOutlet weak var DataConteinerView: UIView!
+    @IBOutlet weak var dataConteinerView: UIView!
     @IBOutlet weak var dayOfWeekLabel: UILabel!
     @IBOutlet weak var dateTripLabel: UILabel!
     
@@ -80,6 +80,7 @@ class ReservedTableViewCell: UITableViewCell {
             setupReservedTrip(with: "Бронь подтверждена", color: .systemGreen, image: "checkmark.circle.fill")
             
             if !viewModel.fullData {
+                dataConteinerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
                 heightFullData.constant = 0
                 fullDataTripConteinerView.isHidden = true
             } else {
@@ -117,15 +118,19 @@ class ReservedTableViewCell: UITableViewCell {
         directionConteinerView.backgroundColor = .white
         infoAndButtonView.backgroundColor = .clear
         mainConteinerView.layer.cornerRadius = 8
-        DataConteinerView.layer.cornerRadius = 8
+        dataConteinerView.layer.cornerRadius = 8
+        dataConteinerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        directionConteinerView.layer.cornerRadius = 8
+        directionConteinerView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         startCircleView.layer.cornerRadius = startCircleView.frame.height / 2
         finalyStaitionCircleView.layer.cornerRadius = finalyStaitionCircleView.frame.height / 2
         
-        dayOfWeekLabel?.textColor = .gray
-        
+        dayOfWeekLabel.textColor = .gray
+        dayOfWeekLabel.font = .systemFont(ofSize: 19, weight: .semibold)
+        reservedLabel.font = .systemFont(ofSize: 19, weight: .semibold)
+        reservedInDataLabel.font = .systemFont(ofSize: 19, weight: .semibold)
         dateTripLabel.textColor = .systemBlue
-        dateTripLabel.font = .systemFont(ofSize: 24, weight: .semibold)
-        
+        dateTripLabel.font = .systemFont(ofSize: 22, weight: .semibold)
         timeTripLabel.textColor = .black
         startCityLabel.textColor = .black
         startCityLabel.font = .systemFont(ofSize: 17, weight: .semibold)
@@ -133,14 +138,15 @@ class ReservedTableViewCell: UITableViewCell {
         finalyCityLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         startStaitionLabel.textColor = .gray
         finalyStaitionLabel.textColor = .gray
-        
+        reminderLabel.font = .systemFont(ofSize: 16, weight: .thin)
         reminderLabel.textColor = .black
         costTripLabel.textColor = .black
         countPassenger.textColor = .black
         
-        editTripButton.titleLabel?.font = .systemFont(ofSize: 24, weight: .semibold)
-        cancelTripButton.titleLabel?.font = .systemFont(ofSize: 24, weight: .semibold)
-        
+        editTripButton.setTitle("Редактировать", for: .normal)
+        editTripButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+        cancelTripButton.setTitle("Отменить", for: .normal)
+        cancelTripButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         
     }
     

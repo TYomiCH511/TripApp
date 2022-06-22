@@ -11,7 +11,7 @@ class NotReservedTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var mainConteinerView: UIView!
-    @IBOutlet weak var DataConteinerView: UIView!
+    @IBOutlet weak var dataConteinerView: UIView!
     @IBOutlet weak var dayOfWeekLabel: UILabel!
     @IBOutlet weak var dateTripLabel: UILabel!
     
@@ -72,9 +72,10 @@ class NotReservedTableViewCell: UITableViewCell {
             countPassenger?.text = String(viewModel.trip.countPasseger!)
             costTripLabel?.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
             mainConteinerView?.backgroundColor = .systemOrange
-            setupReservedTrip(with: "Бронь не подтверждена", color: .systemOrange, image: "questionmark.circle.fill")
+            setupReservedTrip(with: "Бронь не подтверждена", color: .systemOrange, image: "pause.circle")
             
             if !viewModel.fullData {
+                dataConteinerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
                 heightFullData.constant = 0
                 fullDataTripConteinerView.isHidden = true
             } else {
@@ -89,7 +90,6 @@ class NotReservedTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setupUI()
         selectionStyle = .none
-        
     }
     
     @IBAction func reservTripButtonPressed(_ sender: UIButton) {
@@ -99,21 +99,24 @@ class NotReservedTableViewCell: UITableViewCell {
     
     @IBAction func editTripButtonPressed(_ sender: UIButton) {
         viewModel.editTrip()
-        
     }
     
     @IBAction func cancelTripButtonPressed(_ sender: UIButton) {
         viewModel.cancelTrip()
     }
     
-    
     private func setupUI() {
+        
         fullDataTripConteinerView.backgroundColor = .clear
         backgroundColor = .darkGray
         directionConteinerView.backgroundColor = .white
         infoAndButtonView.backgroundColor = .clear
         mainConteinerView.layer.cornerRadius = 8
-        DataConteinerView.layer.cornerRadius = 8
+        dataConteinerView.layer.cornerRadius = 8
+        dataConteinerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        directionConteinerView.layer.cornerRadius = 8
+        directionConteinerView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        //DataConteinerView.cornerCustom(byRoundingCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight])
         startCircleView.layer.cornerRadius = startCircleView.frame.height / 2
         finalyStaitionCircleView.layer.cornerRadius = finalyStaitionCircleView.frame.height / 2
         
@@ -124,8 +127,7 @@ class NotReservedTableViewCell: UITableViewCell {
         dateTripLabel.textColor = .systemBlue
         dateTripLabel.font = .systemFont(ofSize: 22, weight: .semibold)
         
-        
-        reservTripButton.orangeButton(with: "Забронировать", isEnable: true)
+        reservTripButton.mainActionButton(with: "Забронировать", isEnable: true)
         timeTripLabel.textColor = .black
         startCityLabel.textColor = .black
         startCityLabel.font = .systemFont(ofSize: 17, weight: .semibold)
@@ -138,12 +140,12 @@ class NotReservedTableViewCell: UITableViewCell {
         costTripLabel.textColor = .black
         countPassenger.textColor = .black
         
-        editTripButton.titleLabel?.font = .systemFont(ofSize: 24, weight: .semibold)
-        cancelTripButton.titleLabel?.font = .systemFont(ofSize: 24, weight: .semibold)
-        
+        editTripButton.setTitle("Редактировать", for: .normal)
+        editTripButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+        cancelTripButton.setTitle("Отменить", for: .normal)
+        cancelTripButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         
     }
-    
     
     private func setupReservedTrip(with text: String, color: UIColor, image: String) {
         reservedInDataLabel?.text = text
@@ -162,6 +164,5 @@ class NotReservedTableViewCell: UITableViewCell {
         guard let dataView = fullDataTripConteinerView else { return}
         dataView.removeFromSuperview()
     }
-    
     
 }

@@ -11,7 +11,7 @@ class ComplitionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainConteinerView: UIView!
     
-    @IBOutlet weak var DataConteinerView: UIView!
+    @IBOutlet weak var dataConteinerView: UIView!
     @IBOutlet weak var dayOfWeekLabel: UILabel!
     @IBOutlet weak var dateTripLabel: UILabel!
     @IBOutlet weak var reservedTripInDataImageView: UIImageView!
@@ -56,6 +56,7 @@ class ComplitionTableViewCell: UITableViewCell {
             setupReservedTrip(with: "Поездка завершена", color: .lightGray, image: "flag.circle.fill")
             
             if !viewModel.fullData {
+                dataConteinerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
                 heightFullData.constant = 0
                 fullDataTripConteinerView.isHidden = true
             } else {
@@ -87,15 +88,19 @@ class ComplitionTableViewCell: UITableViewCell {
         backgroundColor = .darkGray
         directionConteinerView.backgroundColor = .white
         mainConteinerView.layer.cornerRadius = 8
-        DataConteinerView.layer.cornerRadius = 8
+        dataConteinerView.layer.cornerRadius = 8
+        dataConteinerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        directionConteinerView.layer.cornerRadius = 8
+        directionConteinerView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         startCircleView.layer.cornerRadius = startCircleView.frame.height / 2
         finalyStaitionCircleView.layer.cornerRadius = finalyStaitionCircleView.frame.height / 2
         
-        dayOfWeekLabel?.textColor = .gray
-        
+        dayOfWeekLabel.textColor = .gray
+        dayOfWeekLabel.font = .systemFont(ofSize: 19, weight: .semibold)
+        reservedLabel.font = .systemFont(ofSize: 19, weight: .semibold)
+        reservedInDataLabel.font = .systemFont(ofSize: 19, weight: .semibold)
         dateTripLabel.textColor = .systemBlue
-        dateTripLabel.font = .systemFont(ofSize: 24, weight: .semibold)
-        
+        dateTripLabel.font = .systemFont(ofSize: 22, weight: .semibold)
         timeTripLabel.textColor = .black
         startCityLabel.textColor = .black
         startCityLabel.font = .systemFont(ofSize: 17, weight: .semibold)
@@ -103,7 +108,6 @@ class ComplitionTableViewCell: UITableViewCell {
         finalyCityLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         startStaitionLabel.textColor = .gray
         finalyStaitionLabel.textColor = .gray
-        
         costTripLabel.textColor = .black
         countPassenger.textColor = .black
         
