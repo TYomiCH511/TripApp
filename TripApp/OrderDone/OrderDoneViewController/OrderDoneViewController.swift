@@ -28,15 +28,15 @@ class OrderDoneViewController: UIViewController {
     @IBOutlet weak var finishCityLabel: UILabel!
     @IBOutlet weak var finishStaitionLabel: UILabel!
     
-    @IBOutlet weak var coustTrip: UILabel!
-    @IBOutlet weak var countPassagerTrip: UILabel!
+    @IBOutlet weak var costTripLabel: UILabel!
+    @IBOutlet weak var countPassagerTripLabel: UILabel!
     
     @IBOutlet weak var informationOfReservedLabel: UILabel!
     
     @IBOutlet weak var orderBackButton: UIButton!
     
     // MARK: - Properties
-    
+    var viewModel: OrderDoneViewModelProtocol!
     
     // MARK: - Life cycle view controller
     override func viewDidLoad() {
@@ -54,9 +54,23 @@ class OrderDoneViewController: UIViewController {
     
     // MARK: - Custom functions
     private func setupUI() {
+        navigationItem.title = "Бронирование"
         view.backgroundColor = mainBackgroundColor
         orderInfoConteinerView.backgroundColor = #colorLiteral(red: 0.2143622637, green: 0.2143622637, blue: 0.2143622637, alpha: 1)
         orderInfoConteinerView.addShadowOnView()
+        
+        if let dateTrip = viewModel.trip.date {
+            dayOfWeekLabel.text = CustomDate.shared.showDay(from: dateTrip)
+            dateTripLabel.text = CustomDate.shared.showDate(from: dateTrip)
+            timeTripLabel.text = CustomDate.shared.showTime(from: dateTrip)
+        }
+        startCityLabel.text = viewModel.trip.startCity
+        startStaitionLabel.text = viewModel.trip.startStaition
+        finishCityLabel.text = viewModel.trip.finishCity
+        finishStaitionLabel.text = viewModel.trip.finishStaition
+        countPassagerTripLabel.text = viewModel.trip.countPasseger?.description
+        costTripLabel.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
+        
         
         orderInfoConteinerView.layer.cornerRadius = cornerRadiusButton
         startInfoConteinerView.backgroundColor = .clear
@@ -65,7 +79,13 @@ class OrderDoneViewController: UIViewController {
         doneOrderImageView.backgroundColor = .clear
         doneOrderImageView.tintColor = .white
         doneOrderImageView.image = UIImage(systemName: "checkmark.circle.fill")
-        doneOrderLabel.text = "Ваши билеты заказаны!"
+    
+        if viewModel.trip.countPasseger == 1 {
+            doneOrderLabel.text = "Ваш билет заказан!"
+        } else {
+            doneOrderLabel.text = "Ваши билеты заказаны!"
+        }
+        
         doneOrderLabel.textColor = .white
         doneOrderLabel.font = .systemFont(ofSize: 20, weight: .medium)
         
@@ -74,7 +94,7 @@ class OrderDoneViewController: UIViewController {
         
         informationOfReservedLabel.text = "За сутки до выезда (до 15.00) обязательно подтвердите бронь в разделе История. За час до времени выезда на ваш номер, указанные при регистрации, придет СМС оповещение с данными автобуса."
         informationOfReservedLabel.numberOfLines = 5
-        orderBackButton.orangeButton(with: "Заказать обратно", isEnable: true)
+        orderBackButton.mainActionButton(with: "Заказать обратно", isEnable: true)
     }
 
 

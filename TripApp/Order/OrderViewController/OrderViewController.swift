@@ -25,7 +25,7 @@ class OrderViewController: UIViewController {
     @IBAction func minskDirectionButtonPressed(_ sender: UIButton) {
         guard let selectDirectionVC = storyboard?.instantiateViewController(withIdentifier: "nav") as? UINavigationController else { return }
         guard let startVC = selectDirectionVC.viewControllers.first as? SelectDirectViewController else { return }
-        startVC.viewModel = SelectDirectViewModel(trip: nil, isEdit: false)
+        startVC.viewModel = SelectDirectViewModel(trip: nil, typeSelectDirection: .new)
         selectDirectionVC.modalPresentationStyle = .currentContext
         navigationController?.pushViewController(startVC, animated: true)
     }
