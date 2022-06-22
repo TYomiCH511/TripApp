@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6188B7FCAE322A5621ABE10B /* Pods_TripApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900A7D911CCE158AC1C71EC8 /* Pods_TripApp.framework */; };
 		AC394564285707B400B4B8D7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC394563285707B400B4B8D7 /* Constant.swift */; };
 		AC39456628571DB200B4B8D7 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC39456528571DB200B4B8D7 /* Binding.swift */; };
 		AC44BD1F2850B49B004A8C2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44BD1E2850B49B004A8C2A /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E392851FA9E00B9C878 /* SettingViewModel.swift */; };
 		AC607E3C2851FAE900B9C878 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3B2851FAE900B9C878 /* AccountViewController.swift */; };
 		AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3F2852081B00B9C878 /* TabBarViewController.swift */; };
+		AC80611A2862F4F1007DBD94 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC8061192862F4F1007DBD94 /* GoogleService-Info.plist */; };
 		AC877B3A285C564E005B3BF1 /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B39285C564E005B3BF1 /* UITextField+extension.swift */; };
 		AC877B3E285C6DB5005B3BF1 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B3D285C6DB5005B3BF1 /* AboutUsViewController.swift */; };
 		AC877B45285C92ED005B3BF1 /* ReservedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B43285C92ED005B3BF1 /* ReservedTableViewCell.swift */; };
@@ -68,6 +70,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		362BC6D1AD0618A41A2A26AF /* Pods-TripApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripApp.debug.xcconfig"; path = "Target Support Files/Pods-TripApp/Pods-TripApp.debug.xcconfig"; sourceTree = "<group>"; };
+		900A7D911CCE158AC1C71EC8 /* Pods_TripApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC394563285707B400B4B8D7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		AC39456528571DB200B4B8D7 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		AC44BD1B2850B49B004A8C2A /* TripApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +114,7 @@
 		AC607E392851FA9E00B9C878 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		AC607E3B2851FAE900B9C878 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		AC607E3F2852081B00B9C878 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		AC8061192862F4F1007DBD94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC877B39285C564E005B3BF1 /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
 		AC877B3D285C6DB5005B3BF1 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		AC877B43285C92ED005B3BF1 /* ReservedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservedTableViewCell.swift; sourceTree = "<group>"; };
@@ -128,6 +133,7 @@
 		ACEC11C22859E94F005641AC /* TimeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeCollectionViewCell.xib; sourceTree = "<group>"; };
 		ACEC11C52859E9A7005641AC /* TimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewModel.swift; sourceTree = "<group>"; };
 		ACEC11C82859EB72005641AC /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		CEDFF8FC838A076E4CC290C4 /* Pods-TripApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripApp.release.xcconfig"; path = "Target Support Files/Pods-TripApp/Pods-TripApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,17 +141,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6188B7FCAE322A5621ABE10B /* Pods_TripApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5EFE31C5C61FE01DB26F01B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				362BC6D1AD0618A41A2A26AF /* Pods-TripApp.debug.xcconfig */,
+				CEDFF8FC838A076E4CC290C4 /* Pods-TripApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		AC44BD122850B49B004A8C2A = {
 			isa = PBXGroup;
 			children = (
 				AC44BD1D2850B49B004A8C2A /* TripApp */,
 				AC44BD1C2850B49B004A8C2A /* Products */,
+				5EFE31C5C61FE01DB26F01B5 /* Pods */,
+				CEACE34C37E61EFF7E286B5F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,6 +200,7 @@
 				AC44BD242850B49B004A8C2A /* Main.storyboard */,
 				AC44BD332850B4E6004A8C2A /* Resource */,
 				AC44BD2C2850B49E004A8C2A /* Info.plist */,
+				AC8061192862F4F1007DBD94 /* GoogleService-Info.plist */,
 			);
 			path = TripApp;
 			sourceTree = "<group>";
@@ -703,6 +723,14 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		CEACE34C37E61EFF7E286B5F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				900A7D911CCE158AC1C71EC8 /* Pods_TripApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -710,9 +738,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC44BD2F2850B49E004A8C2A /* Build configuration list for PBXNativeTarget "TripApp" */;
 			buildPhases = (
+				909B76EE0A7C6734F051E234 /* [CP] Check Pods Manifest.lock */,
 				AC44BD172850B49B004A8C2A /* Sources */,
 				AC44BD182850B49B004A8C2A /* Frameworks */,
 				AC44BD192850B49B004A8C2A /* Resources */,
+				649F0EA25B1306A9745189C5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -768,12 +798,55 @@
 				AC44BD262850B49B004A8C2A /* Main.storyboard in Resources */,
 				AC877B4E285C9324005B3BF1 /* CancelTableViewCell.xib in Resources */,
 				AC877B4A285C9313005B3BF1 /* ComplitionTableViewCell.xib in Resources */,
+				AC80611A2862F4F1007DBD94 /* GoogleService-Info.plist in Resources */,
 				AC877B46285C92ED005B3BF1 /* ReservedTableViewCell.xib in Resources */,
 				AC50420428587C7500B52B59 /* DataTripTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		649F0EA25B1306A9745189C5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TripApp/Pods-TripApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TripApp/Pods-TripApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TripApp/Pods-TripApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		909B76EE0A7C6734F051E234 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TripApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AC44BD172850B49B004A8C2A /* Sources */ = {
@@ -970,6 +1043,7 @@
 		};
 		AC44BD302850B49E004A8C2A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 362BC6D1AD0618A41A2A26AF /* Pods-TripApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1000,6 +1074,7 @@
 		};
 		AC44BD312850B49E004A8C2A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEDFF8FC838A076E4CC290C4 /* Pods-TripApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
