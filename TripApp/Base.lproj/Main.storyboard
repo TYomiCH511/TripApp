@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="TripApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" id="BYZ-38-t0r" customClass="LoginViewController" customModule="TripApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,6 +163,7 @@
                             <constraint firstItem="ofm-qj-v5D" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="zBr-Ie-ukf"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="HIQ-D1-Ntm"/>
                     <connections>
                         <outlet property="autoLoginLabel" destination="Idv-GF-wpS" id="FYx-dY-5v6"/>
                         <outlet property="autoLoginSwitch" destination="pvG-2L-0X6" id="f3O-Z5-xL3"/>
@@ -178,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2973.8461538461538" y="103.7914691943128"/>
+            <point key="canvasLocation" x="3903.0769230769229" y="103.7914691943128"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="wHs-KA-495">
@@ -337,7 +338,59 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2m-8a-IyV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2973.8461538461538" y="787.67772511848341"/>
+            <point key="canvasLocation" x="3905" y="788"/>
+        </scene>
+        <!--Verify Sms Code View Controller-->
+        <scene sceneID="wIZ-zz-HZW">
+            <objects>
+                <viewController storyboardIdentifier="sms" id="GVG-fY-nlz" customClass="VerifySmsCodeViewController" customModule="TripApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zDH-KJ-n2V">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20E-fh-acE">
+                                <rect key="frame" x="20" y="114" width="350" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IXz-px-g7j">
+                                <rect key="frame" x="50" y="175" width="290" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVa-C5-aFK">
+                                <rect key="frame" x="100" y="309" width="190" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="vefirySmsCodePressed:" destination="GVG-fY-nlz" eventType="touchUpInside" id="MCT-w8-VeN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pSe-ll-D6i"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="IXz-px-g7j" firstAttribute="leading" secondItem="pSe-ll-D6i" secondAttribute="leading" constant="50" id="ABP-Hl-2K2"/>
+                            <constraint firstItem="pSe-ll-D6i" firstAttribute="trailing" secondItem="20E-fh-acE" secondAttribute="trailing" constant="20" id="Myd-pM-s37"/>
+                            <constraint firstItem="20E-fh-acE" firstAttribute="top" secondItem="pSe-ll-D6i" secondAttribute="top" constant="70" id="WI0-wL-Poz"/>
+                            <constraint firstItem="20E-fh-acE" firstAttribute="leading" secondItem="pSe-ll-D6i" secondAttribute="leading" constant="20" id="e90-RL-wv4"/>
+                            <constraint firstItem="AVa-C5-aFK" firstAttribute="top" secondItem="IXz-px-g7j" secondAttribute="bottom" constant="100" id="iKf-py-ZSI"/>
+                            <constraint firstItem="pSe-ll-D6i" firstAttribute="trailing" secondItem="IXz-px-g7j" secondAttribute="trailing" constant="50" id="oP4-UG-Aiy"/>
+                            <constraint firstItem="AVa-C5-aFK" firstAttribute="leading" secondItem="pSe-ll-D6i" secondAttribute="leading" constant="100" id="r9F-gQ-M5y"/>
+                            <constraint firstItem="pSe-ll-D6i" firstAttribute="trailing" secondItem="AVa-C5-aFK" secondAttribute="trailing" constant="100" id="tjn-Oz-vHa"/>
+                            <constraint firstItem="IXz-px-g7j" firstAttribute="top" secondItem="20E-fh-acE" secondAttribute="bottom" constant="40" id="wEJ-qL-6Yr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="infoLabel" destination="20E-fh-acE" id="IBV-4Q-LRr"/>
+                        <outlet property="smsCodeTextField" destination="IXz-px-g7j" id="iud-WK-6fQ"/>
+                        <outlet property="verifySmsCodeButton" destination="AVa-C5-aFK" id="DMB-0A-T0A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R7d-1w-chS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3002" y="800"/>
         </scene>
         <!--Order View Controller-->
         <scene sceneID="DD5-kW-XbW">
@@ -424,7 +477,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZHW-sX-G9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4148" y="98"/>
+            <point key="canvasLocation" x="5076.9230769230771" y="97.393364928909946"/>
         </scene>
         <!--История заказов-->
         <scene sceneID="Ntm-VZ-UrC">
@@ -465,7 +518,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQf-LV-Io8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5805.7971014492759" y="130.58035714285714"/>
+            <point key="canvasLocation" x="6733.8461538461534" y="130.09478672985782"/>
         </scene>
         <!--Select Direct View Controller-->
         <scene sceneID="nC6-rG-ALs">
@@ -638,7 +691,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C2J-eo-IVL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7301.538461538461" y="113.74407582938387"/>
+            <point key="canvasLocation" x="8230.7692307692305" y="113.74407582938387"/>
         </scene>
         <!--Select City View Controller-->
         <scene sceneID="HM4-K0-Bpj">
@@ -1265,7 +1318,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sca-96-AvN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9936.9230769230762" y="144.31279620853081"/>
+            <point key="canvasLocation" x="10866.153846153846" y="144.31279620853081"/>
         </scene>
         <!--About us-->
         <scene sceneID="xlT-V9-JUx">
@@ -1482,7 +1535,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8nA-EE-Wgu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4895.652173913044" y="130.58035714285714"/>
+            <point key="canvasLocation" x="5824.6153846153848" y="130.09478672985782"/>
         </scene>
     </scenes>
     <resources>
