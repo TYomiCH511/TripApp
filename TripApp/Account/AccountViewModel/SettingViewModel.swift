@@ -10,7 +10,7 @@ import Foundation
 protocol AccountViewModelProtocol {
     
     var user: User? { get }
-    func logout()
+    func logout(complition: @escaping (Bool) -> ())
     func saveChanges(name: String, surname: String, email: String?)
     func changePassword(current: String, new: String, confirm: String) -> Bool
     
@@ -22,8 +22,11 @@ class SettingViewModel: AccountViewModelProtocol {
     var user: User? = UserStore.shared.getUser()
     
     
-    func logout() {
-        UserStore.shared.deleteUser()
+    func logout(complition: @escaping (Bool) -> ()) {
+        //UserStore.shared.deleteUser()
+        AuthManager.shared.singout { success in
+            complition(success)
+        }
     }
     
     func saveChanges(name: String, surname: String, email: String?) {

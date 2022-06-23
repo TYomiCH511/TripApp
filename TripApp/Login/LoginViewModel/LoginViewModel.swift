@@ -13,7 +13,7 @@ protocol LoginViewModelProcol: AnyObject {
     
     var autoLogin: Bool { get }
     var delegate: AlertLoginProtocol? { get set }
-    //func login(with phoneNumber: String, password: String) -> Bool
+    func login(with phoneNumber: String, password: String, complition: @escaping (Bool) -> ())
     func fetchUser(phoneNumber: String, password: String, complition: @escaping (User) -> ())
     func saveUser()
 }
@@ -36,13 +36,16 @@ class LoginViewModel: LoginViewModelProcol {
         autoLogin.toggle()
     }
     
-    func login(with phoneNumber: String, password: String) -> Bool {
-        if phoneNumber == user?.phoneNumber && password == user?.password {
-            return true
-        } else {
-            print("11111")
+    func login(with phoneNumber: String, password: String, complition: @escaping (Bool) -> ()) {
+        let email = "+375\(phoneNumber)@gmail.com"
+        AuthManager.shared.singin(withEmail: email, password: password) { success in
+            guard success else {
+                complition(false)
+                return
+            }
+            complition(true)
         }
-        return false
+        complition(false)
     }
     
     func fetchUser(phoneNumber: String, password: String, complition: @escaping (User) -> ()) {
@@ -54,11 +57,7 @@ class LoginViewModel: LoginViewModelProcol {
             return
         }
         self.user = user
-        if login(with: phoneNumber, password: password) {
-            complition(user)
-        } else {
-            print("Password nor correct")
-        }
+        
        
     }
     

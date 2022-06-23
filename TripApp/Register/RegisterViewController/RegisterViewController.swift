@@ -41,19 +41,26 @@ class RegisterViewController: UIViewController {
     // MARK: - IBAction
     @IBAction func registerButtonPressed(_ sender: UIButton) {
         if passwordTextField.text == confirmPasswordTextField.text {
-            guard let surname = surnameTextField.text,
-                  let name = nameTextField.text,
+            guard //let surname = surnameTextField.text,
+                  //let name = nameTextField.text,
                   let phoneNumber = phoneNumberTextField.text,
                   let password = passwordTextField.text else { return }
-                  
-            viewModel.registerUser(with: surname,
-                                   name: name,
-                                   phoneNumber: phoneNumber,
-                                   password: password)
-            dismiss(animated: true)
+            
+        guard let numberString = phoneNumberTextField.text else { return }
+        let number = "+375\(numberString)"
+        AuthManager.shared.startAuth(phoneNumber: number) { [weak self] success in
+            
+            guard success else { return }
+            guard let verifySmsVC = self?.storyboard?.instantiateViewController(withIdentifier: "sms") as? VerifySmsCodeViewController else { return }
+            verifySmsVC.modalPresentationStyle = .fullScreen
+            verifySmsVC.phoneNumber = phoneNumber
+            verifySmsVC.password = password
+            self?.present(verifySmsVC, animated: true)
+        }
+        
+        
         }
     }
-    
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true)

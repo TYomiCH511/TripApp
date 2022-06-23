@@ -53,8 +53,16 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
-        viewModel.logout()
-        dismiss(animated: true)
+        
+        viewModel.logout { [weak self] success in
+            guard success else { return }
+            self?.onMain {
+                guard let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: "login") as? LoginViewController else { return }
+                loginVC.modalPresentationStyle = .fullScreen
+                self?.present(loginVC, animated: true)
+            }
+        }
+        
     }
     
     

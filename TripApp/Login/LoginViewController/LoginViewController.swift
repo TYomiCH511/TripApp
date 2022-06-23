@@ -47,12 +47,12 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if UserStore.shared.getUser() != nil {
-            print("go to order VC")
-            guard let tabBar = storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else { return }
-            tabBar.modalPresentationStyle = .fullScreen
-            present(tabBar, animated: false)
-        }
+//        if UserStore.shared.getUser() != nil {
+//            print("go to order VC")
+//            guard let tabBar = storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else { return }
+//            tabBar.modalPresentationStyle = .fullScreen
+//            present(tabBar, animated: false)
+//        }
     }
     
     // MARK: - IBActions
@@ -76,6 +76,7 @@ class LoginViewController: UIViewController {
         guard let registerVC = storyboard?.instantiateViewController(withIdentifier: "register") as? RegisterViewController else { return }
         registerVC.modalPresentationStyle = .fullScreen
         present(registerVC, animated: true)
+        
     }
     
     // MARK: - Custom function
@@ -130,21 +131,20 @@ class LoginViewController: UIViewController {
     private func login() {
         guard let phoneNumber = logintTextField.text,
               let password = passwordTextField.text else { return }
-        viewModel.fetchUser(phoneNumber: phoneNumber, password: password) {  user in
-            self.onMain {
-                self.resetLoginButton()
-                self.clearTextField()
+        
+        viewModel.login(with: phoneNumber, password: password) { [weak self] success in
+            guard success else { return }
+            
+            guard let tabBar = self?.storyboard?.instantiateViewController(withIdentifier: "tabBar") as? TabBarViewController else { return }
+            tabBar.modalPresentationStyle = .fullScreen
+            self?.present(tabBar, animated: true) {
                 
-                guard let orderViewComtroller = self.storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else { return }
-                orderViewComtroller.modalPresentationStyle = .fullScreen
-                self.present(orderViewComtroller, animated: true) {
-                    
-                    if self.autoLoginSwitch.isOn {
-                        self.viewModel.saveUser()
-                    }
+                if !(self?.autoLoginSwitch.isOn)! {
+                    AuthManager.shared.singout {_ in }
                 }
                 
             }
+                
         }
     }
     
@@ -190,7 +190,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == logintTextField && textField.text?.count ?? 0 < 6  {
+        if textField == logintTextField && textField.text?.count ?? 0 < 2  {
             textField.text = ""
         }
     }
