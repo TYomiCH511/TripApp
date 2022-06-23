@@ -9,10 +9,11 @@ import UIKit
 import FirebaseCore
 
 
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -31,6 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
 
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        if isChangePassword {
+            AuthManager.shared.singout()
+        }
+    }
 
 }
 

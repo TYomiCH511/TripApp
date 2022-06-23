@@ -13,9 +13,8 @@ protocol LoginViewModelProcol: AnyObject {
     
     var autoLogin: Bool { get }
     var delegate: AlertLoginProtocol? { get set }
-    func login(with phoneNumber: String, password: String, complition: @escaping (Bool) -> ())
-    func fetchUser(phoneNumber: String, password: String, complition: @escaping (User) -> ())
-    func saveUser()
+    func login(with phoneNumber: String, password: String, complition: @escaping () -> ())
+    func resetPassword(withPhone phoneNumber: String, complition: @escaping () -> ())
 }
 
 protocol AlertLoginProtocol: AnyObject {
@@ -36,35 +35,28 @@ class LoginViewModel: LoginViewModelProcol {
         autoLogin.toggle()
     }
     
-    func login(with phoneNumber: String, password: String, complition: @escaping (Bool) -> ()) {
-        let email = "+375\(phoneNumber)@gmail.com"
+    func login(with phoneNumber: String, password: String, complition: @escaping () -> ()) {
+        //For text
+        let email = "+1650555\(phoneNumber)@gmail.com"
+        // For real phone
+        //let email = "+375\(phoneNumber)@gmail.com"
         AuthManager.shared.singin(withEmail: email, password: password) { success in
-            guard success else {
-                complition(false)
-                return
-            }
-            complition(true)
+            guard success else { return }
+            complition()
         }
-        complition(false)
+        
     }
     
-    func fetchUser(phoneNumber: String, password: String, complition: @escaping (User) -> ()) {
-        
-        guard let users = UserStore.shared.getUsers() else { return }
-        
-        guard let user = StorageManeger.shared.getUser(in: users, phoneNumber: phoneNumber) else {
-            delegate?.showAlertLoginWrong()
-            return
+    
+    func resetPassword(withPhone phoneNumber: String, complition: @escaping () -> ()) {
+        // for text
+        let phone = "+1650555\(phoneNumber)"
+        //for real Phone
+        //let phone = "+375\(phoneNumber)"
+        AuthManager.shared.startAuth(phoneNumber: phone) { success in
+            guard success else { return }
+            complition()
         }
-        self.user = user
-        
-       
     }
-    
-    func saveUser() {
-        guard let user = user else { return }
-        UserStore.shared.save(user: user)
-    }
-    
     
 }

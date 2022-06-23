@@ -25,6 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
         } else {
             
+            //guard let loginVC = storyBoard.instantiateViewController(withIdentifier: "sms") as? VerifySmsCodeViewController else { return }
+            
             guard let loginVC = storyBoard.instantiateViewController(withIdentifier: "login") as? LoginViewController else { return }
             window.rootViewController = loginVC
         }
@@ -52,6 +54,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
         
     }
+    
+
 
 
 }

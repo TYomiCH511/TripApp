@@ -12,10 +12,13 @@ class LoginViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var mainScrollView: UIScrollView!
     
+    @IBOutlet weak var resetPasswordInfoLabel: UILabel!
     @IBOutlet weak var mainConteiner: UIView!
     @IBOutlet weak var phoneCallButton: UIButton!
-    @IBOutlet weak var logintTextField: UITextField!
+    @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var autoLoginConteinerView: UIView!
     @IBOutlet weak var autoLoginSwitch: UISwitch!
     @IBOutlet weak var autoLoginLabel: UILabel!
     @IBOutlet weak var forgotPasswordButton: UIButton!
@@ -33,7 +36,25 @@ class LoginViewController: UIViewController {
     
     private let radius = 8
     private let orderVcId = "OrderViewController"
-    
+    private var isForgotPassword: Bool = false {
+        willSet (newValue){
+            if newValue {
+                passwordTextField.isHidden = true
+                resetPasswordInfoLabel.isHidden = false
+                loginButton.setTitle("Восстановить", for: .normal)
+                registerButton.isHidden = true
+                autoLoginConteinerView.isHidden = true
+                forgotPasswordButton.setTitle("Ввести пароль", for: .normal)
+            } else {
+                passwordTextField.isHidden = false
+                resetPasswordInfoLabel.isHidden = true
+                loginButton.setTitle("Войти", for: .normal)
+                registerButton.isHidden = false
+                autoLoginConteinerView.isHidden = false
+                forgotPasswordButton.setTitle("Забыли пароль?", for: .normal)
+            }
+        }
+    }
     
     // MARK: - Life cyle ViewController
     override func viewDidLoad() {
@@ -47,12 +68,12 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        if UserStore.shared.getUser() != nil {
-//            print("go to order VC")
-//            guard let tabBar = storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else { return }
-//            tabBar.modalPresentationStyle = .fullScreen
-//            present(tabBar, animated: false)
-//        }
+        //        if UserStore.shared.getUser() != nil {
+        //            print("go to order VC")
+        //            guard let tabBar = storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else { return }
+        //            tabBar.modalPresentationStyle = .fullScreen
+        //            present(tabBar, animated: false)
+        //        }
     }
     
     // MARK: - IBActions
@@ -61,7 +82,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        login()
+        if isForgotPassword {
+            resetPassword()
+        } else {
+            login()
+        }
+        
     }
     
     @IBAction func callSupportPressed(_ sender: UIButton) {
@@ -69,7 +95,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func fogotPasswordButtonPressed(_ sender: UIButton) {
-        print("Fogot button pressed")
+        isForgotPassword.toggle()
     }
     
     @IBAction func registerButtonPressed(_ sender: UIButton) {
@@ -82,6 +108,10 @@ class LoginViewController: UIViewController {
     // MARK: - Custom function
     private func setupUI() {
         resetLoginButton()
+        resetPasswordInfoLabel.text = "Для восстановления пароля введите номер телефона и нажмите Восстановить, после этого вам придет смс с подтверждением восстановления"
+        resetPasswordInfoLabel.textColor = .white
+        resetPasswordInfoLabel.numberOfLines = 0
+        resetPasswordInfoLabel.isHidden = true
         loginButton.grayButton(with: "Войти", isEnable: false)
         mainConteiner.backgroundColor = .clear
         autoLoginSwitch.onTintColor = mainColor
@@ -102,19 +132,19 @@ class LoginViewController: UIViewController {
     
     
     private func setupTextField() {
-        logintTextField.customConfigure(with: "+375.. номер телефона", returnKey: .next)
+        loginTextField.customConfigure(with: "+375.. номер телефона", returnKey: .next)
         passwordTextField.customConfigure(with: "Пароль", returnKey: .done)
-        logintTextField.keyboardType = .phonePad
-        logintTextField.delegate = self
+        loginTextField.keyboardType = .phonePad
+        loginTextField.delegate = self
         passwordTextField.delegate = self
-        logintTextField.addTarget(self, action: #selector(dataOfUserNotEmpty), for: .editingChanged)
+        loginTextField.addTarget(self, action: #selector(dataOfUserNotEmpty), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(dataOfUserNotEmpty), for: .editingChanged)
     }
     
     private func clearTextField() {
-        logintTextField.text = ""
+        loginTextField.text = ""
         passwordTextField.text = ""
-        logintTextField.resignFirstResponder()
+        loginTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
     
@@ -129,22 +159,28 @@ class LoginViewController: UIViewController {
     }
     
     private func login() {
-        guard let phoneNumber = logintTextField.text,
+        guard let phoneNumber = loginTextField.text,
               let password = passwordTextField.text else { return }
         
-        viewModel.login(with: phoneNumber, password: password) { [weak self] success in
-            guard success else { return }
-            
+        viewModel.login(with: phoneNumber, password: password) { [weak self] in
+           
             guard let tabBar = self?.storyboard?.instantiateViewController(withIdentifier: "tabBar") as? TabBarViewController else { return }
             tabBar.modalPresentationStyle = .fullScreen
             self?.present(tabBar, animated: true) {
-                
                 if !(self?.autoLoginSwitch.isOn)! {
-                    AuthManager.shared.singout {_ in }
+                    AuthManager.shared.singout()
                 }
-                
             }
-                
+        }
+    }
+    
+    private func resetPassword() {
+        guard let phone = loginTextField.text else { return }
+        viewModel.resetPassword(withPhone: phone) { [weak self] in
+            guard let smsVerifyVC = self?.storyboard?.instantiateViewController(withIdentifier: "sms") as? VerifySmsCodeViewController else { return }
+            smsVerifyVC.modalPresentationStyle = .fullScreen
+            smsVerifyVC.isResetPassword = true
+            self?.present(smsVerifyVC, animated: true)
         }
     }
     
@@ -155,7 +191,7 @@ class LoginViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.mainScrollView.contentOffset = CGPoint(x: 0, y: difference)
         }
-
+        
     }
     
     @objc private func kbWillHide() {
@@ -168,14 +204,24 @@ class LoginViewController: UIViewController {
     
     @objc private func dataOfUserNotEmpty(textField: UITextField) {
         
-        if !logintTextField.text!.isEmpty && !passwordTextField.text!.isEmpty {
-            loginButton.mainActionButton(with: "Войти", isEnable: true)
-            loginButton.isEnabled = true
+        if isForgotPassword {
+            if !loginTextField.text!.isEmpty {
+                loginButton.mainActionButton(with: "Войти", isEnable: true)
+                loginButton.isEnabled = true
+            } else {
+                resetLoginButton()
+            }
         } else {
-            resetLoginButton()
+            if !loginTextField.text!.isEmpty && !passwordTextField.text!.isEmpty {
+                loginButton.mainActionButton(with: "Войти", isEnable: true)
+                loginButton.isEnabled = true
+            } else {
+                resetLoginButton()
+            }
         }
         
-       
+        
+        
     }
     
 }
@@ -184,13 +230,13 @@ class LoginViewController: UIViewController {
 extension LoginViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == logintTextField && textField.text == "" {
+        if textField == loginTextField && textField.text == "" {
             textField.text = ""
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == logintTextField && textField.text?.count ?? 0 < 2  {
+        if textField == loginTextField && textField.text?.count ?? 0 < 2  {
             textField.text = ""
         }
     }
@@ -198,7 +244,7 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         switch textField {
-        case logintTextField:
+        case loginTextField:
             passwordTextField.becomeFirstResponder()
         case passwordTextField:
             login()
@@ -223,5 +269,5 @@ extension LoginViewController: AlertLoginProtocol {
 
 extension LoginViewController: UIScrollViewDelegate {
     
-
+    
 }
