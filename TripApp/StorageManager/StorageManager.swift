@@ -132,7 +132,7 @@ class UserStore {
             
             guard let user = try? JSONEncoder().encode(users) else { return }
                 defaults.set(user, forKey: usersKey)
-            print("Save current user")
+            print("Save first start current users")
             
             return
             

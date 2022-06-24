@@ -19,12 +19,12 @@ extension UIButton {
         
     }
     
-    func mainActionButton(with title: String, isEnable: Bool) {
-        backgroundColor = mainColor
+    func mainActionButton(with title: String, isEnable: Bool, color: UIColor = mainColor, fontColor: UIColor = .white, sizeFont: CGFloat = 22) {
+        backgroundColor = color
         setTitle(title, for: .normal)
         layer.cornerRadius = cornerRadiusButton
-        titleLabel?.font = .systemFont(ofSize: 22, weight: .semibold)
-        tintColor = .white
+        titleLabel?.font = .systemFont(ofSize: sizeFont, weight: .semibold)
+        tintColor = fontColor
         self.addShadow()
         isEnabled = isEnable
     }

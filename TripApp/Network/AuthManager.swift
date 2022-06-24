@@ -78,12 +78,11 @@ class AuthManager {
     
     
     public func singin(withEmail email: String, password: String, complition: @escaping (Bool) -> ()) {
-        auth.signIn(withEmail: email, password: password) { result, error in
-            guard let result = result, error == nil else {
+        auth.signIn(withEmail: email, password: password) { _, error in
+            guard error == nil else {
                 complition(false)
                 return
             }
-            
             complition(true)
         }
     }
@@ -108,6 +107,25 @@ class AuthManager {
             self.singout()
             complition(true)
         })
+    }
+    
+    public func checkUserInDataBase(withEmail: String, phoneNumber: String, complition: @escaping (Bool) -> ()) {
+        
+        auth.signIn(withEmail: withEmail, password: "password") { _, error in
+            
+            guard error != nil else { return }
+            
+            print("11111111111111")
+            if error.debugDescription.contains("17011") {                
+                self.startAuth(phoneNumber: phoneNumber) { success in
+                    complition(true)
+                }
+            } else {
+                complition(false)
+                print("user is alredy in data base")
+            }
+            
+        }
     }
     
     public func singout(complition: (() -> ())? = nil) {

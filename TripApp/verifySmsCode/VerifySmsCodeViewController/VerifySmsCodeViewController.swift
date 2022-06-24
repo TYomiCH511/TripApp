@@ -20,7 +20,7 @@ class VerifySmsCodeViewController: UIViewController {
     
     var phoneNumber: String?
     var password: String?
-    var isResetPassword: Bool = true
+    var isResetPassword: Bool = false
     // MARK: - Properties
     
     
@@ -40,9 +40,7 @@ class VerifySmsCodeViewController: UIViewController {
             guard let code = smsCodeTextField.text else { return }
             AuthManager.shared.verifyCode(smsCode: code, phoneNumber: nil, password: nil, typeSingin: .resetPassword) { [weak self] success in
                 guard success else { return }
-                guard let tabBarVC = self?.storyboard?.instantiateViewController(withIdentifier: "tabBar") as? TabBarViewController else { return }
-                tabBarVC.modalPresentationStyle = .fullScreen
-                //self?.present(tabBarVC, animated: true)
+                
                 print("user sing in with code")
             }
             
@@ -50,7 +48,8 @@ class VerifySmsCodeViewController: UIViewController {
             guard let code = smsCodeTextField.text else { return }
             AuthManager.shared.verifyCode(smsCode: code, phoneNumber: phoneNumber, password: password, typeSingin: .newSignin) { [weak self] success in
                 guard success else { return }
-                guard let tabBarVC = self?.storyboard?.instantiateViewController(withIdentifier: "tabBar") as? TabBarViewController else { return }
+                let tabBarController = ViewControllers.TabBarViewController.rawValue
+                guard let tabBarVC = self?.storyboard?.instantiateViewController(withIdentifier: tabBarController) as? TabBarViewController else { return }
                 tabBarVC.modalPresentationStyle = .fullScreen
                 self?.present(tabBarVC, animated: true)
             }

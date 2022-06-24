@@ -127,7 +127,11 @@ class NotReservedTableViewCell: UITableViewCell {
         dateTripLabel.textColor = .systemBlue
         dateTripLabel.font = .systemFont(ofSize: 22, weight: .semibold)
         
-        reservTripButton.mainActionButton(with: "Забронировать", isEnable: true)
+        reservTripButton.mainActionButton(with: "Забронировать",
+                                          isEnable: true,
+                                          color: .white,
+                                          fontColor: .darkGray,
+                                          sizeFont: 19)
         timeTripLabel.textColor = .black
         startCityLabel.textColor = .black
         startCityLabel.font = .systemFont(ofSize: 17, weight: .semibold)

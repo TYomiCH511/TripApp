@@ -67,4 +67,22 @@ class Alert {
         return alert
     }
     
+    func showAlertUserIsRegisterAlready(complition: @escaping () -> ()) -> UIAlertController {
+        let alert = UIAlertController(title: "Пользователь существует",
+                                      message: "Данный номер уже зарегестрирован в системе",
+                                      preferredStyle: .alert)
+        
+        let phoneNumber = UIAlertAction(title: "Ок",
+                                        style: .default)
+        { _ in
+            complition()
+        }
+        
+        
+        alert.addAction(phoneNumber)
+        
+        
+        return alert
+    }
+    
 }

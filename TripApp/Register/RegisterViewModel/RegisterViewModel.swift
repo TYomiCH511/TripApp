@@ -12,7 +12,8 @@ protocol RegisterViewModelProtocol {
     func registerUser(with surname: String,
                       name: String,
                       phoneNumber: String,
-                      password: String)
+                      password: String,
+                      complition: @escaping (Bool) -> ())
 }
 
 
@@ -22,15 +23,21 @@ class RegisterViewModel: RegisterViewModelProtocol {
     func registerUser(with surname: String,
                       name: String,
                       phoneNumber: String,
-                      password: String) {
+                      password: String,
+                      complition: @escaping (Bool) -> ()) {
         
-        let user = User(name: name,
-                        surname: surname,
-                        phoneNumber: phoneNumber,
-                        password: password,
-                        trips: []
-        )
-        
-        UserStore.shared.addNewUser(user)
+        //For test
+        let email = "+1650555\(phoneNumber)@gmail.com"
+        let phoneNumber = "+1650555\(phoneNumber)"
+        //For real phone
+        //let email = "+375\(phoneNumber)@gmail.com"
+        //let number = "+375\(numberString)"
+        AuthManager.shared.checkUserInDataBase(withEmail: email, phoneNumber: phoneNumber) { success in
+            guard success else {
+                complition(false)
+                return }
+            complition(true)
+            
+        }
     }
 }

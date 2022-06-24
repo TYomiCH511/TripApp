@@ -40,26 +40,38 @@ class RegisterViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func registerButtonPressed(_ sender: UIButton) {
+        
         if passwordTextField.text == confirmPasswordTextField.text {
-            guard //let surname = surnameTextField.text,
-                  //let name = nameTextField.text,
+            
+            guard let surname = surnameTextField.text,
+                  let name = nameTextField.text,
                   let phoneNumber = phoneNumberTextField.text,
                   let password = passwordTextField.text else { return }
             
-        guard let numberString = phoneNumberTextField.text else { return }
-        let number = "+375\(numberString)"
-        AuthManager.shared.startAuth(phoneNumber: number) { [weak self] success in
+            viewModel.registerUser(with: surname,
+                                   name: name,
+                                   phoneNumber: phoneNumber,
+                                   password: password) { [weak self] success in
+                guard success else {
+                    //User is register already
+                    let alertUserIsRegisterAlready = Alert.shared.showAlertUserIsRegisterAlready {
+                        self?.phoneNumberTextField.text = ""
+                    }
+                    
+                    self?.present(alertUserIsRegisterAlready, animated: true)
+                    return
+                }
+                //User not found dataBase
+                let smsController = ViewControllers.VerifySmsCodeViewController.rawValue
+                guard let verifySmsVC = self?.storyboard?.instantiateViewController(withIdentifier: smsController) as? VerifySmsCodeViewController else { return }
+                verifySmsVC.modalPresentationStyle = .fullScreen
+                verifySmsVC.phoneNumber = phoneNumber
+                verifySmsVC.password = password
+                self?.present(verifySmsVC, animated: true)
+            }
             
-            guard success else { return }
-            guard let verifySmsVC = self?.storyboard?.instantiateViewController(withIdentifier: "sms") as? VerifySmsCodeViewController else { return }
-            verifySmsVC.modalPresentationStyle = .fullScreen
-            verifySmsVC.phoneNumber = phoneNumber
-            verifySmsVC.password = password
-            self?.present(verifySmsVC, animated: true)
         }
-        
-        
-        }
+   
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -90,7 +102,7 @@ class RegisterViewController: UIViewController {
         let textFieldArray = [surnameTextField, nameTextField, phoneNumberTextField, passwordTextField, confirmPasswordTextField]
         
         textFieldArray.forEach { textField in
-           
+            
             textField?.delegate = self
             textField?.customConfigure(with: "11", returnKey: .next)
         }
@@ -106,7 +118,7 @@ class RegisterViewController: UIViewController {
     
     
     @objc private func resignFirsResponderTap() {
-            mainScrollView.endEditing(true)
+        mainScrollView.endEditing(true)
     }
     
     
@@ -114,6 +126,10 @@ class RegisterViewController: UIViewController {
         let userInfo = notification.userInfo
         let keyboardSize = (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let difference = conteinerTextFieldsView.frame.maxY - keyboardSize.origin.y
+        print(conteinerTextFieldsView.frame.maxY)
+        print(keyboardSize.origin.y)
+        print(difference)
+        print(keyboardSize.height)
         mainScrollView.contentOffset = CGPoint(x: 0, y: difference)
     }
     
@@ -133,7 +149,7 @@ extension RegisterViewController: UITextFieldDelegate {
         switch textField {
         case surnameTextField:
             nameTextField.becomeFirstResponder()
-        
+            
         case nameTextField:
             phoneNumberTextField.becomeFirstResponder()
         case phoneNumberTextField:
@@ -148,10 +164,10 @@ extension RegisterViewController: UITextFieldDelegate {
         return true
     }
     
-   
+    
 }
 
 extension RegisterViewController: UIScrollViewDelegate {
     
-
+    
 }
