@@ -45,7 +45,8 @@ extension SelectCityViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        guard let staitionVC = storyboard?.instantiateViewController(withIdentifier: "staitionVC") as? SelectStaitionViewController else { return }
+        let staitionController = ViewControllers.SelectStaitionViewController.rawValue
+        guard let staitionVC = storyboard?.instantiateViewController(withIdentifier: staitionController) as? SelectStaitionViewController else { return }
         staitionVC.delegate = delegate
         staitionVC.viewModel = SelectStaitionViewModel(staition: viewModel.cities[indexPath.row].staition)
         navigationController?.pushViewController(staitionVC, animated: true)

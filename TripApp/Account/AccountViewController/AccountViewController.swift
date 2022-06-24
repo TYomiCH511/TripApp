@@ -57,7 +57,8 @@ class AccountViewController: UIViewController {
         viewModel.logout { [weak self] in
 
             self?.onMain {
-                guard let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: "login") as? LoginViewController else { return }
+                let loginController = ViewControllers.LoginViewController.rawValue
+                guard let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: loginController) as? LoginViewController else { return }
                 loginVC.modalPresentationStyle = .fullScreen
                 self?.present(loginVC, animated: true)
             }

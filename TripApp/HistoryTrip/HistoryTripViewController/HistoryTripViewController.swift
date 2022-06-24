@@ -118,7 +118,8 @@ extension HistoryTripViewController: UITableViewDelegate, UITableViewDataSource 
 extension HistoryTripViewController: EditTripProtocol {
     func editTrip(trip: Trip, tag: Int) {
         
-        guard let editVC = storyboard?.instantiateViewController(withIdentifier: "selectDirection") as? SelectDirectViewController else { return }
+        let directionController = ViewControllers.SelectDirectViewController.rawValue
+        guard let editVC = storyboard?.instantiateViewController(withIdentifier: directionController) as? SelectDirectViewController else { return }
         editVC.viewModel = SelectDirectViewModel(trip: trip, typeSelectDirection: .edit)
         editVC.viewModel.editDelegate = self
         selectTrip = tag
@@ -146,7 +147,8 @@ extension HistoryTripViewController: LeaveReviewDriverProtocol {
     
     func leaveReview(viewModel: ReviewDriverViewModelProtocol) {
         
-        guard let reviewVC = storyboard?.instantiateViewController(withIdentifier: "review") as? ReviewDriverViewController else { return }
+        let reviewController = ViewControllers.ReviewDriverViewController.rawValue
+        guard let reviewVC = storyboard?.instantiateViewController(withIdentifier: reviewController) as? ReviewDriverViewController else { return }
             reviewVC.viewModel = viewModel
             navigationController?.pushViewController(reviewVC, animated: true)
             

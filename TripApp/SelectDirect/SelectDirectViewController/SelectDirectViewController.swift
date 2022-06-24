@@ -65,14 +65,16 @@ class SelectDirectViewController: UIViewController {
         
         switch viewModel.typeSelectDirection {
         case .new:
-            guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: "orderDone") as? OrderDoneViewController else { return }
+            let orderDoneController = ViewControllers.OrderDoneViewController.rawValue
+            guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: orderDoneController) as? OrderDoneViewController else { return }
             viewModel.addTrip()
             orderDoneVC.viewModel = viewModel.viewModelOrderDone()
             tabBarController?.viewControllers![1].tabBarItem.badgeColor = mainColor
             tabBarController?.viewControllers![1].tabBarItem.badgeValue = "1"
             navigationController?.pushViewController(orderDoneVC, animated: true)
         case .orderBack:
-            guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: "orderDone") as? OrderDoneViewController else { return }
+            let orderDoneController = ViewControllers.OrderDoneViewController.rawValue
+            guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: orderDoneController) as? OrderDoneViewController else { return }
             viewModel.addTrip()
             navigationController?.pushViewController(orderDoneVC, animated: true)
             
@@ -147,7 +149,8 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
             
         case 1:
             if viewModel.trip?.startStaition != nil {
-                guard let selectCityVC = storyboard?.instantiateViewController(withIdentifier: "city") as? SelectCityViewController else { return }
+                let cityController = ViewControllers.SelectCityViewController.rawValue
+                guard let selectCityVC = storyboard?.instantiateViewController(withIdentifier: cityController) as? SelectCityViewController else { return }
                 navigationController?.pushViewController(selectCityVC, animated: true)
                 selectCityVC.viewModel =  viewModel.viewModelWhereCity()
                 selectCityVC.navigationItem.title = "Куда"
@@ -157,15 +160,16 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
             
         case 2:
             if viewModel.trip?.finishStaition != nil {
-                print("select date row")
-                guard let selectDateVC = storyboard?.instantiateViewController(withIdentifier: "selectDate") as? SelectDateViewController else { return }
+                let selectDateController = ViewControllers.SelectDateViewController.rawValue
+                guard let selectDateVC = storyboard?.instantiateViewController(withIdentifier: selectDateController) as? SelectDateViewController else { return }
                 selectDateVC.navigationItem.title = "Выбор даты и времени"
                 selectDateVC.delegate = self
                 navigationController?.pushViewController(selectDateVC, animated: true)
             }
         default:
             if viewModel.trip?.date != nil {
-                guard let selectCountPassagerVC = storyboard?.instantiateViewController(withIdentifier: "staitionVC") as? SelectStaitionViewController else { return }
+                let staitionController = ViewControllers.SelectStaitionViewController.rawValue
+                guard let selectCountPassagerVC = storyboard?.instantiateViewController(withIdentifier: staitionController) as? SelectStaitionViewController else { return }
                 var count: [String] = []
                 if viewModel.countPassager > 3 {
                     for i in 1...3 {

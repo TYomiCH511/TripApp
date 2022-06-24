@@ -20,14 +20,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyBoard = UIStoryboard(name: "Main", bundle: .main)
         
         if Auth.auth().currentUser != nil {
-            guard let tabBarVC = storyBoard.instantiateViewController(withIdentifier: "tabBar") as? TabBarViewController else { return }
+            let tabBarController = ViewControllers.TabBarViewController.rawValue
+            guard let tabBarVC = storyBoard.instantiateViewController(withIdentifier: tabBarController) as? TabBarViewController else { return }
             window.rootViewController = tabBarVC
             
         } else {
             
             //guard let loginVC = storyBoard.instantiateViewController(withIdentifier: "sms") as? VerifySmsCodeViewController else { return }
-            
-            guard let loginVC = storyBoard.instantiateViewController(withIdentifier: "login") as? LoginViewController else { return }
+            let loginController = ViewControllers.LoginViewController.rawValue
+            guard let loginVC = storyBoard.instantiateViewController(withIdentifier: loginController) as? LoginViewController else { return }
             window.rootViewController = loginVC
         }
         

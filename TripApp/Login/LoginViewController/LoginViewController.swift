@@ -99,7 +99,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func registerButtonPressed(_ sender: UIButton) {
-        guard let registerVC = storyboard?.instantiateViewController(withIdentifier: "register") as? RegisterViewController else { return }
+        let registerController = ViewControllers.RegisterViewController.rawValue
+        guard let registerVC = storyboard?.instantiateViewController(withIdentifier: registerController) as? RegisterViewController else { return }
         registerVC.modalPresentationStyle = .fullScreen
         present(registerVC, animated: true)
         
@@ -163,8 +164,8 @@ class LoginViewController: UIViewController {
               let password = passwordTextField.text else { return }
         
         viewModel.login(with: phoneNumber, password: password) { [weak self] in
-           
-            guard let tabBar = self?.storyboard?.instantiateViewController(withIdentifier: "tabBar") as? TabBarViewController else { return }
+            let tabBarController = ViewControllers.TabBarViewController.rawValue
+            guard let tabBar = self?.storyboard?.instantiateViewController(withIdentifier: tabBarController) as? TabBarViewController else { return }
             tabBar.modalPresentationStyle = .fullScreen
             self?.present(tabBar, animated: true) {
                 if !(self?.autoLoginSwitch.isOn)! {
@@ -177,7 +178,8 @@ class LoginViewController: UIViewController {
     private func resetPassword() {
         guard let phone = loginTextField.text else { return }
         viewModel.resetPassword(withPhone: phone) { [weak self] in
-            guard let smsVerifyVC = self?.storyboard?.instantiateViewController(withIdentifier: "sms") as? VerifySmsCodeViewController else { return }
+            let smsController = ViewControllers.VerifySmsCodeViewController.rawValue
+            guard let smsVerifyVC = self?.storyboard?.instantiateViewController(withIdentifier: smsController) as? VerifySmsCodeViewController else { return }
             smsVerifyVC.modalPresentationStyle = .fullScreen
             smsVerifyVC.isResetPassword = true
             self?.present(smsVerifyVC, animated: true)
