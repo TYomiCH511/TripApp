@@ -26,13 +26,19 @@ class RegisterViewModel: RegisterViewModelProtocol {
                       password: String,
                       complition: @escaping (Bool) -> ()) {
         
-        //For test
-        let email = "+1650555\(phoneNumber)@gmail.com"
-        let phoneNumber = "+1650555\(phoneNumber)"
-        //For real phone
-        //let email = "+375\(phoneNumber)@gmail.com"
-        //let number = "+375\(numberString)"
-        AuthManager.shared.checkUserInDataBase(withEmail: email, phoneNumber: phoneNumber) { success in
+        var email = ""
+        var phone = ""
+        if isTested {
+            //For test
+            email = "+1650555\(phoneNumber)@gmail.com"
+            phone = "+1650555\(phoneNumber)"
+        } else {
+            //For real phone
+            email = "+375\(phoneNumber)@gmail.com"
+            phone = "+375\(phoneNumber)"
+        }
+        
+        AuthManager.shared.checkUserInDataBase(withEmail: email, phoneNumber: phone) { success in
             guard success else {
                 complition(false)
                 return }

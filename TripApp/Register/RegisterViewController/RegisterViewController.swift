@@ -65,6 +65,7 @@ class RegisterViewController: UIViewController {
                 let smsController = ViewControllers.VerifySmsCodeViewController.rawValue
                 guard let verifySmsVC = self?.storyboard?.instantiateViewController(withIdentifier: smsController) as? VerifySmsCodeViewController else { return }
                 verifySmsVC.modalPresentationStyle = .fullScreen
+                                              
                 verifySmsVC.phoneNumber = phoneNumber
                 verifySmsVC.password = password
                 self?.present(verifySmsVC, animated: true)
@@ -126,10 +127,6 @@ class RegisterViewController: UIViewController {
         let userInfo = notification.userInfo
         let keyboardSize = (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let difference = conteinerTextFieldsView.frame.maxY - keyboardSize.origin.y
-        print(conteinerTextFieldsView.frame.maxY)
-        print(keyboardSize.origin.y)
-        print(difference)
-        print(keyboardSize.height)
         mainScrollView.contentOffset = CGPoint(x: 0, y: difference)
     }
     

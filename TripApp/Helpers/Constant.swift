@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
     
+
+var isTested = true
+
 var isChangePassword: Bool = false
 let mainBackgroundColor = UIColor.darkGray
 let mainColor = UIColor.systemGreen

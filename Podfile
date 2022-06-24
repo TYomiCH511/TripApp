@@ -10,4 +10,5 @@ target 'TripApp' do
   pod 'Firebase/Storage'
   pod 'FirebaseFirestore'
   pod 'FirebaseDatabase'
+  pod 'Firebase/Auth'
 end

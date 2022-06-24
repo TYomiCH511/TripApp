@@ -57,8 +57,14 @@ class AuthManager {
                         complition(false)
                         return
                     }
-
-                    let credentialEmail = EmailAuthProvider.credential(withEmail: "+375\(phoneNumber)@gmail.com", password: password)
+                    var email = ""
+                    if isTested {
+                        email = "+1650555\(phoneNumber)@gmail.com"
+                    } else {
+                        email = "+375\(phoneNumber)@gmail.com"
+                    }
+                    
+                    let credentialEmail = EmailAuthProvider.credential(withEmail: email, password: password)
                     result.user.link(with: credentialEmail) { result, error in
                         guard let _ = result, error == nil else {
                             complition(false)
@@ -113,17 +119,18 @@ class AuthManager {
         
         auth.signIn(withEmail: withEmail, password: "password") { _, error in
             
-            guard error != nil else { return }
-            
-            print("11111111111111")
-            if error.debugDescription.contains("17011") {                
+            guard let error = error else { return }
+            let responseError = error as! NSError
+            switch responseError.code {
+            case AuthErrorCode.emailAlreadyInUse.rawValue:
+                print("user is alredy in data base")
+                complition(false)
+            default:
                 self.startAuth(phoneNumber: phoneNumber) { success in
                     complition(true)
                 }
-            } else {
-                complition(false)
-                print("user is alredy in data base")
             }
+            
             
         }
     }

@@ -36,10 +36,15 @@ class LoginViewModel: LoginViewModelProcol {
     }
     
     func login(with phoneNumber: String, password: String, complition: @escaping () -> ()) {
-        //For text
-        let email = "+1650555\(phoneNumber)@gmail.com"
-        // For real phone
-        //let email = "+375\(phoneNumber)@gmail.com"
+        var email = ""
+        if isTested {
+            //For text
+            email = "+1650555\(phoneNumber)@gmail.com"
+        } else {
+            // For real phone
+            email = "+375\(phoneNumber)@gmail.com"
+        }
+           
         AuthManager.shared.singin(withEmail: email, password: password) { success in
             guard success else { return }
             complition()
@@ -49,10 +54,15 @@ class LoginViewModel: LoginViewModelProcol {
     
     
     func resetPassword(withPhone phoneNumber: String, complition: @escaping () -> ()) {
-        // for text
-        let phone = "+1650555\(phoneNumber)"
-        //for real Phone
-        //let phone = "+375\(phoneNumber)"
+        var phone = ""
+        if isTested {
+            //For text
+            phone = "+1650555\(phoneNumber)"
+        } else {
+            // For real phone
+            phone = "+375\(phoneNumber)"
+        }
+        
         AuthManager.shared.startAuth(phoneNumber: phone) { success in
             guard success else { return }
             complition()
