@@ -8,7 +8,7 @@
 import UIKit
 
 class AccountViewController: UIViewController {
-
+    
     // MARK: - IBOutlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
@@ -19,6 +19,11 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var newPasswordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
+    @IBOutlet weak var blur: UIVisualEffectView!
+    
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var saveChangesButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     
@@ -26,17 +31,16 @@ class AccountViewController: UIViewController {
     // MARK: - Properies
     var viewModel: AccountViewModelProtocol! {
         didSet {
-            nameTextField.text = viewModel.user?.name
-            surnameTextField.text = viewModel.user?.surname
-            emailTextField.text = viewModel.user?.email
-            
+            viewModel.getUser()
         }
     }
+    
     // MARK: - life cicle view controller
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = SettingViewModel()
         setupUI()
+        print(#function)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,22 +49,26 @@ class AccountViewController: UIViewController {
         clearPaswordTextFields()
     }
     
-
+    
     // MARK: -
     @IBAction func saveChangesButtonPressed(_ sender: UIButton) {
         saveUserChanges()
-        saveNewPassword()
+        if !(currentPasswordTextField.text!.isEmpty) {
+            saveNewPassword()
+        }
+        
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         
         viewModel.logout { [weak self] in
-
+            
             self?.onMain {
-                let loginController = ViewControllers.LoginViewController.rawValue
-                guard let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: loginController) as? LoginViewController else { return }
-                loginVC.modalPresentationStyle = .fullScreen
-                self?.present(loginVC, animated: true)
+                //                let loginController = ViewControllers.LoginViewController.rawValue
+                //                guard let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: loginController) as? LoginViewController else { return }
+                //                loginVC.modalPresentationStyle = .fullScreen
+                //                self?.present(loginVC, animated: true)
+                self?.tabBarController?.dismiss(animated: true)
             }
         }
         
@@ -69,6 +77,13 @@ class AccountViewController: UIViewController {
     
     private func setupUI() {
         configureTextField()
+        viewModel.user.bind { [weak self] user in
+            self?.blur.isHidden = true
+            self?.activityIndicator.stopAnimating()
+            self?.nameTextField.text = user.name
+            self?.surnameTextField.text = user.surname
+            self?.emailTextField.text = user.email
+        }
         saveChangesButton.mainActionButton(with: "Сохранить", isEnable: true)
         changePasswordLabel.text = "Изменить пароль"
         logoutButton.grayButton(with: "Выйти из аккаунта", isEnable: true, sizeFont: 18)
@@ -103,14 +118,37 @@ class AccountViewController: UIViewController {
               let newPassword = newPasswordTextField.text,
               let confirmPassword = confirmPasswordTextField.text else { return }
         
-        if viewModel.changePassword(current: currentPassword,
-                                    new: newPassword,
-                                    confirm: confirmPassword) {
-            view.endEditing(true)
-            clearPaswordTextFields()
-        } else {
-            newPasswordTextField.text = ""
-            confirmPasswordTextField.text = ""
+        viewModel.changePassword(current: currentPassword,
+                                 newPassword: newPassword,
+                                 confirmPassword: confirmPassword) { [weak self] stait in
+            
+            switch stait {
+            case .success:
+                
+                let alert = Alert.shared.showAlert(title: "Успешно",
+                                       message: "Вы успешно сменили пароль",
+                                       buttonTitle: "Ок") {
+                    self?.view.endEditing(true)
+                    self?.clearPaswordTextFields()
+                }
+                self?.present(alert, animated: true)
+            case .wrongCurrent:
+                let alert = Alert.shared.showAlert(title: "Ошибка",
+                                       message: "Вы ввели текущий пароль не правильно",
+                                       buttonTitle: "Ок") {
+                    self?.view.endEditing(true)
+                    self?.clearPaswordTextFields()
+                }
+                self?.present(alert, animated: true)
+            case .notEqualNew:
+                let alert = Alert.shared.showAlert(title: "Ошибка",
+                                       message: "Новый пароль не совпадает с подтверждением или не соответствует требованиям",
+                                       buttonTitle: "Ок") {
+                    self?.view.endEditing(true)
+                    self?.clearPaswordTextFields()
+                }
+                self?.present(alert, animated: true)
+            }
         }
     }
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6188B7FCAE322A5621ABE10B /* Pods_TripApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900A7D911CCE158AC1C71EC8 /* Pods_TripApp.framework */; };
+		AC2AED1C2866DF3600FEEA94 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2AED1B2866DF3600FEEA94 /* UserManager.swift */; };
 		AC2C36DD2864763300BCC6A8 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2C36DC2864763300BCC6A8 /* ViewControllers.swift */; };
 		AC394564285707B400B4B8D7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC394563285707B400B4B8D7 /* Constant.swift */; };
 		AC39456628571DB200B4B8D7 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC39456528571DB200B4B8D7 /* Binding.swift */; };
@@ -76,6 +77,7 @@
 /* Begin PBXFileReference section */
 		362BC6D1AD0618A41A2A26AF /* Pods-TripApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripApp.debug.xcconfig"; path = "Target Support Files/Pods-TripApp/Pods-TripApp.debug.xcconfig"; sourceTree = "<group>"; };
 		900A7D911CCE158AC1C71EC8 /* Pods_TripApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC2AED1B2866DF3600FEEA94 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		AC2C36DC2864763300BCC6A8 /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
 		AC394563285707B400B4B8D7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		AC39456528571DB200B4B8D7 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
@@ -762,6 +764,7 @@
 			isa = PBXGroup;
 			children = (
 				ACFB70BE2863213900F8C634 /* AuthManager.swift */,
+				AC2AED1B2866DF3600FEEA94 /* UserManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -914,6 +917,7 @@
 				AC4825A528530DE4008B593F /* Alert.swift in Sources */,
 				ACB3A2C3285CB26B00D7AAB2 /* ReviewDriverViewModel.swift in Sources */,
 				AC5041FB28586A1100B52B59 /* SelectDirectViewModel.swift in Sources */,
+				AC2AED1C2866DF3600FEEA94 /* UserManager.swift in Sources */,
 				AC5C7D0F2853681300D0885C /* DateFormatter.swift in Sources */,
 				AC44BD382850B568004A8C2A /* LoginViewModel.swift in Sources */,
 				AC46A2CC2860514700941AE3 /* UIView+extension.swift in Sources */,

@@ -8,12 +8,17 @@
 import Foundation
 import UIKit
 
+enum LoginSait {
+    case success
+    case failed
+}
+
 // MARK: - LoginViewModelProcol
 protocol LoginViewModelProcol: AnyObject {
     
     var autoLogin: Bool { get }
     var delegate: AlertLoginProtocol? { get set }
-    func login(with phoneNumber: String, password: String, complition: @escaping () -> ())
+    func login(with phoneNumber: String, password: String, complition: @escaping (LoginSait) -> ())
     func resetPassword(withPhone phoneNumber: String, complition: @escaping () -> ())
 }
 
@@ -35,7 +40,7 @@ class LoginViewModel: LoginViewModelProcol {
         autoLogin.toggle()
     }
     
-    func login(with phoneNumber: String, password: String, complition: @escaping () -> ()) {
+    func login(with phoneNumber: String, password: String, complition: @escaping (LoginSait) -> ()) {
         var email = ""
         if isTested {
             //For text
@@ -46,8 +51,10 @@ class LoginViewModel: LoginViewModelProcol {
         }
            
         AuthManager.shared.singin(withEmail: email, password: password) { success in
-            guard success else { return }
-            complition()
+            guard success else {
+            complition(.failed)
+                return }
+            complition(.success)
         }
         
     }

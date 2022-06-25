@@ -339,13 +339,13 @@
                         <outlet property="conteinerTextFieldsView" destination="hfL-SG-Szj" id="WrM-jH-prd"/>
                         <outlet property="conteinerView" destination="4ie-Md-sSk" id="Zru-6z-aHR"/>
                         <outlet property="mainScrollView" destination="7DM-26-LRE" id="IMa-qr-ea1"/>
-                        <outlet property="nameTextField" destination="F5c-tX-rOd" id="DpQ-dU-Z7r"/>
+                        <outlet property="nameTextField" destination="FmT-tp-5EU" id="yJg-i0-S2X"/>
                         <outlet property="passwordTextField" destination="2PD-Jp-6B9" id="UTf-hx-8uo"/>
                         <outlet property="phoneNumberTextField" destination="S6Y-XP-5Go" id="Yyc-85-VbG"/>
                         <outlet property="registButton" destination="RoI-os-J2m" id="3xh-qw-6h6"/>
                         <outlet property="registerInfoLabel" destination="Ods-0v-VR6" id="gNf-VL-Qo5"/>
                         <outlet property="registrationTextLable" destination="Amw-5x-SnM" id="JFW-sX-OuL"/>
-                        <outlet property="surnameTextField" destination="FmT-tp-5EU" id="wAv-gB-6Bg"/>
+                        <outlet property="surnameTextField" destination="F5c-tX-rOd" id="eiq-ke-WwC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2m-8a-IyV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -573,7 +573,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="X54-Re-M8K">
-                                    <rect key="frame" x="0.0" y="110.99999999999997" width="390" height="233.00000000000003"/>
+                                    <rect key="frame" x="0.0" y="111" width="390" height="233"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
@@ -1482,13 +1482,45 @@
                                     <action selector="saveChangesButtonPressed:" destination="Auc-cy-Phw" eventType="touchUpInside" id="AyI-vz-Af3"/>
                                 </connections>
                             </button>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBU-65-qbS">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FyO-Qc-yVP">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VFN-Qf-wc7">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="716"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="z3e-Ni-o8B">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="716"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="regular"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pMq-Oo-JUr">
+                                            <rect key="frame" x="176.66666666666666" y="403.66666666666669" width="37" height="37"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pMq-Oo-JUr" firstAttribute="centerX" secondItem="FyO-Qc-yVP" secondAttribute="centerX" id="Ptg-d6-ZGc"/>
+                                        <constraint firstItem="pMq-Oo-JUr" firstAttribute="centerY" secondItem="FyO-Qc-yVP" secondAttribute="centerY" id="fKj-0x-OvF"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UFG-th-cVS"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="3Zq-pK-1Gz" firstAttribute="top" secondItem="UFG-th-cVS" secondAttribute="top" constant="30" id="2DA-dL-nKX"/>
                             <constraint firstItem="UFG-th-cVS" firstAttribute="trailing" secondItem="o91-Zw-X9f" secondAttribute="trailing" constant="100" id="7GA-RC-8LP"/>
+                            <constraint firstItem="NBU-65-qbS" firstAttribute="top" secondItem="sfN-y9-V0e" secondAttribute="top" id="CUF-Ne-oyv"/>
                             <constraint firstItem="diZ-GE-sZq" firstAttribute="height" secondItem="o91-Zw-X9f" secondAttribute="height" id="LIk-1i-yh2"/>
+                            <constraint firstAttribute="bottom" secondItem="NBU-65-qbS" secondAttribute="bottom" id="Zcg-jp-ntm"/>
+                            <constraint firstItem="NBU-65-qbS" firstAttribute="leading" secondItem="UFG-th-cVS" secondAttribute="leading" id="aB0-Gy-PyJ"/>
+                            <constraint firstItem="NBU-65-qbS" firstAttribute="trailing" secondItem="UFG-th-cVS" secondAttribute="trailing" id="aoK-qZ-hT6"/>
                             <constraint firstItem="diZ-GE-sZq" firstAttribute="leading" secondItem="UFG-th-cVS" secondAttribute="leading" constant="100" id="dHE-rI-H30"/>
                             <constraint firstItem="o91-Zw-X9f" firstAttribute="top" secondItem="diZ-GE-sZq" secondAttribute="bottom" constant="20" id="ee7-bb-x7f"/>
                             <constraint firstItem="diZ-GE-sZq" firstAttribute="top" secondItem="3Zq-pK-1Gz" secondAttribute="bottom" constant="50" id="exE-1N-BKS"/>
@@ -1502,6 +1534,8 @@
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="pMq-Oo-JUr" id="iev-EB-7f1"/>
+                        <outlet property="blur" destination="NBU-65-qbS" id="clA-2d-mQ9"/>
                         <outlet property="changePasswordLabel" destination="fhf-aj-8tF" id="yiC-Qm-2Qp"/>
                         <outlet property="confirmPasswordTextField" destination="kmU-wx-RzH" id="m3C-ba-xFc"/>
                         <outlet property="currentPasswordTextField" destination="Vt6-7n-MEa" id="PmL-mU-xfh"/>
@@ -1515,7 +1549,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hux-MU-q5H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5825" y="872"/>
+            <point key="canvasLocation" x="5824.6153846153848" y="871.56398104265395"/>
         </scene>
         <!--Order-->
         <scene sceneID="fOI-Xo-jV5">

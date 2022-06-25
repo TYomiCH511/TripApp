@@ -17,3 +17,12 @@ struct User: Codable {
 }
 
 
+struct User1: Codable {
+    var name: String
+    var surname: String
+    let phoneNumber: String
+    var password: String
+    var email: String?
+    
+    
+}

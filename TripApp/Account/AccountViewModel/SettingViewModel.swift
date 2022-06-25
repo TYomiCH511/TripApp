@@ -7,62 +7,85 @@
 
 import Foundation
 
+enum StaitPassword {
+    case success
+    case wrongCurrent
+    case notEqualNew
+}
+
+
+
 protocol AccountViewModelProtocol {
     
-    var user: User? { get }
+    var user: Bindable<User1> { get set }
+    func getUser()
     func logout(complition: @escaping () -> ())
     func saveChanges(name: String, surname: String, email: String?)
-    func changePassword(current: String, new: String, confirm: String) -> Bool
+    func changePassword(current: String,
+                        newPassword: String,
+                        confirmPassword: String,
+                        complition: @escaping (StaitPassword) -> ())
     
 }
 
 
 class SettingViewModel: AccountViewModelProtocol {
     
-    var user: User? = UserStore.shared.getUser()
     
+    
+    var user: Bindable<User1> = Bindable<User1>(User1(name: "",
+                                                      surname: "",
+                                                      phoneNumber: "",
+                                                      password: "",
+                                                      email: ""))
+    
+    func getUser() {
+        UserManager.shared.getUserData { user in
+            guard let user = user else { return }
+            self.user.value = user
+        }
+    }
+    
+    
+    func saveChanges(name: String, surname: String, email: String?) {
+        
+        if user.value.name != name || user.value.surname != surname || user.value.email != email  {
+            user.value.name = name
+            user.value.surname = surname
+            user.value.email = email
+            UserManager.shared.updateUserData(user: user.value)
+        }
+    }
+    
+    func changePassword(current: String,
+                        newPassword: String,
+                        confirmPassword: String,
+                        complition: @escaping (StaitPassword) -> ()) {
+        
+        if user.value.password == current {
+            
+            if newPassword == confirmPassword && newPassword.count > 5  {
+                
+                UserManager.shared.updatePassword(password: newPassword) { [weak self] success in
+                    guard success else { return }
+                    self?.user.value.password = newPassword
+                    complition(.success)
+                }
+                
+            } else {
+                complition(.notEqualNew)
+            }
+            
+            
+        } else {
+            complition(.wrongCurrent)
+        }
+    }
     
     func logout(complition: @escaping () -> ()) {
-        
         AuthManager.shared.singout {
             complition()
         }
-        
-    }
-    
-    func saveChanges(name: String, surname: String, email: String?) {
-        guard var user = user else { return }
-        
-        if user.name != name || user.surname != surname || user.email != email  {
-            user.name = name
-            user.surname = surname
-            user.email = email
-            UserStore.shared.save(user: user)
-            self.user = user
-            
-            // post to back-end changes
-        } else {
-            print("equal dont save")
-        }
-        
-    }
-    
-    func changePassword(current: String, new: String, confirm: String) -> Bool {
-        if current != "" {
-            if user?.password == current && new == confirm {
-                guard var user = user else { return false }
-                user.password = new
-                UserStore.shared.save(user: user)
-                self.user = user
-                
-                print("change password")
-                return true
-            } else {
-                print("Not correct current password or confirm password")
-                return false
-            }
-        }
-        return false
     }
     
 }

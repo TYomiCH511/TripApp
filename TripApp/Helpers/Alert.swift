@@ -85,4 +85,25 @@ class Alert {
         return alert
     }
     
+    func showAlert(title: String,
+                   message: String,
+                   buttonTitle: String,
+                   complition: @escaping () -> ()) -> UIAlertController {
+        
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        let button = UIAlertAction(title: buttonTitle,
+                                        style: .default)
+        { _ in
+            complition()
+        }
+        
+        
+        alert.addAction(button)
+        
+        
+        return alert
+    }
 }

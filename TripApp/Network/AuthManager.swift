@@ -6,6 +6,8 @@
 //
 import FirebaseAuth
 import Foundation
+import FirebaseFirestore
+import FirebaseCore
 
 enum StaitSignin {
     case newSignin
@@ -17,6 +19,7 @@ class AuthManager {
     private init() {}
     
     private let auth = Auth.auth()
+    private let store = Firestore.firestore()
     private var verificationId: String?
     
     public func startAuth(phoneNumber: String, complition: @escaping (Bool) -> ()) {
@@ -34,8 +37,7 @@ class AuthManager {
     }
     
     public func verifyCode(smsCode: String,
-                           phoneNumber: String?,
-                           password: String?,
+                           user: User1?,
                            typeSingin: StaitSignin,
                            complition: @escaping (Bool) -> ()) {
         
@@ -53,7 +55,7 @@ class AuthManager {
                 
                 switch typeSingin {
                 case .newSignin:
-                    guard let phoneNumber = phoneNumber, let password = password else {
+                    guard let phoneNumber = user?.phoneNumber, let password = user?.password else {
                         complition(false)
                         return
                     }
@@ -70,7 +72,17 @@ class AuthManager {
                             complition(false)
                             print(error?.localizedDescription ?? "Not vefiried")
                             return }
-                        self.singout()
+                        
+                        guard let userId = self.auth.currentUser?.uid, let user = user else { return }
+                        let userData: [String: Any] = ["name": user.name,
+                                                       "surname": user.surname,
+                                                       "password":user.password,
+                                                       "email": user.email ?? "",
+                        ]
+                        self.store.collection("users").document(userId).setData(userData)
+                        
+                        //self.singout()
+                       
                         complition(true)
                     }
                 case .resetPassword:
@@ -96,7 +108,6 @@ class AuthManager {
     public func newPassword(password: String, complition: @escaping (Bool) -> ()) {
         auth.currentUser?.updatePassword(to: password, completion: { error in
             guard error == nil else {
-                print("errrorr")
                 complition(false)
                 return }
             print("password Changed")
@@ -120,11 +131,14 @@ class AuthManager {
         auth.signIn(withEmail: withEmail, password: "password") { _, error in
             
             guard let error = error else { return }
-            let responseError = error as! NSError
+            let responseError = error as NSError
+            print(responseError.code)
+            
             switch responseError.code {
-            case AuthErrorCode.emailAlreadyInUse.rawValue:
+            case AuthErrorCode.wrongPassword.rawValue:
                 print("user is alredy in data base")
                 complition(false)
+            
             default:
                 self.startAuth(phoneNumber: phoneNumber) { success in
                     complition(true)

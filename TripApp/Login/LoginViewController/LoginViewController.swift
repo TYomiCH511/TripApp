@@ -65,16 +65,7 @@ class LoginViewController: UIViewController {
         setupUI()
         
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        //        if UserStore.shared.getUser() != nil {
-        //            print("go to order VC")
-        //            guard let tabBar = storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else { return }
-        //            tabBar.modalPresentationStyle = .fullScreen
-        //            present(tabBar, animated: false)
-        //        }
-    }
+    
     
     // MARK: - IBActions
     @IBAction func autoLoginPressed(_ sender: UISwitch) {
@@ -87,7 +78,6 @@ class LoginViewController: UIViewController {
         } else {
             login()
         }
-        
     }
     
     @IBAction func callSupportPressed(_ sender: UIButton) {
@@ -135,7 +125,7 @@ class LoginViewController: UIViewController {
     private func setupTextField() {
         loginTextField.customConfigure(with: "+375.. номер телефона", returnKey: .next)
         passwordTextField.customConfigure(with: "Пароль", returnKey: .done)
-        loginTextField.keyboardType = .phonePad
+        loginTextField.keyboardType = .numberPad
         loginTextField.delegate = self
         passwordTextField.delegate = self
         loginTextField.addTarget(self, action: #selector(dataOfUserNotEmpty), for: .editingChanged)
@@ -151,7 +141,6 @@ class LoginViewController: UIViewController {
     
     private func resetLoginButton() {
         loginButton.grayButton(with: "Войти", isEnable: false)
-        loginButton.isEnabled = false
     }
     
     private func showPhoneAlert() {
@@ -163,15 +152,29 @@ class LoginViewController: UIViewController {
         guard let phoneNumber = loginTextField.text,
               let password = passwordTextField.text else { return }
         
-        viewModel.login(with: phoneNumber, password: password) { [weak self] in
-            let tabBarController = ViewControllers.TabBarViewController.rawValue
-            guard let tabBar = self?.storyboard?.instantiateViewController(withIdentifier: tabBarController) as? TabBarViewController else { return }
-            tabBar.modalPresentationStyle = .fullScreen
-            self?.present(tabBar, animated: true) {
-                if !(self?.autoLoginSwitch.isOn)! {
-                    AuthManager.shared.singout()
+        viewModel.login(with: phoneNumber, password: password) { [weak self] stait in
+            switch stait {
+                
+            case .success:
+                let tabBarController = ViewControllers.TabBarViewController.rawValue
+                guard let tabBar = self?.storyboard?.instantiateViewController(withIdentifier: tabBarController) as? TabBarViewController else { return }
+                tabBar.modalPresentationStyle = .fullScreen
+                self?.present(tabBar, animated: true) {
+                    // if auto login is not enable
+                    if !(self?.autoLoginSwitch.isOn)! {
+                        AuthManager.shared.singout()
+                    }
                 }
+            case .failed:
+                let alert = Alert.shared.showAlert(title: "Ошибка входа",
+                                                   message: "Не верный номер или пароль",
+                                                   buttonTitle: "Ok") {
+                    self?.passwordTextField.text = ""
+                }
+                self?.present(alert, animated: true)
             }
+            
+            
         }
     }
     
@@ -221,9 +224,6 @@ class LoginViewController: UIViewController {
                 resetLoginButton()
             }
         }
-        
-        
-        
     }
     
 }
