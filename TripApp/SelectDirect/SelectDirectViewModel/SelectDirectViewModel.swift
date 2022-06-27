@@ -92,7 +92,7 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
             return SelectCityViewModel(cities: sortedCity)
         }
         
-            
+        
         
     }
     
@@ -104,15 +104,11 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
         
         switch typeSelectDirection {
         case .new:
-            //UserStore.shared.deleteUser()
-            //user.trips.insert(trip, at: 0)
-            //UserStore.shared.save(user: user)
-            //print(user.trips.count)
-            print(userId, " user id")
-
+            
             guard let userId = userId else { return }
-                        TripsManager.shared.setTrip(withUserId: userId, trip: trip) { trip in
-                print(trip)
+            //Create order trip in dataBase
+            TripsManager.shared.setTrip(withUserId: userId, trip: trip) {
+            
             }
             
         case .orderBack:
@@ -127,9 +123,9 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
     }
     
     func viewModelOrderDone() -> OrderDoneViewModelProtocol? {
-            
+        
         guard let trip = trip else { return nil }
-
+        
         return OrderDoneViewModel(trip: trip)
     }
 }

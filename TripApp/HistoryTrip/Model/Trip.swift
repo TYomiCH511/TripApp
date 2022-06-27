@@ -24,15 +24,17 @@ struct Trip: Codable {
     var startStaition: String?
     var finishCity: String?
     var finishStaition: String?
-    var tripStait: TripState
+    var tripStatus: String?
     var countPasseger: Int?
-    let driver: Driver
+    //let driver: Driver
     var isReviewDriver: Bool = false
     
+        
     var representation: [String: Any] {
         
         var repres = [String: Any]()
         
+        repres["id"] = id
         repres["date"] = Timestamp(date: date!)
         repres["startCity"] = startCity
         repres["startStaition"] = startStaition
@@ -40,11 +42,54 @@ struct Trip: Codable {
         repres["finishStaition"] = finishStaition
         repres["countPassager"] = countPasseger
         repres["isReviewDriver"] = isReviewDriver
-        repres["orderDate"] = Timestamp(date: Date())
-        
+        //repres["orderDate"] = Timestamp(date: Date())
+        repres["tripStatus"] = "notReserved"
         
         return repres
     }
+    
+    init(id: String, date: Date?, startCity: String?, startStaition: String?, finishCity: String?, finishStaition: String?, tripStatus: String, countPassager: Int?, isReviewDriver: Bool = false) {
+        self.date = date
+        self.id = id
+        self.startCity = startCity
+        self.startStaition = startStaition
+        self.finishCity = finishCity
+        self.finishStaition = finishStaition
+        self.tripStatus = tripStatus
+        self.countPasseger = countPassager
+        //self.driver: Driver
+        self.isReviewDriver = isReviewDriver
+    }
+    
+    init?(trip: QueryDocumentSnapshot) {
+        let data = trip.data()
+        
+        guard let id = data["id"] as? String else { return }
+        print(id)
+        guard let date = data["date"] as? Timestamp else { return }
+        print(date)
+        guard let startCity = data["startCity"] as? String else { return }
+        guard let startStaition = data["startStaition"] as? String else { return }
+        guard let finishCity = data["finishCity"] as? String else { return }
+        guard let finishStaition = data["finishStaition"] as? String else { return }
+        guard let countPassager = data["countPassager"] as? Int else { return }
+        guard let isReviewDriver = data["isReviewDriver"] as? Bool else { return }
+        guard let tripStatus = data["tripStatus"] as? String else { return }
+        
+        self.date = date.dateValue()
+        self.id = id
+        self.startCity = startCity
+        self.startStaition = startStaition
+        self.finishCity = finishCity
+        self.finishStaition = finishStaition
+        self.tripStatus = tripStatus
+        self.countPasseger = countPassager
+        //self.driver: Driver
+        self.isReviewDriver = isReviewDriver
+        
+        
+    }
+    
 }
 
 

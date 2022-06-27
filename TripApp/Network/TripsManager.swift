@@ -19,7 +19,9 @@ class TripsManager {
     private let collection = "trips"
     private let collectionTrips = "historyTrips"
     
-    func setTrip(withUserId id: String, trip: Trip, complition: @escaping (Trip) -> ()) {
+    
+    
+    func setTrip(withUserId id: String, trip: Trip, complition: @escaping () -> ()) {
         
         guard let uid = currenUser?.uid else { return }
         let userTripsData = db.collection("trips").document(uid).collection(collectionTrips)
@@ -32,6 +34,26 @@ class TripsManager {
                 return }
             
             print("order trip done")
+        }
+        
+    }
+    
+    func getTrips(withUserId id: String, complition: @escaping ([Trip]) -> ()) {
+        
+        guard let uid = currenUser?.uid else { return }
+        let userTripsData = db.collection("trips").document(uid).collection(collectionTrips)
+        
+        
+        userTripsData.getDocuments { tripsSnap, error in
+            
+            guard let tripsSnap = tripsSnap else { return }
+            var trips = [Trip]()
+            for trip in tripsSnap.documents {
+                guard let trip = Trip(trip: trip) else { return }
+                trips.append(trip)
+                print(trip)
+            }
+            complition(trips)
         }
         
     }

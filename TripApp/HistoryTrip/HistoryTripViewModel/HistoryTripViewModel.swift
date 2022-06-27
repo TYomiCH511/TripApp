@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import FirebaseAuth
 enum ActionTrip {
     case edit
     case cancel
@@ -23,7 +23,7 @@ protocol HistoryTripViewModelProtocol {
     func tripsCount() -> Int
     func cellViewModel(at indexPath: IndexPath) -> HistoryViewModelCellProtocol
     func reviewViewModel(atSelectRow selectRow: Int) -> ReviewDriverViewModelProtocol
-    
+    func getTrips(complition: @escaping () -> ())
 }
 
 protocol ActionTripPressedProtocol: AnyObject {
@@ -46,7 +46,8 @@ protocol LeaveReviewDriverProtocol: AnyObject {
 
 class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProtocol {
     
-    var trips: Bindable<[Trip]> = Bindable<[Trip]>(UserStore.shared.getUser()?.trips ?? tripsStore)
+    var userId = Auth.auth().currentUser?.uid
+    var trips: Bindable<[Trip]> = Bindable<[Trip]>([Trip]())
     weak var reviewDelegate: LeaveReviewDriverProtocol?
     weak var editTripDelegate: EditTripProtocol?
     weak var showInfoDelegate: ShowFullInfoOfTripProtocol?
@@ -89,7 +90,7 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
             
         case .reserv:
             guard var user = UserStore.shared.getUser() else { return }
-            trips.value[tag].tripStait = .reserved
+            trips.value[tag].tripStatus = "notReserved"
             user.trips = trips.value
             UserStore.shared.save(user: user)
         }
@@ -100,6 +101,14 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
     func reviewViewModel(atSelectRow selectRow: Int) -> ReviewDriverViewModelProtocol {
         let trip = trips.value[selectRow]
         return ReviewDriverViewModel(trip: trip, tripSelect: selectRow)
+    }
+    
+    func getTrips(complition: @escaping () -> ()) {
+        guard let userId = userId else { return }
+        TripsManager.shared.getTrips(withUserId: userId) { [weak self] trips in
+            self?.trips.value = trips
+            complition()
+        }
     }
     
     

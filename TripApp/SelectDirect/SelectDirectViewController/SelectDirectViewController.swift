@@ -31,7 +31,6 @@ class SelectDirectViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         
-        print(Auth.auth().currentUser?.uid)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -200,7 +199,7 @@ extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
         let currentDay = CustomDate.shared.showDate(from: Date())
         let orderTripDay = CustomDate.shared.showDate(from: date)
         if currentDay == orderTripDay {
-            viewModel.trip?.tripStait = .reserved
+            viewModel.trip?.tripStatus = "reserved"
         } 
         viewModel.countPassager = countPassager
         orderTableVIew.reloadData()
@@ -210,17 +209,15 @@ extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
         switch selectRow {
         case 0:
             
-            viewModel.trip = Trip(date: nil, startCity: nil,
-                                  startStaition: nil, finishCity: nil,
-                                  finishStaition: nil, tripStait: .notReserved,
-                                  countPasseger: nil,
-                                  driver: Driver(carModel: "Mercedes Sprinter",
-                                                 carColor: "Белый",
-                                                 carNumber: "8888-2",
-                                                 phoneNumber: "+375 29 566 47 58",
-                                                 raiting: "4.84",
-                                                 fullName: "Сидоров Алексей Петрович",
-                                                 photo: "avatar"))
+            viewModel.trip = Trip(id: UUID().uuidString,
+                                  date: nil,
+                                  startCity: nil,
+                                  startStaition: nil,
+                                  finishCity: nil,
+                                  finishStaition: nil,
+                                  tripStatus: "notReserved",
+                                  countPassager: nil
+                                  )
             
             var city1 = ""
             CitySrore.shared.getCities().forEach { city in

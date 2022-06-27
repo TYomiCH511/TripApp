@@ -35,11 +35,15 @@ class ReviewDriverViewModel: ReviewDriverViewModelProtocol {
     }
     
     var photo: String {
-        return trip.driver.photo
+        //return trip.driver.photo
+        
+        return ""
     }
     
     var fullName: String {
-        return trip.driver.fullName
+        //return trip.driver.fullName
+        
+        return ""
     }
     
     var trip: Trip

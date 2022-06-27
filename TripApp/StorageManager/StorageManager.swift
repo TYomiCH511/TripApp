@@ -17,53 +17,53 @@ private var users = [
          password: "1111111", trips: tripsStore),
 ]
 
-var tripsStore = [
+var tripsStore: [Trip] = []
     
-    Trip(date: Date(), startCity: "Минск", startStaition: "ЖД вокзал",
-         finishCity: "Новополоцк", finishStaition: "Кинотеатр Минск",
-         tripStait: .cancel, countPasseger: 1,
-         driver: Driver(carModel: "Mercedes Sprinter",
-                        carColor: "Белый",
-                        carNumber: "8888-2",
-                        phoneNumber: "+375 29 566 47 58",
-                        raiting: "4.84",
-                        fullName: "Сидоров Алексей Петрович",
-                        photo: "avatar")),
-    
-    Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
-         finishCity: "Минск", finishStaition: "ЭкспоБел",
-         tripStait: .notReserved, countPasseger: 2, driver:
-            Driver(carModel: "Mercedes Sprinter",
-                   carColor: "Белый",
-                   carNumber: "8888-2",
-                   phoneNumber: "+375 29 566 47 58",
-                   raiting: "4.84",
-                   fullName: "Антонов Сергей Петрович",
-                   photo: "avatar2")),
-    
-    Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
-         finishCity: "Минск", finishStaition: "ЭкспоБел",
-         tripStait: .reserved, countPasseger: 1,
-         driver: Driver(carModel: "Mercedes Sprinter",
-                        carColor: "Белый",
-                        carNumber: "8888-2",
-                        phoneNumber: "+375 29 566 47 58",
-                        raiting: "4.84",
-                        fullName: "Васильев Денис Петрович",
-                        photo: "avatar")),
-    
-    Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
-         finishCity: "Минск", finishStaition: "ЭкспоБел",
-         tripStait: .complition, countPasseger: 3,
-         driver: Driver(carModel: "Mercedes Sprinter",
-                        carColor: "Белый",
-                        carNumber: "8888-2",
-                        phoneNumber: "+375 29 566 47 58",
-                        raiting: "4.84",
-                        fullName: "Сидорчук Павел Максимович",
-                        photo: "avatar2")),
-    
-]
+//    Trip(date: Date(), startCity: "Минск", startStaition: "ЖД вокзал",
+//         finishCity: "Новополоцк", finishStaition: "Кинотеатр Минск",
+//         tripStatus: .cancel, countPasseger: 1,
+//         driver: Driver(carModel: "Mercedes Sprinter",
+//                        carColor: "Белый",
+//                        carNumber: "8888-2",
+//                        phoneNumber: "+375 29 566 47 58",
+//                        raiting: "4.84",
+//                        fullName: "Сидоров Алексей Петрович",
+//                        photo: "avatar")),
+//
+//    Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
+//         finishCity: "Минск", finishStaition: "ЭкспоБел",
+//         tripStatus: .notReserved, countPasseger: 2, driver:
+//            Driver(carModel: "Mercedes Sprinter",
+//                   carColor: "Белый",
+//                   carNumber: "8888-2",
+//                   phoneNumber: "+375 29 566 47 58",
+//                   raiting: "4.84",
+//                   fullName: "Антонов Сергей Петрович",
+//                   photo: "avatar2")),
+//
+//    Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
+//         finishCity: "Минск", finishStaition: "ЭкспоБел",
+//         tripStatus: .reserved, countPasseger: 1,
+//         driver: Driver(carModel: "Mercedes Sprinter",
+//                        carColor: "Белый",
+//                        carNumber: "8888-2",
+//                        phoneNumber: "+375 29 566 47 58",
+//                        raiting: "4.84",
+//                        fullName: "Васильев Денис Петрович",
+//                        photo: "avatar")),
+//
+//    Trip(date: Date(), startCity: "Полоцк", startStaition: "ЖД вокзал",
+//         finishCity: "Минск", finishStaition: "ЭкспоБел",
+//         tripStatus: .complition, countPasseger: 3,
+//         driver: Driver(carModel: "Mercedes Sprinter",
+//                        carColor: "Белый",
+//                        carNumber: "8888-2",
+//                        phoneNumber: "+375 29 566 47 58",
+//                        raiting: "4.84",
+//                        fullName: "Сидорчук Павел Максимович",
+//                        photo: "avatar2")),
+//
+//]
 
 class StorageManeger {
     

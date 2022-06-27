@@ -67,7 +67,15 @@ class ReservedTableViewCell: UITableViewCell {
             costTripLabel?.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
             
             //setup driver
-            let driver = viewModel.trip.driver
+            //let driver = viewModel.trip.driver
+            let driver = Driver(carModel: "Mercedes Sprinter",
+                                carColor: "Белый",
+                                carNumber: "8888-2",
+                                phoneNumber: "+375 29 566 47 58",
+                                raiting: "4.84",
+                                fullName: "Сидоров Алексей Петрович",
+                                photo: "avatar")
+            
             modelOfCarLabel?.text = "Модель автобуса: " + driver.carModel
             colorOfCarLabel?.text = "Цвет автобуса: " + driver.carColor
             carNumberLabel?.text = "Номер автобуса: " + driver.carNumber

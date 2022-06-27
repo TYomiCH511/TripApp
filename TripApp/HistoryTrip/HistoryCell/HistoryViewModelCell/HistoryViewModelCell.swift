@@ -35,8 +35,8 @@ class HistoryViewModelCell: HistoryViewModelCellProtocol {
     }
     
     func cancelTrip() {
-        if trip.tripStait != .complition, trip.tripStait != .cancel {
-            trip.tripStait = .cancel
+        if trip.tripStatus != "complition", trip.tripStatus != "cancel" {
+            trip.tripStatus = "cancel"
             actionTripDelegate?.actionTripPressed(trip: trip, tag: tag, action: .cancel)
         }
     }
@@ -50,7 +50,7 @@ class HistoryViewModelCell: HistoryViewModelCellProtocol {
     }
     
     func reservTrip() {
-        trip.tripStait = .reserved
+        trip.tripStatus = "reserved"
         actionTripDelegate?.actionTripPressed(trip: trip, tag: tag, action: .reserv)
         
     }
