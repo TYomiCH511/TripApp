@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 protocol EditTripDoneProtocol: AnyObject {
     func updateTrip(trip: Trip)
@@ -20,13 +21,14 @@ protocol SelectDirectViewModelProtocol {
     func viewModelFromCity() -> SelectCityViewModel
     func viewModelWhereCity() -> SelectCityViewModel
     func viewModelOrderDone() -> OrderDoneViewModelProtocol?
-    func addTrip()
+    func orderTrip()
 }
 
 
 class SelectDirectViewModel: SelectDirectViewModelProtocol {
     
     var trip: Trip?
+    var userId = Auth.auth().currentUser?.uid
     var countPassager: Int = 0
     var typeSelectDirection: TypeSelectDirection
     weak var editDelegate: EditTripDoneProtocol?
@@ -94,23 +96,30 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
         
     }
     
-    func addTrip() {
+    func orderTrip() {
         
-        guard var user = UserStore.shared.getUser() else { return }
+        //guard var user = UserStore.shared.getUser() else { return }
         guard let trip = trip else { return }
         
         
         switch typeSelectDirection {
         case .new:
-            UserStore.shared.deleteUser()
-            user.trips.insert(trip, at: 0)
-            UserStore.shared.save(user: user)
-            print(user.trips.count)
+            //UserStore.shared.deleteUser()
+            //user.trips.insert(trip, at: 0)
+            //UserStore.shared.save(user: user)
+            //print(user.trips.count)
+            print(userId, " user id")
+
+            guard let userId = userId else { return }
+                        TripsManager.shared.setTrip(withUserId: userId, trip: trip) { trip in
+                print(trip)
+            }
+            
         case .orderBack:
             UserStore.shared.deleteUser()
-            user.trips.insert(trip, at: 0)
-            UserStore.shared.save(user: user)
-            print(user.trips.count)
+            //user.trips.insert(trip, at: 0)
+            //UserStore.shared.save(user: user)
+            //print(user.trips.count)
         case .edit:
             editDelegate?.updateTrip(trip: trip)
             print("edit done")

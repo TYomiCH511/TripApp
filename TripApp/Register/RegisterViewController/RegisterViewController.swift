@@ -46,7 +46,8 @@ class RegisterViewController: UIViewController {
             guard let surname = surnameTextField.text,
                   let name = nameTextField.text,
                   let phoneNumber = phoneNumberTextField.text,
-                  let password = passwordTextField.text else { return }
+                  let password = passwordTextField.text,
+                  passwordTextField.text!.count > 5 else { return }
             
             viewModel.registerUser(with: surname,
                                    name: name,
@@ -61,22 +62,22 @@ class RegisterViewController: UIViewController {
                     self?.present(alertUserIsRegisterAlready, animated: true)
                     return
                 }
+                
                 //User not found dataBase
                 let smsController = ViewControllers.VerifySmsCodeViewController.rawValue
                 guard let verifySmsVC = self?.storyboard?.instantiateViewController(withIdentifier: smsController) as? VerifySmsCodeViewController else { return }
                 verifySmsVC.modalPresentationStyle = .fullScreen
-                                              
-                verifySmsVC.phoneNumber = phoneNumber
-                verifySmsVC.password = password
-                self?.present(verifySmsVC, animated: true)
+                let user = User1(name: name, surname: surname, phoneNumber: phoneNumber, password: password, email: nil)
+                verifySmsVC.user = user
+                self?.navigationController?.pushViewController(verifySmsVC, animated: true)
             }
             
         }
-   
+        
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        dismiss(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     
@@ -92,7 +93,7 @@ class RegisterViewController: UIViewController {
         registrationTextLable.textColor = .lightText
         backButton.clearBackgroundButton(with: "Назад")
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        registButton.mainActionButton(with: "Зарегестрироваться", isEnable: true)
+        registButton.grayButton(with: "Зарегестрироваться", isEnable: false)
         mainScrollView.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignFirsResponderTap))
         mainScrollView.addGestureRecognizer(tapGesture)
@@ -104,13 +105,17 @@ class RegisterViewController: UIViewController {
         
         textFieldArray.forEach { textField in
             
+            textField?.addTarget(self, action: #selector(dataOfUserNotEmpty), for: .editingChanged)
             textField?.delegate = self
             textField?.customConfigure(with: "11", returnKey: .next)
         }
-        surnameTextField.placeholder = "Фамилия"
+        
+        nameTextField.autocapitalizationType = .sentences
         nameTextField.placeholder = "Имя"
+        surnameTextField.placeholder = "Фамилия"
+        surnameTextField.autocapitalizationType = .sentences
         phoneNumberTextField.placeholder = "Телефонный номер"
-        phoneNumberTextField.keyboardType = .phonePad
+        phoneNumberTextField.keyboardType = .numberPad
         passwordTextField.placeholder = "Пароль"
         confirmPasswordTextField.placeholder = "Подтверждение пароля"
         confirmPasswordTextField.returnKeyType = .done
@@ -135,6 +140,22 @@ class RegisterViewController: UIViewController {
         
     }
     
+    @objc private func dataOfUserNotEmpty(textField: UITextField) {
+        
+        let countPhoneNumber = isTested ? 4 : 9
+        
+        if !nameTextField.text!.isEmpty, !surnameTextField.text!.isEmpty,
+           !phoneNumberTextField.text!.isEmpty, phoneNumberTextField.text?.count == countPhoneNumber,
+           passwordTextField.text!.count > 5, passwordTextField.text == confirmPasswordTextField.text
+            
+        {
+            registButton.mainActionButton(with: "Зарегестрироваться", isEnable: true)
+            
+        } else {
+            registButton.grayButton(with: "Зарегестрироваться", isEnable: false)
+        }
+        
+    }
     
 }
 
@@ -144,10 +165,9 @@ extension RegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         switch textField {
-        case surnameTextField:
-            nameTextField.becomeFirstResponder()
-            
         case nameTextField:
+            surnameTextField.becomeFirstResponder()
+        case surnameTextField:
             phoneNumberTextField.becomeFirstResponder()
         case phoneNumberTextField:
             passwordTextField.becomeFirstResponder()

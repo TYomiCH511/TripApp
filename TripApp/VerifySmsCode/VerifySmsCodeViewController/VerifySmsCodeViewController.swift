@@ -18,8 +18,7 @@ class VerifySmsCodeViewController: UIViewController {
     
     var viewModel: VerifySmsCodeViewModelProtocol!
     
-    var phoneNumber: String?
-    var password: String?
+    var user: User1?
     var isResetPassword: Bool = false
     // MARK: - Properties
     
@@ -38,20 +37,18 @@ class VerifySmsCodeViewController: UIViewController {
         
         if isResetPassword {
             guard let code = smsCodeTextField.text else { return }
-            AuthManager.shared.verifyCode(smsCode: code, phoneNumber: nil, password: nil, typeSingin: .resetPassword) { [weak self] success in
+            AuthManager.shared.verifyCode(smsCode: code, user: nil, typeSingin: .resetPassword) { [weak self] success in
                 guard success else { return }
-                
-                print("user sing in with code")
+                self?.navigationController?.popToRootViewController(animated: true)
             }
             
         } else {
-            guard let code = smsCodeTextField.text else { return }
-            AuthManager.shared.verifyCode(smsCode: code, phoneNumber: phoneNumber, password: password, typeSingin: .newSignin) { [weak self] success in
+            guard let code = smsCodeTextField.text, let user = user else { return }
+            AuthManager.shared.verifyCode(smsCode: code, user: user, typeSingin: .newSignin) { [weak self] success in
                 guard success else { return }
-                let tabBarController = ViewControllers.TabBarViewController.rawValue
-                guard let tabBarVC = self?.storyboard?.instantiateViewController(withIdentifier: tabBarController) as? TabBarViewController else { return }
-                tabBarVC.modalPresentationStyle = .fullScreen
-                self?.present(tabBarVC, animated: true)
+                AuthManager.shared.singout()
+                self?.navigationController?.popToRootViewController(animated: true)
+                
             }
         }
         

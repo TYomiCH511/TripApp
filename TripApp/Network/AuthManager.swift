@@ -80,9 +80,6 @@ class AuthManager {
                                                        "email": user.email ?? "",
                         ]
                         self.store.collection("users").document(userId).setData(userData)
-                        
-                        //self.singout()
-                       
                         complition(true)
                     }
                 case .resetPassword:

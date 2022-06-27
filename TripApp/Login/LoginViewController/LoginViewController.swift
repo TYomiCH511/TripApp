@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -60,6 +61,13 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Auth.auth().currentUser != nil {
+            let tabBarController = ViewControllers.TabBarViewController.rawValue
+            guard let tabBar = storyboard?.instantiateViewController(withIdentifier: tabBarController) as? TabBarViewController else { return }
+            tabBar.modalPresentationStyle = .fullScreen
+            present(tabBar, animated: true) { [weak self] in
+            }
+        }
         
         viewModel = LoginViewModel()
         setupUI()
@@ -74,8 +82,10 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         if isForgotPassword {
+            
             resetPassword()
         } else {
+            
             login()
         }
     }
@@ -92,7 +102,7 @@ class LoginViewController: UIViewController {
         let registerController = ViewControllers.RegisterViewController.rawValue
         guard let registerVC = storyboard?.instantiateViewController(withIdentifier: registerController) as? RegisterViewController else { return }
         registerVC.modalPresentationStyle = .fullScreen
-        present(registerVC, animated: true)
+        navigationController?.pushViewController(registerVC, animated: true)
         
     }
     
@@ -125,6 +135,7 @@ class LoginViewController: UIViewController {
     private func setupTextField() {
         loginTextField.customConfigure(with: "+375.. номер телефона", returnKey: .next)
         passwordTextField.customConfigure(with: "Пароль", returnKey: .done)
+        passwordTextField.isSecureTextEntry = true
         loginTextField.keyboardType = .numberPad
         loginTextField.delegate = self
         passwordTextField.delegate = self
@@ -156,15 +167,17 @@ class LoginViewController: UIViewController {
             switch stait {
                 
             case .success:
-                let tabBarController = ViewControllers.TabBarViewController.rawValue
-                guard let tabBar = self?.storyboard?.instantiateViewController(withIdentifier: tabBarController) as? TabBarViewController else { return }
-                tabBar.modalPresentationStyle = .fullScreen
-                self?.present(tabBar, animated: true) {
-                    // if auto login is not enable
-                    if !(self?.autoLoginSwitch.isOn)! {
-                        AuthManager.shared.singout()
+                
+                    let tabBarController = ViewControllers.TabBarViewController.rawValue
+                    guard let tabBar = self?.storyboard?.instantiateViewController(withIdentifier: tabBarController) as? TabBarViewController else { return }
+                    tabBar.modalPresentationStyle = .fullScreen
+                    self?.present(tabBar, animated: true) { [weak self] in
+                        // if auto login is not enable
+                        if !(self?.autoLoginSwitch.isOn)! {
+                            AuthManager.shared.singout()
+                        }
                     }
-                }
+                
             case .failed:
                 let alert = Alert.shared.showAlert(title: "Ошибка входа",
                                                    message: "Не верный номер или пароль",
@@ -185,7 +198,7 @@ class LoginViewController: UIViewController {
             guard let smsVerifyVC = self?.storyboard?.instantiateViewController(withIdentifier: smsController) as? VerifySmsCodeViewController else { return }
             smsVerifyVC.modalPresentationStyle = .fullScreen
             smsVerifyVC.isResetPassword = true
-            self?.present(smsVerifyVC, animated: true)
+            self?.navigationController?.pushViewController(smsVerifyVC, animated: true)
         }
     }
     

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 
 protocol CallBackDataTripToRootVCProtocol: AnyObject {
     func callBack(data: String)
@@ -30,6 +30,8 @@ class SelectDirectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        print(Auth.auth().currentUser?.uid)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,19 +69,19 @@ class SelectDirectViewController: UIViewController {
         case .new:
             let orderDoneController = ViewControllers.OrderDoneViewController.rawValue
             guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: orderDoneController) as? OrderDoneViewController else { return }
-            viewModel.addTrip()
-            orderDoneVC.viewModel = viewModel.viewModelOrderDone()
-            tabBarController?.viewControllers![1].tabBarItem.badgeColor = mainColor
-            tabBarController?.viewControllers![1].tabBarItem.badgeValue = "1"
-            navigationController?.pushViewController(orderDoneVC, animated: true)
+            viewModel.orderTrip()
+            //orderDoneVC.viewModel = viewModel.viewModelOrderDone()
+            //tabBarController?.viewControllers![1].tabBarItem.badgeColor = mainColor
+            //tabBarController?.viewControllers![1].tabBarItem.badgeValue = "1"
+            //navigationController?.pushViewController(orderDoneVC, animated: true)
         case .orderBack:
             let orderDoneController = ViewControllers.OrderDoneViewController.rawValue
             guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: orderDoneController) as? OrderDoneViewController else { return }
-            viewModel.addTrip()
+            viewModel.orderTrip()
             navigationController?.pushViewController(orderDoneVC, animated: true)
             
         case .edit:
-            viewModel.addTrip()
+            viewModel.orderTrip()
             let alertView = UIView()
             
             view.addSubview(alertView)
@@ -140,8 +142,8 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
         selectRow = indexPath.row
         switch indexPath.row {
         case 0:
-            
-            guard let selectCityVC = storyboard?.instantiateViewController(withIdentifier: "city") as? SelectCityViewController else { return }
+            let cityController = ViewControllers.SelectCityViewController.rawValue
+            guard let selectCityVC = storyboard?.instantiateViewController(withIdentifier: cityController) as? SelectCityViewController else { return }
             navigationController?.pushViewController(selectCityVC, animated: true)
             selectCityVC.viewModel =  viewModel.viewModelFromCity()
             selectCityVC.navigationItem.title = "Откуда"

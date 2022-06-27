@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import FirebaseFirestore
 
 
 enum TripState: Codable {
@@ -18,6 +18,7 @@ enum TripState: Codable {
 }
 
 struct Trip: Codable {
+    var id: String = UUID().uuidString
     var date: Date?
     var startCity: String?
     var startStaition: String?
@@ -27,6 +28,23 @@ struct Trip: Codable {
     var countPasseger: Int?
     let driver: Driver
     var isReviewDriver: Bool = false
+    
+    var representation: [String: Any] {
+        
+        var repres = [String: Any]()
+        
+        repres["date"] = Timestamp(date: date!)
+        repres["startCity"] = startCity
+        repres["startStaition"] = startStaition
+        repres["finishCity"] = finishCity
+        repres["finishStaition"] = finishStaition
+        repres["countPassager"] = countPasseger
+        repres["isReviewDriver"] = isReviewDriver
+        repres["orderDate"] = Timestamp(date: Date())
+        
+        
+        return repres
+    }
 }
 
 

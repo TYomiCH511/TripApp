@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6188B7FCAE322A5621ABE10B /* Pods_TripApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900A7D911CCE158AC1C71EC8 /* Pods_TripApp.framework */; };
+		AC209FDD28698F9700A55C9D /* TripsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC209FDC28698F9700A55C9D /* TripsManager.swift */; };
 		AC2AED1C2866DF3600FEEA94 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2AED1B2866DF3600FEEA94 /* UserManager.swift */; };
 		AC2C36DD2864763300BCC6A8 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2C36DC2864763300BCC6A8 /* ViewControllers.swift */; };
 		AC394564285707B400B4B8D7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC394563285707B400B4B8D7 /* Constant.swift */; };
@@ -77,6 +78,7 @@
 /* Begin PBXFileReference section */
 		362BC6D1AD0618A41A2A26AF /* Pods-TripApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripApp.debug.xcconfig"; path = "Target Support Files/Pods-TripApp/Pods-TripApp.debug.xcconfig"; sourceTree = "<group>"; };
 		900A7D911CCE158AC1C71EC8 /* Pods_TripApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC209FDC28698F9700A55C9D /* TripsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsManager.swift; sourceTree = "<group>"; };
 		AC2AED1B2866DF3600FEEA94 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		AC2C36DC2864763300BCC6A8 /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
 		AC394563285707B400B4B8D7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -193,7 +195,7 @@
 				AC44BD322850B4D9004A8C2A /* App */,
 				AC44BD342850B532004A8C2A /* Login */,
 				AC5026CB285B0B32006DC13B /* Register */,
-				ACFAD784286328EB0030D23D /* verifySmsCode */,
+				ACFAD784286328EB0030D23D /* VerifySmsCode */,
 				AC607E282851E7D700B9C878 /* Order */,
 				AC607E362851FA5C00B9C878 /* Account */,
 				AC607E2B2851E80800B9C878 /* HistoryTrip */,
@@ -735,13 +737,13 @@
 			path = model;
 			sourceTree = "<group>";
 		};
-		ACFAD784286328EB0030D23D /* verifySmsCode */ = {
+		ACFAD784286328EB0030D23D /* VerifySmsCode */ = {
 			isa = PBXGroup;
 			children = (
 				ACFAD786286329310030D23D /* VerifySmsCodeViewController */,
 				ACFAD7852863291D0030D23D /* VefirySmsCodeViewModel */,
 			);
-			path = verifySmsCode;
+			path = VerifySmsCode;
 			sourceTree = "<group>";
 		};
 		ACFAD7852863291D0030D23D /* VefirySmsCodeViewModel */ = {
@@ -765,6 +767,7 @@
 			children = (
 				ACFB70BE2863213900F8C634 /* AuthManager.swift */,
 				AC2AED1B2866DF3600FEEA94 /* UserManager.swift */,
+				AC209FDC28698F9700A55C9D /* TripsManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -923,6 +926,7 @@
 				AC46A2CC2860514700941AE3 /* UIView+extension.swift in Sources */,
 				AC50420E2858964E00B52B59 /* SelectCityViewController.swift in Sources */,
 				AC4825AA28532CF5008B593F /* HistoryViewModelCell.swift in Sources */,
+				AC209FDD28698F9700A55C9D /* TripsManager.swift in Sources */,
 				AC607E312851E8A400B9C878 /* HistoryTripViewController.swift in Sources */,
 				AC44BD232850B49B004A8C2A /* LoginViewController.swift in Sources */,
 				ACEC11BD2859AE77005641AC /* SelectDateViewModel.swift in Sources */,

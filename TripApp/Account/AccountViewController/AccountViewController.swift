@@ -64,11 +64,9 @@ class AccountViewController: UIViewController {
         viewModel.logout { [weak self] in
             
             self?.onMain {
-                //                let loginController = ViewControllers.LoginViewController.rawValue
-                //                guard let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: loginController) as? LoginViewController else { return }
-                //                loginVC.modalPresentationStyle = .fullScreen
-                //                self?.present(loginVC, animated: true)
+                
                 self?.tabBarController?.dismiss(animated: true)
+                
             }
         }
         
@@ -93,15 +91,20 @@ class AccountViewController: UIViewController {
     private func configureTextField() {
         
         nameTextField.customConfigure(with: "Имя", returnKey: .next)
+        nameTextField.autocapitalizationType = .sentences
         surnameTextField.customConfigure(with: "Фамилия", returnKey: .next)
+        surnameTextField.autocapitalizationType = .sentences
         emailTextField.customConfigure(with: "Электронная почта", returnKey: .next)
-        
+        emailTextField.keyboardType = .emailAddress
         currentPasswordTextField.customConfigure(with: "Текущий пароль", returnKey: .next)
         currentPasswordTextField.delegate = self
+        currentPasswordTextField.isSecureTextEntry = true
         newPasswordTextField.customConfigure(with: "Новый пароль", returnKey: .next)
+        newPasswordTextField.isSecureTextEntry = true
         newPasswordTextField.alpha = 0
         newPasswordTextField.frame.origin.y = currentPasswordTextField.frame.origin.y
         confirmPasswordTextField.customConfigure(with: "Повторите пароль", returnKey: .done)
+        confirmPasswordTextField.isSecureTextEntry = true
         confirmPasswordTextField.alpha = 0
         confirmPasswordTextField.frame.origin.y = currentPasswordTextField.frame.origin.y
         
@@ -126,24 +129,24 @@ class AccountViewController: UIViewController {
             case .success:
                 
                 let alert = Alert.shared.showAlert(title: "Успешно",
-                                       message: "Вы успешно сменили пароль",
-                                       buttonTitle: "Ок") {
+                                                   message: "Вы успешно сменили пароль",
+                                                   buttonTitle: "Ок") {
                     self?.view.endEditing(true)
                     self?.clearPaswordTextFields()
                 }
                 self?.present(alert, animated: true)
             case .wrongCurrent:
                 let alert = Alert.shared.showAlert(title: "Ошибка",
-                                       message: "Вы ввели текущий пароль не правильно",
-                                       buttonTitle: "Ок") {
+                                                   message: "Вы ввели текущий пароль не правильно",
+                                                   buttonTitle: "Ок") {
                     self?.view.endEditing(true)
                     self?.clearPaswordTextFields()
                 }
                 self?.present(alert, animated: true)
             case .notEqualNew:
                 let alert = Alert.shared.showAlert(title: "Ошибка",
-                                       message: "Новый пароль не совпадает с подтверждением или не соответствует требованиям",
-                                       buttonTitle: "Ок") {
+                                                   message: "Новый пароль не совпадает с подтверждением или не соответствует требованиям",
+                                                   buttonTitle: "Ок") {
                     self?.view.endEditing(true)
                     self?.clearPaswordTextFields()
                 }
