@@ -45,9 +45,9 @@ class HistoryTripViewController: UIViewController {
         historyTableView.refreshControl = UIRefreshControl()
         
         historyTableView.refreshControl?.addTarget(self, action: #selector(fetchNewTrip), for: .valueChanged)
+        
         viewModel.trips.bind { _ in
             self.historyTableView.reloadData()
-            
         }
         
     }

@@ -55,7 +55,17 @@ class TripsManager {
             }
             complition(trips)
         }
+    }
+    
+    func reservTrip(tripId: String, complition: @escaping () -> ()) {
+        guard let uid = currenUser?.uid else { return }
+        let userTripsData = db.collection("trips").document(uid).collection(collectionTrips)
         
+        let reservData: [String: Any] = ["tripStatus": "reserved"]
+        userTripsData.document(tripId).setData(reservData, merge: true) { error in
+            guard error == nil else { return }
+            complition()
+        }
     }
     
     

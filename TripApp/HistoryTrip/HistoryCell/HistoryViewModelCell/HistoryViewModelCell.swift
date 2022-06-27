@@ -50,8 +50,11 @@ class HistoryViewModelCell: HistoryViewModelCellProtocol {
     }
     
     func reservTrip() {
-        trip.tripStatus = "reserved"
-        actionTripDelegate?.actionTripPressed(trip: trip, tag: tag, action: .reserv)
+        TripsManager.shared.reservTrip(tripId: trip.id) { [weak self] in
+            guard let self = self else { return }
+            self.actionTripDelegate?.actionTripPressed(trip: self.trip, tag: self.tag, action: .reserv)
+        }
+        
         
     }
     

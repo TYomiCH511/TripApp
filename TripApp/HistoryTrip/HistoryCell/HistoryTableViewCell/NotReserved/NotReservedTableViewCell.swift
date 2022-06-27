@@ -116,7 +116,6 @@ class NotReservedTableViewCell: UITableViewCell {
         dataConteinerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         directionConteinerView.layer.cornerRadius = 8
         directionConteinerView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        //DataConteinerView.cornerCustom(byRoundingCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight])
         startCircleView.layer.cornerRadius = startCircleView.frame.height / 2
         finalyStaitionCircleView.layer.cornerRadius = finalyStaitionCircleView.frame.height / 2
         

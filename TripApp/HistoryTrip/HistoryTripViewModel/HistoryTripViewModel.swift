@@ -89,10 +89,7 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
             // send trip to back-end
             
         case .reserv:
-            guard var user = UserStore.shared.getUser() else { return }
-            trips.value[tag].tripStatus = "notReserved"
-            user.trips = trips.value
-            UserStore.shared.save(user: user)
+            trips.value[tag].tripStatus = "reserved"
         }
         
         
