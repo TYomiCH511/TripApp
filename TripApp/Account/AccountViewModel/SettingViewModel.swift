@@ -17,7 +17,7 @@ enum StaitPassword {
 
 protocol AccountViewModelProtocol {
     
-    var user: Bindable<User1> { get set }
+    var user: Bindable<User> { get set }
     func getUser()
     func logout(complition: @escaping () -> ())
     func saveChanges(name: String, surname: String, email: String?)
@@ -33,15 +33,14 @@ class SettingViewModel: AccountViewModelProtocol {
     
     
     
-    var user: Bindable<User1> = Bindable<User1>(User1(name: "",
-                                                      surname: "",
-                                                      phoneNumber: "",
-                                                      password: "",
-                                                      email: ""))
+    var user: Bindable<User> = Bindable<User>(User(name: "",
+                                                   surname: "",
+                                                   email: "",
+                                                   phoneNumber: "",
+                                                   password: ""))
     
     func getUser() {
         UserManager.shared.getUserData { user in
-            guard let user = user else { return }
             self.user.value = user
         }
     }

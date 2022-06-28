@@ -18,7 +18,7 @@ class VerifySmsCodeViewController: UIViewController {
     
     var viewModel: VerifySmsCodeViewModelProtocol!
     
-    var user: User1?
+    var user: User?
     var isResetPassword: Bool = false
     // MARK: - Properties
     

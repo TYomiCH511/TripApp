@@ -13,7 +13,7 @@ protocol ReviewDriverViewModelProtocol {
     var photo: String { get }
     var fullName: String { get }
     
-    func leaveReview()
+    func leaveReview(complition: @escaping () -> ())
 }
 
 
@@ -54,15 +54,12 @@ class ReviewDriverViewModel: ReviewDriverViewModelProtocol {
         self.tripSelect = tripSelect
     }
     
-    func leaveReview() {
+    func leaveReview(complition: @escaping () -> ()) {
         
-//        guard var user = UserStore.shared.getUser() else { return }
-//        trip.isReviewDriver = true
-//        user.trips[tripSelect] = trip
-//        UserStore.shared.save(user: user)
-        
-        
-        //send to back-end
+        TripsManager.shared.leaveReview(tripId: trip.id) {
+            complition()
+        }
+    
     }
     
 }

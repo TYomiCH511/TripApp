@@ -119,7 +119,7 @@ class SelectDirectViewController: UIViewController {
         orderTableVIew.dataSource = self
         orderTableVIew.backgroundColor = mainBackgroundColor
         fillVIew.backgroundColor = .clear
-        
+        orderTableVIew.separatorStyle = .none
         
         let nib = UINib(nibName: String(describing: DataTripTableViewCell.self), bundle: .main)
         orderTableVIew.register(nib, forCellReuseIdentifier: "cell")
@@ -193,9 +193,7 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
                 selectCountPassagerVC.viewModel = SelectStaitionViewModel(staition: count)
                 navigationController?.pushViewController(selectCountPassagerVC, animated: true)
             }
-            
         }
-        
     }
     
 }
@@ -226,8 +224,7 @@ extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
                                   finishCity: nil,
                                   finishStaition: nil,
                                   tripStatus: TripStatus.notReserved.rawValue,
-                                  countPassager: nil
-                                  )
+                                  countPassager: nil)
             
             var city1 = ""
             CitySrore.shared.getCities().forEach { city in
@@ -245,8 +242,8 @@ extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
                 if city.staition.contains(data) {
                     city1 = city.name
                 }
-                
             }
+            
             viewModel.trip?.finishCity = city1
             viewModel.trip?.finishStaition = data
             
@@ -256,8 +253,8 @@ extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
                 if city.staition.contains(data) {
                     city1 = city.name
                 }
-                
             }
+            
             viewModel.trip?.finishCity = city1
             viewModel.trip?.finishStaition = data
             
@@ -265,7 +262,6 @@ extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
             if let countPassager = Int(data) {
                 viewModel.trip?.countPasseger = countPassager
             }
-            
             
         default: break
         }

@@ -49,6 +49,7 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
     
     var userId = Auth.auth().currentUser?.uid
     var trips: Bindable<[Trip]> = Bindable<[Trip]>([Trip]())
+    private let tripsManager = TripsManager.shared
     weak var reviewDelegate: LeaveReviewDriverProtocol?
     weak var editTripDelegate: EditTripProtocol?
     weak var showInfoDelegate: ShowFullInfoOfTripProtocol?
@@ -76,10 +77,10 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
             //TO DO
             // send trip to back-end
         case .cancel:
-            trips.value[tag] = trip
             
-            //TO DO
-            // send trip to back-end
+            tripsManager.editTrip(trip: trip) { [weak self] in
+                self?.trips.value[tag] = trip
+            }
         case .review:
             let reviewViewModel = reviewViewModel(atSelectRow: tag)
             reviewDelegate?.leaveReview(viewModel: reviewViewModel)
@@ -101,7 +102,7 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
     
     func getTrips(complition: @escaping () -> ()) {
         guard let userId = userId else { return }
-        TripsManager.shared.getTrips(withUserId: userId) { [weak self] trips in
+        tripsManager.getTrips(withUserId: userId) { [weak self] trips in
             self?.trips.value = trips
             complition()
         }
@@ -113,9 +114,7 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
         }
     }
     
-    func reloadCountPassager() {
-        
-    }
+    
     
 }
 

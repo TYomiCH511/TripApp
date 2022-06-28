@@ -42,7 +42,7 @@ struct Trip: Codable {
         repres["countPassager"] = countPasseger
         repres["isReviewDriver"] = isReviewDriver
         repres["orderDate"] = Timestamp(date: Date())
-        repres["tripStatus"] = TripStatus.notReserved.rawValue
+        repres["tripStatus"] = tripStatus
         
         return repres
     }
@@ -60,8 +60,9 @@ struct Trip: Codable {
         self.isReviewDriver = isReviewDriver
     }
     
-    init?(trip: QueryDocumentSnapshot) {
-        let data = trip.data()
+    init?(tripData: QueryDocumentSnapshot) {
+        
+        let data = tripData.data()
         
         guard let id = data["id"] as? String else { return }
         guard let date = data["date"] as? Timestamp else { return }

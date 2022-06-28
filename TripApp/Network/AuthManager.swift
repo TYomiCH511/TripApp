@@ -38,7 +38,7 @@ class AuthManager {
     }
     
     public func verifyCode(smsCode: String,
-                           user: User1?,
+                           user: User?,
                            typeSingin: StaitSignin,
                            complition: @escaping (Bool) -> ()) {
         

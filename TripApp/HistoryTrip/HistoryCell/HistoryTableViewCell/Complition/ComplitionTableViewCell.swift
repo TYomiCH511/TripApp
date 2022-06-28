@@ -9,6 +9,7 @@ import UIKit
 
 class ComplitionTableViewCell: UITableViewCell {
     
+    // MARK: - IBOutlets
     @IBOutlet weak var mainConteinerView: UIView!
     
     @IBOutlet weak var dataConteinerView: UIView!
@@ -37,6 +38,11 @@ class ComplitionTableViewCell: UITableViewCell {
     @IBOutlet weak var leaveReviewButton: UIButton!
     
     @IBOutlet weak var heightFullData: NSLayoutConstraint!
+    
+    @IBOutlet weak var heightReviewButton: NSLayoutConstraint!
+    
+    
+    // MARK: - Properties
     var viewModel: HistoryViewModelCellProtocol! {
         didSet {
             let dateFormat = CustomDate.shared
@@ -65,6 +71,13 @@ class ComplitionTableViewCell: UITableViewCell {
                 fullDataTripConteinerView.isHidden = false
             }
             
+            if viewModel.trip.isReviewDriver {
+                leaveReviewButton.isHidden = viewModel.trip.isReviewDriver
+                leaveReviewButton.titleLabel?.font = .systemFont(ofSize: 1)
+                heightReviewButton.constant = 0
+            } else {
+                leaveReviewButton.isHidden = viewModel.trip.isReviewDriver
+            }
         }
     }
     
@@ -72,14 +85,12 @@ class ComplitionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setupUI()
         selectionStyle = .none
-        
     }
     
     @IBAction func leaveReviewPressed(_ sender: UIButton) {
         viewModel.reviewTrip()
     }
     
-   
     private func setupUI() {
         leaveReviewButton.grayButton(with: "Оставить отзыв", isEnable: true)
         leaveReviewButton.backgroundColor = .white
@@ -112,9 +123,7 @@ class ComplitionTableViewCell: UITableViewCell {
         costTripLabel.textColor = .black
         countPassenger.textColor = .black
         
-        
     }
-    
     
     private func setupReservedTrip(with text: String, color: UIColor, image: String) {
         reservedInDataLabel?.text = text

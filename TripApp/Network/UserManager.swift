@@ -18,28 +18,24 @@ class UserManager {
     
     private let collection = "users"
     
-    func getUserData(complition: @escaping (User1?) -> ()) {
+    func getUserData(complition: @escaping (User) -> ()) {
         let currenUser = Auth.auth().currentUser
         guard let uid = currenUser?.uid else { return }
         let userData = db.collection("users").document(uid)
-        var user: User1?
         
-        userData.getDocument { document, error in
-            guard error == nil else { return }
-            
-            user = User1(name: document?.get("name") as? String ?? "",
-                         surname: document?.get("surname") as? String ?? "",
-                         phoneNumber: "",
-                         password: document?.get("password") as? String ?? "",
-                         email: document?.get("email") as? String ?? "")
-            
+        
+        userData.getDocument { userData, error in
+            guard let userData = userData, error == nil else { return }
+            print(userData)
+            guard let user = User(userdData: userData) else { return }
+            print(user)
             complition(user)
         }
         
     }
     
     
-    func updateUserData(user: User1) {
+    func updateUserData(user: User) {
         let currenUser = Auth.auth().currentUser
         guard let uid = currenUser?.uid else { return }
         let data: [String: Any] = ["name": user.name,

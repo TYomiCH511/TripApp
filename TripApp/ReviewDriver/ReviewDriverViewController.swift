@@ -42,9 +42,12 @@ class ReviewDriverViewController: UIViewController {
     }
     
     @IBAction func leaveReviewDriverPressed(_ sender: UIButton) {
-        viewModel?.leaveReview()
-        let alert = Alert.shared.showAlertLeaveReview(vc: self)
-        present(alert, animated: true)
+        viewModel?.leaveReview(complition: { [weak self] in
+            guard let self = self else { return }
+            let alert = Alert.shared.showAlertLeaveReview(vc: self)
+            self.present(alert, animated: true)
+        })
+        
     }
     
     private func setupUI() {

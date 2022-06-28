@@ -67,7 +67,7 @@ class RegisterViewController: UIViewController {
                 let smsController = ViewControllers.VerifySmsCodeViewController.rawValue
                 guard let verifySmsVC = self?.storyboard?.instantiateViewController(withIdentifier: smsController) as? VerifySmsCodeViewController else { return }
                 verifySmsVC.modalPresentationStyle = .fullScreen
-                let user = User1(name: name, surname: surname, phoneNumber: phoneNumber, password: password, email: nil)
+                let user = User(name: name, surname: surname, email: nil, phoneNumber: phoneNumber, password: password)
                 verifySmsVC.user = user
                 self?.navigationController?.pushViewController(verifySmsVC, animated: true)
             }
