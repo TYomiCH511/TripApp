@@ -15,11 +15,11 @@ class UserManager {
     static let shared = UserManager()
     private init() {}
     private let db = Firestore.firestore()
-    private let currenUser = Auth.auth().currentUser
+    
     private let collection = "users"
     
     func getUserData(complition: @escaping (User1?) -> ()) {
-        
+        let currenUser = Auth.auth().currentUser
         guard let uid = currenUser?.uid else { return }
         let userData = db.collection("users").document(uid)
         var user: User1?
@@ -40,7 +40,7 @@ class UserManager {
     
     
     func updateUserData(user: User1) {
-        
+        let currenUser = Auth.auth().currentUser
         guard let uid = currenUser?.uid else { return }
         let data: [String: Any] = ["name": user.name,
                                    "surname": user.surname,
@@ -50,13 +50,15 @@ class UserManager {
         
     }
     
-    func updatePassword(password: String, complition: @escaping (Bool) -> ()) {
+    func updatePassword(password: String,
+                        complition: @escaping (Bool) -> ()) {
+        let currenUser = Auth.auth().currentUser
         currenUser?.updatePassword(to: password) { error in
             guard error == nil else {
                 complition(false)
                 return }
             
-            guard let uid = self.currenUser?.uid else { return }
+            guard let uid = currenUser?.uid else { return }
             let password: [String: Any] = ["password": password]
             self.db.collection(self.collection).document(uid).setData(password, merge: true)
             complition(true)

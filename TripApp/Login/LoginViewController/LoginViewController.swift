@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
             let tabBarController = ViewControllers.TabBarViewController.rawValue
             guard let tabBar = storyboard?.instantiateViewController(withIdentifier: tabBarController) as? TabBarViewController else { return }
             tabBar.modalPresentationStyle = .fullScreen
-            present(tabBar, animated: true) { [weak self] in
+            present(tabBar, animated: false) { [weak self] in
             }
         }
         

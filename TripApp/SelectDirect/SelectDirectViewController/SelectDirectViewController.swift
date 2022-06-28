@@ -66,45 +66,50 @@ class SelectDirectViewController: UIViewController {
         
         switch viewModel.typeSelectDirection {
         case .new:
-            let orderDoneController = ViewControllers.OrderDoneViewController.rawValue
-            guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: orderDoneController) as? OrderDoneViewController else { return }
-            viewModel.orderTrip()
-            //orderDoneVC.viewModel = viewModel.viewModelOrderDone()
-            //tabBarController?.viewControllers![1].tabBarItem.badgeColor = mainColor
-            //tabBarController?.viewControllers![1].tabBarItem.badgeValue = "1"
-            //navigationController?.pushViewController(orderDoneVC, animated: true)
-        case .orderBack:
-            let orderDoneController = ViewControllers.OrderDoneViewController.rawValue
-            guard let orderDoneVC = storyboard?.instantiateViewController(withIdentifier: orderDoneController) as? OrderDoneViewController else { return }
-            viewModel.orderTrip()
-            navigationController?.pushViewController(orderDoneVC, animated: true)
             
-        case .edit:
-            viewModel.orderTrip()
-            let alertView = UIView()
-            
-            view.addSubview(alertView)
-            alertView.center = self.orderTableVIew.center
-            
-            alertView.frame.size = CGSize(width: 100, height: 100)
-            alertView.backgroundColor = .black
-            alertView.layer.cornerRadius = 8
-            alertView.alpha = 1
-            let imageView = UIImageView(image: UIImage(systemName: "checkmark.circle.fill"))
-            imageView.frame.size = CGSize(width: 100, height: 100)
-            
-            imageView.tintColor = .white
-            alertView.addSubview(imageView)
-            
-            UIView.animate(withDuration: 0.5, delay: 0, options: []) {
-                alertView.alpha = 0
-                
-            } completion: { _ in
-                self.navigationController?.popToRootViewController(animated: true)
+            viewModel.orderTrip { [weak self] in
+                let orderDoneController = ViewControllers.OrderDoneViewController.rawValue
+                guard let orderDoneVC = self?.storyboard?.instantiateViewController(withIdentifier: orderDoneController) as? OrderDoneViewController else { return }
+                orderDoneVC.viewModel = self?.viewModel.viewModelOrderDone()
+                self?.tabBarController?.viewControllers![1].tabBarItem.badgeColor = mainColor
+                self?.tabBarController?.viewControllers![1].tabBarItem.badgeValue = "1"
+                self?.navigationController?.pushViewController(orderDoneVC, animated: true)
             }
             
+        case .orderBack:
+            
+            viewModel.orderTrip { [weak self] in
+                let orderDoneController = ViewControllers.OrderDoneViewController.rawValue
+                guard let orderDoneVC = self?.storyboard?.instantiateViewController(withIdentifier: orderDoneController) as? OrderDoneViewController else { return }
+                orderDoneVC.viewModel = self?.viewModel.viewModelOrderDone()
+                self?.navigationController?.pushViewController(orderDoneVC, animated: true)
+            }
+            
+        case .edit:
+            viewModel.orderTrip { [unowned self] in
+                let alertView = UIView()
+                
+                view.addSubview(alertView)
+                alertView.center = self.orderTableVIew.center
+                
+                alertView.frame.size = CGSize(width: 100, height: 100)
+                alertView.backgroundColor = .black
+                alertView.layer.cornerRadius = 8
+                alertView.alpha = 1
+                let imageView = UIImageView(image: UIImage(systemName: "checkmark.circle.fill"))
+                imageView.frame.size = CGSize(width: 100, height: 100)
+                
+                imageView.tintColor = .white
+                alertView.addSubview(imageView)
+                
+                UIView.animate(withDuration: 0.5, delay: 0, options: []) {
+                    alertView.alpha = 0
+                    
+                } completion: { _ in
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            }
         }
-        
     }
     
     private func setupUI() {
@@ -176,6 +181,8 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
                     for i in 1...3 {
                         count.append("\(i)")
                     }
+                } else if viewModel.countPassager == 1 {
+                    count.append("1")
                 } else {
                     for i in 1...viewModel.countPassager {
                         count.append("\(i)")
@@ -194,12 +201,15 @@ extension SelectDirectViewController: UITableViewDelegate, UITableViewDataSource
 }
 
 extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
+    
     func callBack(date: Date, countPassager: Int) {
+        
         viewModel.trip?.date = date
         let currentDay = CustomDate.shared.showDate(from: Date())
         let orderTripDay = CustomDate.shared.showDate(from: date)
+        
         if currentDay == orderTripDay {
-            viewModel.trip?.tripStatus = "reserved"
+            viewModel.trip?.tripStatus = TripStatus.reserved.rawValue
         } 
         viewModel.countPassager = countPassager
         orderTableVIew.reloadData()
@@ -215,7 +225,7 @@ extension SelectDirectViewController: CallBackDataTripToRootVCProtocol {
                                   startStaition: nil,
                                   finishCity: nil,
                                   finishStaition: nil,
-                                  tripStatus: "notReserved",
+                                  tripStatus: TripStatus.notReserved.rawValue,
                                   countPassager: nil
                                   )
             

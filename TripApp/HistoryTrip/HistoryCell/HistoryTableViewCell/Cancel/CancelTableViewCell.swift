@@ -54,6 +54,7 @@ class CancelTableViewCell: UITableViewCell {
                 heightFullData.constant = 0
                 fullDataTripConteinerView.isHidden = true
             } else {
+                dataConteinerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
                 heightFullData.constant = 508
                 fullDataTripConteinerView.isHidden = false
             }

@@ -9,12 +9,11 @@ import Foundation
 import FirebaseFirestore
 
 
-enum TripState: Codable {
-    case cancel
-    case reserved
-    case notReserved
-    case complition
-    
+enum TripStatus: String, Codable {
+    case notReserved = "notReserved"
+    case reserved = "reserved"
+    case complition = "complition"
+    case cancel = "cancel"
 }
 
 struct Trip: Codable {
@@ -42,8 +41,8 @@ struct Trip: Codable {
         repres["finishStaition"] = finishStaition
         repres["countPassager"] = countPasseger
         repres["isReviewDriver"] = isReviewDriver
-        //repres["orderDate"] = Timestamp(date: Date())
-        repres["tripStatus"] = "notReserved"
+        repres["orderDate"] = Timestamp(date: Date())
+        repres["tripStatus"] = TripStatus.notReserved.rawValue
         
         return repres
     }
@@ -65,9 +64,7 @@ struct Trip: Codable {
         let data = trip.data()
         
         guard let id = data["id"] as? String else { return }
-        print(id)
         guard let date = data["date"] as? Timestamp else { return }
-        print(date)
         guard let startCity = data["startCity"] as? String else { return }
         guard let startStaition = data["startStaition"] as? String else { return }
         guard let finishCity = data["finishCity"] as? String else { return }
@@ -87,14 +84,11 @@ struct Trip: Codable {
         //self.driver: Driver
         self.isReviewDriver = isReviewDriver
         
-        
     }
     
 }
 
-
 struct Driver: Codable {
-    
     let carModel: String
     let carColor: String
     let carNumber: String
@@ -102,5 +96,4 @@ struct Driver: Codable {
     let raiting: String
     let fullName: String
     let photo: String
-    
 }

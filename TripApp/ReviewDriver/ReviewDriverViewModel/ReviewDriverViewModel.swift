@@ -56,10 +56,10 @@ class ReviewDriverViewModel: ReviewDriverViewModelProtocol {
     
     func leaveReview() {
         
-        guard var user = UserStore.shared.getUser() else { return }
-        trip.isReviewDriver = true
-        user.trips[tripSelect] = trip
-        UserStore.shared.save(user: user)
+//        guard var user = UserStore.shared.getUser() else { return }
+//        trip.isReviewDriver = true
+//        user.trips[tripSelect] = trip
+//        UserStore.shared.save(user: user)
         
         
         //send to back-end

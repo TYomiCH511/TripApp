@@ -9,7 +9,6 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
 
-    
     override func loadView() {
         super.loadView()
         
@@ -21,4 +20,5 @@ class TabBarViewController: UITabBarController {
         tabBar.barStyle = .black
         tabBar.unselectedItemTintColor = .lightText
     }
+    
 }

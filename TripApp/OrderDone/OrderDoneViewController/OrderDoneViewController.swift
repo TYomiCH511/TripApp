@@ -71,7 +71,6 @@ class OrderDoneViewController: UIViewController {
         countPassagerTripLabel.text = viewModel.trip.countPasseger?.description
         costTripLabel.text = "Итого: " + String(viewModel.trip.countPasseger! * costTrip) + " руб"
         
-        
         orderInfoConteinerView.layer.cornerRadius = cornerRadiusButton
         startInfoConteinerView.backgroundColor = .clear
         finishInfoConteinerView.backgroundColor = .clear

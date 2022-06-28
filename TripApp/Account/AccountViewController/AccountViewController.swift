@@ -62,9 +62,7 @@ class AccountViewController: UIViewController {
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         
         viewModel.logout { [weak self] in
-            
             self?.onMain {
-                
                 self?.tabBarController?.dismiss(animated: true)
                 
             }

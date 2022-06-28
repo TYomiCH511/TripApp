@@ -24,6 +24,7 @@ protocol HistoryTripViewModelProtocol {
     func cellViewModel(at indexPath: IndexPath) -> HistoryViewModelCellProtocol
     func reviewViewModel(atSelectRow selectRow: Int) -> ReviewDriverViewModelProtocol
     func getTrips(complition: @escaping () -> ())
+    func editTripDone(trip: Trip)
 }
 
 protocol ActionTripPressedProtocol: AnyObject {
@@ -76,9 +77,7 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
             // send trip to back-end
         case .cancel:
             trips.value[tag] = trip
-            guard var user = UserStore.shared.getUser() else { return }
-            user.trips[tag] = trip
-            UserStore.shared.save(user: user)
+            
             //TO DO
             // send trip to back-end
         case .review:
@@ -89,7 +88,7 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
             // send trip to back-end
             
         case .reserv:
-            trips.value[tag].tripStatus = "reserved"
+            trips.value[tag].tripStatus = TripStatus.reserved.rawValue
         }
         
         
@@ -108,6 +107,15 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
         }
     }
     
+    func editTripDone(trip: Trip) {
+        TripsManager.shared.editTrip(trip: trip) {
+            
+        }
+    }
+    
+    func reloadCountPassager() {
+        
+    }
     
 }
 

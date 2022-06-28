@@ -32,8 +32,6 @@ class SelectDateViewController: UIViewController {
         sideWidth = timeCollectionView.frame.width / 3 - 10
         let countOfRow = (CGFloat(self.viewModel.numberOfItem()) / 3).rounded(.up)
         heightCollectionView.constant = self.sideHeight * countOfRow  + 10 * countOfRow - 10
-        loadViewIfNeeded()
-        
         setupUI()
         
     }

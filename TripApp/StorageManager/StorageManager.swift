@@ -7,17 +7,6 @@
 
 import Foundation
 
-private var users = [
-    User(name: "Artem", surname: "Timankov",
-         phoneNumber: "5115711", email: nil,
-         password: "5115711", trips: tripsStore),
-    
-    User(name: "Kolya", surname: "Pupkin",
-         phoneNumber: "1111111", email: nil,
-         password: "1111111", trips: tripsStore),
-]
-
-var tripsStore: [Trip] = []
     
 //    Trip(date: Date(), startCity: "Минск", startStaition: "ЖД вокзал",
 //         finishCity: "Новополоцк", finishStaition: "Кинотеатр Минск",
@@ -65,84 +54,6 @@ var tripsStore: [Trip] = []
 //
 //]
 
-class StorageManeger {
-    
-    static let shared = StorageManeger()
-    private init() {}
-    
-    
-    func getUser(in users: [User], phoneNumber: String) -> User? {
-        var user1: User?
-        users.forEach { user in
-            if user.phoneNumber == phoneNumber {
-                user1 = user
-                return
-            }
-        }
-        return user1
-    }
-}
-
-class UserStore {
-    
-    private let defaults = UserDefaults.standard
-    static let shared = UserStore()
-    private let currentUserKey = "user"
-    private let usersKey = "users"
-    
-    
-    private init() {}
-    
-    func save(user: User) {
-        guard let user = try? JSONEncoder().encode(user) else { return }
-            defaults.set(user, forKey: currentUserKey)
-        print("Save current user")
-    
-    }
-    
-    func getUser() -> User? {
-        
-        guard let userData = defaults.value(forKey: currentUserKey) as? Data else { return nil }
-        let user = try? JSONDecoder().decode(User.self, from: userData)
-        print("Get current user")
-        return user
-    }
-    
-    func getUsers() -> [User]? {
-        
-        guard let userData = defaults.value(forKey: usersKey) as? Data else { return nil }
-        let users = try? JSONDecoder().decode([User].self, from: userData)
-        print("Get current user")
-        return users
-    }
-    
-    func deleteUser() {
-        defaults.removeObject(forKey: currentUserKey)
-    }
-    
-    func addNewUser(_ user: User) {
-        guard var users = getUsers() else { return }
-        users.append(user)
-        guard let users = try? JSONEncoder().encode(users) else { return }
-            defaults.set(users, forKey: usersKey)
-    }
-    
-    func firstStartApp() {
-        guard let _ = defaults.value(forKey: usersKey) as? Data else {
-            
-            guard let user = try? JSONEncoder().encode(users) else { return }
-                defaults.set(user, forKey: usersKey)
-            print("Save first start current users")
-            
-            return
-            
-        }
-        
-    }
-    
-}
-
-
 class CitySrore {
     
     static let shared = CitySrore()
@@ -159,7 +70,6 @@ class CitySrore {
     
     City(name: "Населенные пункты",
          staition: ["Бельчица", "Тросно", "Семенец", "Заозерье", "Межно"]),
-    
     ]
     
     func getCities() -> [City] {
@@ -189,7 +99,6 @@ class TimeStore {
     Time(hour: "18", countPassager: 1),
     Time(hour: "19", countPassager: 0),
     Time(hour: "20", countPassager: 8),
-    
     ]
     
     func getTime() -> [Time] {

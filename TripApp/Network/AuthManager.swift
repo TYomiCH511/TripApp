@@ -22,7 +22,8 @@ class AuthManager {
     private let store = Firestore.firestore()
     private var verificationId: String?
     
-    public func startAuth(phoneNumber: String, complition: @escaping (Bool) -> ()) {
+    public func startAuth(phoneNumber: String,
+                          complition: @escaping (Bool) -> ()) {
         
         PhoneAuthProvider
             .provider()
@@ -55,7 +56,8 @@ class AuthManager {
                 
                 switch typeSingin {
                 case .newSignin:
-                    guard let phoneNumber = user?.phoneNumber, let password = user?.password else {
+                    guard let phoneNumber = user?.phoneNumber,
+                          let password = user?.password else {
                         complition(false)
                         return
                     }
@@ -70,7 +72,6 @@ class AuthManager {
                     result.user.link(with: credentialEmail) { result, error in
                         guard let _ = result, error == nil else {
                             complition(false)
-                            print(error?.localizedDescription ?? "Not vefiried")
                             return }
                         
                         guard let userId = self.auth.currentUser?.uid, let user = user else { return }
@@ -84,8 +85,6 @@ class AuthManager {
                     }
                 case .resetPassword:
                     isChangePassword = true
-                    print("isChangePassword - \(isChangePassword)")
-                    print("user confirm smsCode")
                 }
             
         }
@@ -102,7 +101,8 @@ class AuthManager {
         }
     }
     
-    public func newPassword(password: String, complition: @escaping (Bool) -> ()) {
+    public func newPassword(password: String,
+                            complition: @escaping (Bool) -> ()) {
         auth.currentUser?.updatePassword(to: password, completion: { error in
             guard error == nil else {
                 complition(false)
@@ -112,7 +112,9 @@ class AuthManager {
         })
     }
     
-    public func changePassword(currentPassword: String, newPassword: String, complition: @escaping (Bool) -> ()) {
+    public func changePassword(currentPassword: String,
+                               newPassword: String,
+                               complition: @escaping (Bool) -> ()) {
         
         auth.currentUser?.updatePassword(to: newPassword, completion: { error in
             guard error == nil else {
@@ -123,13 +125,14 @@ class AuthManager {
         })
     }
     
-    public func checkUserInDataBase(withEmail: String, phoneNumber: String, complition: @escaping (Bool) -> ()) {
+    public func checkUserInDataBase(withEmail: String,
+                                    phoneNumber: String,
+                                    complition: @escaping (Bool) -> ()) {
         
         auth.signIn(withEmail: withEmail, password: "password") { _, error in
             
             guard let error = error else { return }
             let responseError = error as NSError
-            print(responseError.code)
             
             switch responseError.code {
             case AuthErrorCode.wrongPassword.rawValue:

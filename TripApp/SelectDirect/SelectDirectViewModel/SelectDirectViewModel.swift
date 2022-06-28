@@ -21,7 +21,7 @@ protocol SelectDirectViewModelProtocol {
     func viewModelFromCity() -> SelectCityViewModel
     func viewModelWhereCity() -> SelectCityViewModel
     func viewModelOrderDone() -> OrderDoneViewModelProtocol?
-    func orderTrip()
+    func orderTrip(complition: @escaping () -> ())
 }
 
 
@@ -96,11 +96,9 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
         
     }
     
-    func orderTrip() {
+    func orderTrip(complition: @escaping () -> ()) {
         
-        //guard var user = UserStore.shared.getUser() else { return }
         guard let trip = trip else { return }
-        
         
         switch typeSelectDirection {
         case .new:
@@ -108,14 +106,16 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
             guard let userId = userId else { return }
             //Create order trip in dataBase
             TripsManager.shared.setTrip(withUserId: userId, trip: trip) {
-            
+            complition()
             }
             
         case .orderBack:
-            UserStore.shared.deleteUser()
-            //user.trips.insert(trip, at: 0)
-            //UserStore.shared.save(user: user)
-            //print(user.trips.count)
+            guard let userId = userId else { return }
+            //Create order trip in dataBase
+            TripsManager.shared.setTrip(withUserId: userId, trip: trip) {
+            complition()
+            }
+            
         case .edit:
             editDelegate?.updateTrip(trip: trip)
             print("edit done")

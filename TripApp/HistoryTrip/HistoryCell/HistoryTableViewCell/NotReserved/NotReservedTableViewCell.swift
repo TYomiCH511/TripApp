@@ -9,7 +9,6 @@ import UIKit
 
 class NotReservedTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak var mainConteinerView: UIView!
     @IBOutlet weak var dataConteinerView: UIView!
     @IBOutlet weak var dayOfWeekLabel: UILabel!
@@ -33,7 +32,6 @@ class NotReservedTableViewCell: UITableViewCell {
     @IBOutlet weak var reservedImageView: UIImageView!
     
     @IBOutlet weak var reminderLabel: UILabel!
-    
     
     @IBOutlet weak var editTripButton: UIButton!
     @IBOutlet weak var cancelTripButton: UIButton!
@@ -79,12 +77,16 @@ class NotReservedTableViewCell: UITableViewCell {
                 heightFullData.constant = 0
                 fullDataTripConteinerView.isHidden = true
             } else {
+                dataConteinerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
                 heightFullData.constant = 508
                 fullDataTripConteinerView.isHidden = false
             }
         }
     }
     
+    override func prepareForReuse() {
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
