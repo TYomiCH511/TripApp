@@ -102,30 +102,33 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
         guard let trip = trip else { return }
         
         switch typeSelectDirection {
-        case .new:
-            
-            guard let userId = userId else { return }
-            //Create order trip in dataBase
-            TripsManager.shared.setTrip(withUserId: userId, trip: trip) {
-            complition()
-                
-            self.localNotification.createNotification(
-                withTitle: "Подтверждение",
-                body: "Вы можете подтвердить вашу поездку",
-                identifier: trip.id)
-                
-            }
-            
-        case .orderBack:
-            guard let userId = userId else { return }
-            //Create order trip in dataBase
-            TripsManager.shared.setTrip(withUserId: userId, trip: trip) {
-            complition()
-            }
-            
+        
         case .edit:
             editDelegate?.updateTrip(trip: trip)
             print("edit done")
+            
+        default:
+            guard let userId = userId else { return }
+            //Create order trip in dataBase
+            TripsManager.shared.setTrip(withUserId: userId, trip: trip) {
+            complition()
+                guard let date = trip.date else { return }
+                //show only greater 2 days
+                print(CustomDate.shared.showDate(from: date))
+                print(CustomDate.shared.showDate(from: Date(timeIntervalSinceNow: 75000)))
+                if CustomDate.shared.compare(firstDate: date, secondDate: Date(timeIntervalSinceNow: 75000)) {
+                    self.localNotification.createNotification(
+                        withTitle: "Подтверждение",
+                        body: "Вы можете подтвердить вашу поездку",
+                        identifier: trip.id,
+                        dateTrip: date)
+                    print("set notification")
+                } else {
+                    print("don't set notification")
+                }
+            
+                
+            }
         }
     }
     

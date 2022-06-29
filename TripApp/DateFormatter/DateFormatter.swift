@@ -62,15 +62,33 @@ class CustomDate {
         return dateTrip
     }
     
-    func showReservedTripNotification(dateTrip: Date, timeRemind: String) {
+    func dateReservedTripNotification(dateTrip: Date) -> Date {
+        
         let formatter = DateFormatter()
         formatter.locale = .init(identifier: "ru_RU")
         //formatter.timeZone = TimeZone(abbreviation: "GMT")
         formatter.dateFormat = "MM dd yyyy"
-        let stringDateTrip = timeRemind + formatter.string(from: dateTrip)
+        let stringDateTrip = "10:00 " + formatter.string(from: dateTrip.addingTimeInterval(-76000))
         formatter.dateFormat = "HH:mm MM dd yyyy"
         guard let dateTrip = formatter.date(from: stringDateTrip) else { return Date() }
         return dateTrip
+        
+    }
+    
+    func compare(firstDate: Date, secondDate: Date) -> Bool {
+        let formatter = DateFormatter()
+        formatter.locale = .init(identifier: "ru_RU")
+        //formatter.timeZone = TimeZone(abbreviation: "GMT")
+        formatter.dateFormat = "MM dd yyyy"
+        let firstString = formatter.string(from: firstDate)
+        let secondString = formatter.string(from: secondDate)
+        guard let firstDate = formatter.date(from: firstString),
+              let secondDate = formatter.date(from: secondString) else { return false}
+        if firstDate > secondDate {
+            return true
+        }
+        
+        return false
     }
     
 }

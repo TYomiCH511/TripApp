@@ -27,7 +27,7 @@ struct Trip: Codable {
     var countPasseger: Int?
     //let driver: Driver
     var isReviewDriver: Bool = false
-    
+    var orderDate: Date?
         
     var representation: [String: Any] {
         
@@ -73,6 +73,7 @@ struct Trip: Codable {
         guard let countPassager = data["countPassager"] as? Int else { return }
         guard let isReviewDriver = data["isReviewDriver"] as? Bool else { return }
         guard let tripStatus = data["tripStatus"] as? String else { return }
+        guard let orderDate = data["orderDate"] as? Timestamp else { return }
         
         self.date = date.dateValue()
         self.id = id
@@ -84,7 +85,7 @@ struct Trip: Codable {
         self.countPasseger = countPassager
         //self.driver: Driver
         self.isReviewDriver = isReviewDriver
-        
+        self.orderDate = orderDate.dateValue()
     }
     
 }

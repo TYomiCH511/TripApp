@@ -60,7 +60,10 @@ class TripsManager {
                     trips.append(trip)
                 }
             }
-            complition(trips)
+            complition(trips.sorted(by: { one, two in
+                guard let one = one.orderDate, let two = two.orderDate else { return false }
+                return one > two
+            }))
         }
     }
     

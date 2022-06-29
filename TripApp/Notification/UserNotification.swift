@@ -25,7 +25,7 @@ class UserNotification: NSObject, UNUserNotificationCenterDelegate {
         }
     }
     
-    func createNotification(withTitle title: String, body: String, identifier: String) {
+    func createNotification(withTitle title: String, body: String, identifier: String, dateTrip: Date) {
         let content = UNMutableNotificationContent()
         
         content.title = title
@@ -33,10 +33,13 @@ class UserNotification: NSObject, UNUserNotificationCenterDelegate {
         content.body = body
         content.sound = .default
         content.badge = 1
-        //let date = Date(timeIntervalSinceNow: -)
-        //let trigerreDate = Calendar.current.dateComponents([.month, .day, .hour, .minute, .second], from: <#T##Date#>)
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
         
+        let date = CustomDate.shared.dateReservedTripNotification(dateTrip: dateTrip)
+        let triggerDate = Calendar.current.dateComponents(
+            [.year, .month, .day, .hour, .minute, .second],
+            from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+        print(trigger.description)
         
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
