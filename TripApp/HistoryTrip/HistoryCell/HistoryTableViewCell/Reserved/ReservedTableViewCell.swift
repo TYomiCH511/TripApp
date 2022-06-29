@@ -71,6 +71,7 @@ class ReservedTableViewCell: UITableViewCell {
             let driver = Driver(carModel: "Mercedes Sprinter",
                                 carColor: "Белый",
                                 carNumber: "8888-2",
+                                countSits: 16,
                                 phoneNumber: "+375 29 566 47 58",
                                 raiting: "4.84",
                                 fullName: "Сидоров Алексей Петрович",

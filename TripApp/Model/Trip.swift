@@ -93,8 +93,10 @@ struct Driver: Codable {
     let carModel: String
     let carColor: String
     let carNumber: String
+    let countSits: Int
     let phoneNumber: String
     let raiting: String
     let fullName: String
     let photo: String
+    
 }

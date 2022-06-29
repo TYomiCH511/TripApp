@@ -40,6 +40,7 @@
 		AC5042162858A96100B52B59 /* SelectStaitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5042152858A96100B52B59 /* SelectStaitionViewController.swift */; };
 		AC57AE4F2861977F0081D51B /* TypeSelectDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC57AE4E2861977F0081D51B /* TypeSelectDirection.swift */; };
 		AC5C7D0F2853681300D0885C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C7D0E2853681300D0885C /* DateFormatter.swift */; };
+		AC5F9FF3286C4C3D0002521C /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F9FF2286C4C3D0002521C /* UserNotification.swift */; };
 		AC607E202851D8F000B9C878 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E1F2851D8F000B9C878 /* User.swift */; };
 		AC607E232851D98900B9C878 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E222851D98900B9C878 /* StorageManager.swift */; };
 		AC607E252851DD6900B9C878 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E242851DD6900B9C878 /* UIViewController+extension.swift */; };
@@ -51,6 +52,8 @@
 		AC607E3A2851FA9E00B9C878 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E392851FA9E00B9C878 /* SettingViewModel.swift */; };
 		AC607E3C2851FAE900B9C878 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3B2851FAE900B9C878 /* AccountViewController.swift */; };
 		AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC607E3F2852081B00B9C878 /* TabBarViewController.swift */; };
+		AC62E575286B077800564466 /* DateTripManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC62E574286B077800564466 /* DateTripManager.swift */; };
+		AC62E578286B08A900564466 /* DateTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC62E577286B08A900564466 /* DateTrip.swift */; };
 		AC80611A2862F4F1007DBD94 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC8061192862F4F1007DBD94 /* GoogleService-Info.plist */; };
 		AC877B3A285C564E005B3BF1 /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B39285C564E005B3BF1 /* UITextField+extension.swift */; };
 		AC877B3E285C6DB5005B3BF1 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC877B3D285C6DB5005B3BF1 /* AboutUsViewController.swift */; };
@@ -112,6 +115,7 @@
 		AC5042152858A96100B52B59 /* SelectStaitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStaitionViewController.swift; sourceTree = "<group>"; };
 		AC57AE4E2861977F0081D51B /* TypeSelectDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectDirection.swift; sourceTree = "<group>"; };
 		AC5C7D0E2853681300D0885C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		AC5F9FF2286C4C3D0002521C /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
 		AC607E1F2851D8F000B9C878 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC607E222851D98900B9C878 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		AC607E242851DD6900B9C878 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 		AC607E392851FA9E00B9C878 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		AC607E3B2851FAE900B9C878 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		AC607E3F2852081B00B9C878 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		AC62E574286B077800564466 /* DateTripManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTripManager.swift; sourceTree = "<group>"; };
+		AC62E577286B08A900564466 /* DateTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTrip.swift; sourceTree = "<group>"; };
 		AC8061192862F4F1007DBD94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC877B39285C564E005B3BF1 /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
 		AC877B3D285C6DB5005B3BF1 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +196,8 @@
 		AC44BD1D2850B49B004A8C2A /* TripApp */ = {
 			isa = PBXGroup;
 			children = (
+				AC5F9FF1286C4BA80002521C /* Notification */,
+				AC62E576286B089600564466 /* Model */,
 				ACFB70BD2863211900F8C634 /* Network */,
 				AC5C7D0C285367FA00D0885C /* DateFormatter */,
 				AC44BD322850B4D9004A8C2A /* App */,
@@ -265,7 +273,6 @@
 		AC44BD392850B98F004A8C2A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AC607E1F2851D8F000B9C878 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -460,7 +467,6 @@
 		AC5C7D0B28535E1600D0885C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AC607E262851E4FD00B9C878 /* Trip.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -471,6 +477,14 @@
 				AC5C7D0E2853681300D0885C /* DateFormatter.swift */,
 			);
 			path = DateFormatter;
+			sourceTree = "<group>";
+		};
+		AC5F9FF1286C4BA80002521C /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				AC5F9FF2286C4C3D0002521C /* UserNotification.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		AC607E212851D96D00B9C878 /* StorageManager */ = {
@@ -572,6 +586,17 @@
 				AC607E3F2852081B00B9C878 /* TabBarViewController.swift */,
 			);
 			path = TaBarViewController;
+			sourceTree = "<group>";
+		};
+		AC62E576286B089600564466 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AC607E1F2851D8F000B9C878 /* User.swift */,
+				AC607E262851E4FD00B9C878 /* Trip.swift */,
+				AC62E577286B08A900564466 /* DateTrip.swift */,
+				ACEC11C82859EB72005641AC /* Time.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		AC877B3B285C6CA6005B3BF1 /* AboutUs */ = {
@@ -732,7 +757,6 @@
 		ACEC11C72859EB54005641AC /* model */ = {
 			isa = PBXGroup;
 			children = (
-				ACEC11C82859EB72005641AC /* Time.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -768,6 +792,7 @@
 				ACFB70BE2863213900F8C634 /* AuthManager.swift */,
 				AC2AED1B2866DF3600FEEA94 /* UserManager.swift */,
 				AC209FDC28698F9700A55C9D /* TripsManager.swift */,
+				AC62E574286B077800564466 /* DateTripManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -905,6 +930,7 @@
 				AC877B3E285C6DB5005B3BF1 /* AboutUsViewController.swift in Sources */,
 				AC607E402852081B00B9C878 /* TabBarViewController.swift in Sources */,
 				AC607E252851DD6900B9C878 /* UIViewController+extension.swift in Sources */,
+				AC5F9FF3286C4C3D0002521C /* UserNotification.swift in Sources */,
 				AC50420028587C4C00B52B59 /* DataTripViewModelCell.swift in Sources */,
 				AC877B45285C92ED005B3BF1 /* ReservedTableViewCell.swift in Sources */,
 				AC50420C2858963200B52B59 /* SelectCityViewModel.swift in Sources */,
@@ -950,10 +976,12 @@
 				AC44BD212850B49B004A8C2A /* SceneDelegate.swift in Sources */,
 				AC607E2F2851E85100B9C878 /* HistoryTripViewModel.swift in Sources */,
 				AC4825AD28532D15008B593F /* NotReservedTableViewCell.swift in Sources */,
+				AC62E575286B077800564466 /* DateTripManager.swift in Sources */,
 				ACEC11C62859E9A7005641AC /* TimeViewModel.swift in Sources */,
 				AC607E352851F9B900B9C878 /* OrderViewModel.swift in Sources */,
 				ACB3A2BE285CB21B00D7AAB2 /* OrderDoneViewController.swift in Sources */,
 				ACB3A2BC285CB1C700D7AAB2 /* OrderDoneViewModel.swift in Sources */,
+				AC62E578286B08A900564466 /* DateTrip.swift in Sources */,
 				AC44BD3C2850CDE7004A8C2A /* UIButton+extension.swift in Sources */,
 				AC607E332851F9A800B9C878 /* OrderViewController.swift in Sources */,
 				ACFB70BF2863213900F8C634 /* AuthManager.swift in Sources */,

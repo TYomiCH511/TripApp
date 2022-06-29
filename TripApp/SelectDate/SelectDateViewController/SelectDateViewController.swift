@@ -67,14 +67,17 @@ class SelectDateViewController: UIViewController {
     }
     
     @objc private func showFreeTimeAndSeat(sender: UIDatePicker, for event: UIEvent) {
-        timeCollectionView.reloadData()
-        viewModel.times = TimeStore.shared.getTime()
-        
-        UIView.animate(withDuration: 1) {
-            let countOfRow = (CGFloat(self.viewModel.numberOfItem()) / 3).rounded(.up)
-            self.heightCollectionView.constant = self.sideHeight * countOfRow  + 10 * countOfRow - 10
-            self.loadViewIfNeeded()
+        DateTripManager.shared.getTime(inDate: selectorDatePicker.date) { day in
+            print(day)
+            self.viewModel.times = TimeStore.shared.getTime()
+            self.timeCollectionView.reloadData()
+            UIView.animate(withDuration: 1) {
+                let countOfRow = (CGFloat(self.viewModel.numberOfItem()) / 3).rounded(.up)
+                self.heightCollectionView.constant = self.sideHeight * countOfRow  + 10 * countOfRow - 10
+                self.loadViewIfNeeded()
+            }
         }
+        
     }
     
 }

@@ -59,7 +59,6 @@ class TripsManager {
                 } else {
                     trips.append(trip)
                 }
-                
             }
             complition(trips)
         }
@@ -102,8 +101,4 @@ class TripsManager {
             complition()
         }
     }
-    
-    
-    
-    
 }

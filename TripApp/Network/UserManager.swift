@@ -26,9 +26,7 @@ class UserManager {
         
         userData.getDocument { userData, error in
             guard let userData = userData, error == nil else { return }
-            print(userData)
             guard let user = User(userdData: userData) else { return }
-            print(user)
             complition(user)
         }
         

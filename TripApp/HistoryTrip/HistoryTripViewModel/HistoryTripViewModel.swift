@@ -47,8 +47,9 @@ protocol LeaveReviewDriverProtocol: AnyObject {
 
 class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProtocol {
     
-    var userId = Auth.auth().currentUser?.uid
+    private let userId = Auth.auth().currentUser?.uid
     var trips: Bindable<[Trip]> = Bindable<[Trip]>([Trip]())
+    private let localNotification = UserNotification()
     private let tripsManager = TripsManager.shared
     weak var reviewDelegate: LeaveReviewDriverProtocol?
     weak var editTripDelegate: EditTripProtocol?
@@ -80,6 +81,7 @@ class HistoryTripViewModel: HistoryTripViewModelProtocol, ActionTripPressedProto
             
             tripsManager.editTrip(trip: trip) { [weak self] in
                 self?.trips.value[tag] = trip
+                self?.localNotification.removeNotification(identifire: trip.id)
             }
         case .review:
             let reviewViewModel = reviewViewModel(atSelectRow: tag)

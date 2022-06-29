@@ -28,7 +28,8 @@ protocol SelectDirectViewModelProtocol {
 class SelectDirectViewModel: SelectDirectViewModelProtocol {
     
     var trip: Trip?
-    var userId = Auth.auth().currentUser?.uid
+    let userId = Auth.auth().currentUser?.uid
+    let localNotification = UserNotification()
     var countPassager: Int = 0
     var typeSelectDirection: TypeSelectDirection
     weak var editDelegate: EditTripDoneProtocol?
@@ -107,6 +108,12 @@ class SelectDirectViewModel: SelectDirectViewModelProtocol {
             //Create order trip in dataBase
             TripsManager.shared.setTrip(withUserId: userId, trip: trip) {
             complition()
+                
+            self.localNotification.createNotification(
+                withTitle: "Подтверждение",
+                body: "Вы можете подтвердить вашу поездку",
+                identifier: trip.id)
+                
             }
             
         case .orderBack:
